@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Misk Official — Collections · Casual · Formal · Fancy</title>
+<meta name="description" content="Explore the Misk Official collections — New Arrivals, Casual, Formal and Fancy wear. Free shipping all over Pakistan." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MISK OFFICIAL — STOREFRONT (full)
+   ============================================================ */
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:88px;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  overflow-x:clip;                 /* prevents mobile horizontal scroll */
+  max-width:100vw;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{ max-width:100%; display:block; height:auto; }
+a{ color:inherit; }
+button{ font-family:inherit; }
+
+:root{
+  --navy:      #2B4664;
+  --navy-deep: #1E3450;
+  --navy-ink:  #0d1a2b;
+  --steel:     #7D93A8;
+  --silver:    #BCC1C5;
+  --silver-lt: #E4E8EB;
+  --paper:     #F6F8F9;
+  --paper-2:   #EEF2F4;
+  --white:     #FFFFFF;
+  --ink:       #24384D;
+  --ink-soft:  #62758A;
+  --line:      #D8DEE3;
+  --gold:      #D9B36A;
+
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Jost', system-ui, -apple-system, sans-serif;
+}
+
+.wrap{
+  width:100%;
+  max-width:1320px;
+  margin:0 auto;
+  padding:0 clamp(16px, 3vw, 40px);
+}
+.section{ padding:clamp(56px, 8vw, 112px) 0; }
+
+/* ---------- shared heading ---------- */
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:16px;
+  font-size:9.5px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.eyebrow::before{
+  content:"";
+  width:22px; height:1px;
+  background:currentColor; opacity:.55;
+}
+.section-title{
+  margin:0 0 16px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(28px, 3.9vw, 50px);
+  line-height:1.08;
+  letter-spacing:-.022em;
+  color:var(--navy);
+}
+.section-title em{ font-style:italic; color:var(--steel); }
+.section-lede{
+  margin:0;
+  font-size:clamp(13.5px, 1.05vw, 16px);
+  font-weight:300;
+  line-height:1.82;
+  color:var(--ink-soft);
+}
+.section-head{
+  max-width:640px;
+  margin:0 auto clamp(34px, 5vw, 64px);
+  text-align:center;
+}
+.section-head .section-title{ position:relative; }
+.section-head .section-title::after{
+  content:"";
+  display:block;
+  width:56px; height:2px;
+  margin:20px auto 0;
+  border-radius:2px;
+  background:linear-gradient(90deg, transparent, var(--navy), transparent);
+  animation:linePulse 3.4s ease-in-out infinite;
+}
+@keyframes linePulse{
+  0%,100%{ opacity:.35; width:40px; }
+  50%    { opacity:1;   width:84px; }
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:15px 30px;
+  border:0;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .4s, color .4s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+}
+.btn .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.btn:hover .ar{ transform:translateX(5px); }
+.btn-navy{ background:var(--navy); color:#F2F6F8; box-shadow:0 14px 28px -18px rgba(43,70,100,.9); }
+.btn-navy:hover{ background:var(--navy-deep); transform:translateY(-2px); box-shadow:0 20px 34px -18px rgba(43,70,100,1); }
+.btn-light{ background:#F6F8F9; color:var(--navy); }
+.btn-light:hover{ background:var(--silver-lt); transform:translateY(-2px); }
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+.reveal{ opacity:0; }
+.reveal.in{ animation:revealUp .9s cubic-bezier(.22,1,.36,1) var(--d, 0s) forwards; }
+@keyframes revealUp{
+  from{ opacity:0; transform:translateY(30px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+.reveal-fade{ opacity:0; }
+.reveal-fade.in{ animation:revealFade .9s cubic-bezier(.22,1,.36,1) var(--d, 0s) forwards; }
+@keyframes revealFade{
+  from{ opacity:0; }
+  to  { opacity:1; }
+}
+
+/* ============================================================
+   1 · ANNOUNCEMENT MARQUEE
+   ============================================================ */
+.announce{
+  position:relative;
+  overflow:hidden;
+  background:var(--navy-deep);
+  color:#DCE4EB;
+  width:100%;
+}
+.announce::before,
+.announce::after{
+  content:"";
+  position:absolute;
+  top:0; bottom:0;
+  width:48px;
+  z-index:2;
+  pointer-events:none;
+}
+.announce::before{ left:0; background:linear-gradient(90deg, var(--navy-deep), rgba(30,52,80,0)); }
+.announce::after{ right:0; background:linear-gradient(270deg, var(--navy-deep), rgba(30,52,80,0)); }
+
+.announce-track{
+  display:flex;
+  width:max-content;
+  animation:announceScroll 34s linear infinite;
+}
+.announce:hover .announce-track{ animation-play-state:paused; }
+
+.announce-group{
+  display:flex;
+  align-items:center;
+  gap:clamp(38px, 4.6vw, 68px);
+  padding:11px clamp(20px, 2.4vw, 34px);
+}
+.announce-group span{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  white-space:nowrap;
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.announce-group .ico{ font-size:12px; line-height:1; }
+@keyframes announceScroll{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }
+}
+
+/* ============================================================
+   2 · HEADER + SCROLL PROGRESS
+   ============================================================ */
+.header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(246,248,249,.94);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+          backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:14px 0;
+  width:100%;
+}
+
+/* dark navy scroll progress */
+.scroll-progress{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:3px;
+  background:rgba(188,193,197,.42);
+  overflow:hidden;
+}
+.scroll-progress span{
+  display:block;
+  height:100%; width:0%;
+  background:linear-gradient(90deg, var(--navy) 0%, var(--navy-ink) 100%);
+  box-shadow:0 0 10px rgba(13,26,43,.7);
+  transition:width .08s linear;
+  will-change:width;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  text-decoration:none;
+  flex:none;
+}
+.mark{
+  width:48px; height:48px; flex:none;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover .mark{ transform:rotate(-6deg) scale(1.05); }
+.brand-name{
+  display:block;
+  font-family:var(--serif);
+  font-size:23px; font-weight:500; line-height:1;
+  color:var(--navy);
+}
+.brand-sub{
+  display:block;
+  margin-top:4px;
+  font-size:8px; font-weight:500;
+  letter-spacing:.44em; text-transform:uppercase;
+  color:var(--steel);
+}
+
+.nav{
+  display:flex;
+  gap:30px;
+  margin-left:clamp(10px, 3vw, 48px);
+}
+.nav a{
+  position:relative;
+  padding-bottom:4px;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink-soft);
+  transition:color .3s;
+}
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:0;
+  width:100%; height:1.5px;
+  background:var(--navy);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform .45s cubic-bezier(.76,0,.24,1);
+}
+.nav a:hover{ color:var(--navy); }
+.nav a:hover::after{ transform:scaleX(1); transform-origin:left; }
+.nav a.active{ color:var(--navy-ink); }
+.nav a.active::after{ transform:scaleX(1); transform-origin:left; background:var(--navy-ink); }
+
+.header-actions{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.icon-btn{
+  position:relative;
+  width:40px; height:40px;
+  display:grid; place-items:center;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--white);
+  color:var(--navy);
+  cursor:pointer;
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.icon-btn:hover{ background:var(--silver-lt); border-color:var(--silver); transform:translateY(-2px); }
+.icon-btn svg{ width:17px; height:17px; }
+.badge{
+  position:absolute;
+  top:-2px; right:-2px;
+  min-width:17px; height:17px;
+  padding:0 4px;
+  border-radius:99px;
+  background:var(--navy);
+  color:#fff;
+  font-size:8.5px; font-weight:500;
+  display:grid; place-items:center;
+  line-height:1;
+}
+.menu-btn{ display:none; }
+
+/* ============================================================
+   3 · HERO SLIDER
+   ============================================================ */
+.hero{
+  position:relative;
+  height:clamp(540px, 78vh, 720px);
+  background:
+    radial-gradient(900px 500px at 20% 40%, rgba(125,147,168,.18), transparent 60%),
+    linear-gradient(120deg, #1a2f47 0%, var(--navy) 58%, #2e4a6a 100%);
+  overflow:hidden;
+  isolation:isolate;
+  width:100%;
+}
+
+.hero-deco{
+  position:absolute;
+  inset:0;
+  width:52%;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+.hero-deco span{
+  position:absolute;
+  left:-3vw; top:50%;
+  transform:translateY(-50%);
+  font-family:var(--serif);
+  font-size:min(30vw, 380px);
+  font-weight:500;
+  line-height:1;
+  color:rgba(188,193,197,.055);
+  letter-spacing:-.04em;
+  user-select:none;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .5s ease;   /* faster fade */
+}
+.slide.is-active{ opacity:1; pointer-events:auto; }
+
+.slide-grid{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  align-items:center;
+  gap:clamp(24px, 4vw, 64px);
+  height:100%;
+  max-width:1320px;
+  margin:0 auto;
+  padding:clamp(30px, 6vh, 70px) clamp(18px, 3vw, 40px);
+  position:relative;
+  z-index:2;
+}
+
+.slide-inner{ display:flex; align-items:center; }
+.slide-body{ max-width:560px; color:#F2F6F8; }
+
+.slide-body > *{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+}
+.slide.is-active .slide-body > *{ opacity:1; transform:translateY(0); }
+.slide.is-active .slide-body > *:nth-child(1){ transition-delay:.14s; }
+.slide.is-active .slide-body > *:nth-child(2){ transition-delay:.24s; }
+.slide.is-active .slide-body > *:nth-child(3){ transition-delay:.34s; }
+.slide.is-active .slide-body > *:nth-child(4){ transition-delay:.44s; }
+
+.slide-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:22px;
+  padding:7px 16px;
+  border:1px solid rgba(255,255,255,.30);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(6px);
+          backdrop-filter:blur(6px);
+  font-size:8.5px; font-weight:500;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:#E4E8EB;
+}
+.slide-eyebrow::before{
+  content:"";
+  width:5px; height:5px;
+  border-radius:50%;
+  background:var(--silver);
+}
+
+.slide-title{
+  margin:0 0 18px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(28px, 4.4vw, 58px);
+  line-height:1.02;
+  letter-spacing:-.022em;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+.slide-title em{ font-style:italic; color:var(--silver); }
+
+.slide-text{
+  max-width:430px;
+  margin:0 0 28px;
+  font-size:clamp(13px, 1.05vw, 15.5px);
+  font-weight:300; line-height:1.78;
+  color:#CBD7E1;
+}
+
+.slide-media{
+  position:relative;
+  align-self:center;
+  height:100%;
+  max-height:620px;
+  min-height:280px;
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:
+    0 50px 90px -50px rgba(0,0,0,.72),
+    0 0 0 1px rgba(188,193,197,.16) inset;
+}
+.slide-media img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center 18%;
+  transform:scale(1.06);
+  transition:transform 6.4s cubic-bezier(.2,.7,.3,1);
+}
+.slide.is-active .slide-media img{ transform:scale(1); }
+
+.slider-btn{
+  position:absolute;
+  top:50%; z-index:5;
+  width:46px; height:46px;
+  transform:translateY(-50%);
+  display:grid; place-items:center;
+  border:1px solid rgba(255,255,255,.30);
+  border-radius:50%;
+  background:rgba(30,52,80,.32);
+  -webkit-backdrop-filter:blur(8px);
+          backdrop-filter:blur(8px);
+  color:#fff; cursor:pointer;
+  transition:background .35s, transform .35s, border-color .35s;
+}
+.slider-btn:hover{ background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.6); }
+.slider-btn.prev{ left:clamp(10px, 2vw, 28px); }
+.slider-btn.next{ right:clamp(10px, 2vw, 28px); }
+.slider-btn svg{ width:16px; height:16px; }
+
+.slider-dots{
+  position:absolute;
+  left:50%; bottom:clamp(22px, 4vh, 42px);
+  transform:translateX(-50%);
+  z-index:5;
+  display:flex; gap:9px;
+}
+.slider-dots button{
+  width:24px; height:3px;
+  padding:0; border:0; border-radius:2px;
+  background:rgba(255,255,255,.32);
+  cursor:pointer;
+  transition:background .4s, width .4s;
+}
+.slider-dots button.on{ width:42px; background:#F2F6F8; }
+
+.hero-wave{
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  z-index:4;
+  line-height:0;
+  pointer-events:none;
+}
+.hero-wave svg{ display:block; width:100%; height:clamp(50px, 7vw, 96px); }
+
+/* ============================================================
+   4 · INTRO / STORY
+   ============================================================ */
+.intro{ position:relative; overflow:hidden; }
+
+.intro::before{
+  content:"";
+  position:absolute;
+  top:8%; right:-70px;
+  width:230px; height:230px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(188,193,197,.28), transparent 70%);
+  animation:floatSlow 10s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes floatSlow{
+  0%,100%{ transform:translateY(0) rotate(0); }
+  50%    { transform:translateY(-18px) rotate(8deg); }
+}
+
+.intro-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:clamp(32px, 5vw, 84px);
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+
+.intro-copy .section-title{ margin-bottom:20px; }
+.intro-copy .section-title::after{
+  content:"";
+  display:block;
+  height:3px; width:0;
+  margin-top:18px;
+  border-radius:2px;
+  background:linear-gradient(90deg, var(--navy), var(--steel));
+  transition:width 1.1s .35s cubic-bezier(.22,1,.36,1);
+}
+.intro-copy.in .section-title::after{ width:68px; }
+.intro-copy .section-lede{ margin-bottom:26px; }
+
+.intro-points{
+  list-style:none;
+  margin:0; padding:0;
+  display:flex; flex-direction:column; gap:14px;
+}
+.intro-points li{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  font-size:13px; font-weight:300;
+  color:var(--ink-soft);
+  line-height:1.6;
+}
+.ip-ico{
+  flex:none;
+  width:36px; height:36px;
+  margin-top:-2px;
+  display:grid; place-items:center;
+  border-radius:11px;
+  background:var(--silver-lt);
+  color:var(--navy);
+  transition:background .4s, color .4s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.intro-points li:hover .ip-ico{
+  background:var(--navy);
+  color:#F2F6F8;
+  transform:rotate(-6deg) scale(1.08);
+}
+.ip-ico svg{ width:16px; height:16px; }
+.intro-points b{ font-weight:500; color:var(--ink); }
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(12px, 1.6vw, 18px);
+}
+.stat{
+  padding:clamp(20px, 2.4vw, 30px);
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--white);
+  transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .5s;
+}
+.stat:hover{
+  transform:translateY(-5px);
+  border-color:var(--silver);
+  box-shadow:0 26px 46px -32px rgba(43,70,100,.55);
+}
+.stat-ico{
+  display:grid; place-items:center;
+  width:38px; height:38px;
+  margin-bottom:14px;
+  border-radius:11px;
+  background:var(--silver-lt);
+  color:var(--navy);
+  transition:background .4s, color .4s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.stat:hover .stat-ico{
+  background:var(--navy);
+  color:#F2F6F8;
+  transform:rotate(-6deg);
+}
+.stat-ico svg{ width:18px; height:18px; }
+.stat b{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(24px, 2.8vw, 34px);
+  font-weight:500; line-height:1;
+  color:var(--navy);
+  font-variant-numeric:tabular-nums;
+}
+.stat-lab{
+  display:block;
+  margin-top:9px;
+  font-size:8.5px; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+.intro-orb{
+  position:absolute;
+  right:-40px; top:12%;
+  width:160px; height:160px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  pointer-events:none;
+  animation:floatSlow 9s ease-in-out infinite;
+}
+.intro-orb::after{
+  content:"";
+  position:absolute;
+  inset:26px;
+  border-radius:50%;
+  background:var(--silver-lt);
+  opacity:.7;
+}
+
+/* ============================================================
+   5 · COLLECTIONS (animated dark-blue border)
+   ============================================================ */
+.collections{ background:var(--paper); }
+
+.collections-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:clamp(16px, 1.8vw, 24px);
+}
+
+.collection-feature,
+.collection-card{
+  position:relative;
+  padding:2px;
+  overflow:hidden;
+  isolation:isolate;
+  min-width:0;
+}
+.collection-feature::before,
+.collection-card::before{
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  width:300%;
+  aspect-ratio:1;
+  background:conic-gradient(
+    from 0deg,
+    transparent 0deg 250deg,
+    rgba(43,70,100,.18) 272deg,
+    var(--navy) 312deg,
+    var(--navy-ink) 336deg,
+    rgba(13,26,43,.30) 355deg,
+    transparent 360deg
+  );
+  transform:translate(-50%,-50%) rotate(0deg);
+  animation:cardSpin 5s linear infinite;
+  z-index:-1;
+  pointer-events:none;
+}
+.collection-feature::after,
+.collection-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--line);
+  z-index:-2;
+  pointer-events:none;
+}
+@keyframes cardSpin{
+  from{ transform:translate(-50%,-50%) rotate(0deg); }
+  to  { transform:translate(-50%,-50%) rotate(360deg); }
+}
+
+.collection-feature{
+  grid-column:1 / -1;
+  border-radius:26px;
+  transition:box-shadow .5s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.collection-feature:hover{
+  transform:translateY(-5px);
+  box-shadow:0 40px 74px -50px rgba(13,26,43,.75);
+}
+.feature-inner{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  min-height:clamp(360px, 40vw, 460px);
+  border-radius:24px;
+  overflow:hidden;
+  background:var(--white);
+}
+.feature-media{ position:relative; overflow:hidden; }
+.feature-media img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1.4s cubic-bezier(.22,1,.36,1);
+}
+.collection-feature:hover .feature-media img{ transform:scale(1.05); }
+.feature-badge{
+  position:absolute;
+  top:20px; left:20px;
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.93);
+  -webkit-backdrop-filter:blur(8px);
+          backdrop-filter:blur(8px);
+  font-size:8.5px; font-weight:600;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--navy);
+}
+.feature-body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:14px;
+  padding:clamp(24px, 4vw, 56px);
+}
+.feature-title{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(24px, 2.9vw, 38px);
+  line-height:1.05;
+  letter-spacing:-.022em;
+  color:var(--navy);
+}
+.feature-text{
+  margin:0;
+  font-size:13.5px; font-weight:300;
+  line-height:1.8;
+  color:var(--ink-soft);
+}
+.feature-list{
+  list-style:none;
+  margin:4px 0 8px;
+  padding:0;
+  display:flex; flex-direction:column; gap:10px;
+}
+.feature-list li{
+  display:flex; align-items:center; gap:11px;
+  font-size:12.5px; font-weight:300;
+  color:var(--ink-soft);
+}
+.feature-list li::before{
+  content:"✓";
+  flex:none;
+  width:18px; height:18px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:var(--silver-lt);
+  color:var(--navy);
+  font-size:9px; font-weight:600;
+}
+
+.collection-card{
+  display:block;
+  border-radius:24px;
+  transition:transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s;
+}
+.collection-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 32px 62px -40px rgba(43,70,100,.6);
+}
+.card-inner{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  border-radius:22px;
+  overflow:hidden;
+  background:var(--white);
+}
+.card-media{
+  position:relative;
+  aspect-ratio:4 / 5;
+  display:grid;
+  gap:3px;
+  overflow:hidden;
+  background:var(--silver-lt);
+}
+.card-media img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1s cubic-bezier(.22,1,.36,1);
+}
+.collection-card:hover .card-media img{ transform:scale(1.07); }
+
+.media-3{
+  grid-template-columns:1.34fr 1fr;
+  grid-template-rows:1fr 1fr;
+}
+.media-3 img:first-child{ grid-row:span 2; }
+
+.media-2{
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr;
+}
+
+.card-body{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  flex:1;
+  padding:22px 22px 24px;
+}
+.card-tag{
+  font-size:8px; font-weight:500;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--steel);
+}
+.card-title{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(19px, 1.7vw, 23px);
+  line-height:1.15;
+  color:var(--navy);
+}
+.card-text{
+  margin:0;
+  font-size:12.5px; font-weight:300;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.card-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:auto;
+  padding-top:12px;
+  font-size:9.5px; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase;
+  text-decoration:none;
+  color:var(--navy);
+}
+.card-link .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.collection-card:hover .card-link .ar{ transform:translateX(6px); }
+
+/* ============================================================
+   6 · WATER WAVE DIVIDER
+   ============================================================ */
+.water-divider{
+  position:relative;
+  height:clamp(110px, 15vw, 170px);
+  overflow:hidden;
+  background:linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  width:100%;
+}
+.water-wave{
+  position:absolute;
+  left:0; bottom:0;
+  width:200%;
+  height:100%;
+  animation:waterSlide 14s linear infinite;
+  will-change:transform;
+}
+.water-wave.w2{ animation-duration:19s; animation-direction:reverse; }
+.water-wave.w3{ animation-duration:24s; }
+@keyframes waterSlide{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }
+}
+.bubble{
+  position:absolute;
+  bottom:-12px;
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 30%, rgba(255,255,255,.95), rgba(188,193,197,.45));
+  opacity:0;
+  animation:bubbleRise 9s ease-in infinite;
+  pointer-events:none;
+}
+.bubble.b1{ left:14%; width:10px; height:10px; animation-delay:0s; }
+.bubble.b2{ left:36%; width:7px;  height:7px;  animation-delay:2.2s; }
+.bubble.b3{ left:60%; width:12px; height:12px; animation-delay:4.4s; }
+.bubble.b4{ left:80%; width:8px;  height:8px;  animation-delay:6.2s; }
+.bubble.b5{ left:48%; width:6px;  height:6px;  animation-delay:7.6s; }
+@keyframes bubbleRise{
+  0%  { transform:translateY(0) scale(.6); opacity:0; }
+  18% { opacity:.85; }
+  80% { opacity:.55; }
+  100%{ transform:translateY(-120px) scale(1.15); opacity:0; }
+}
+
+/* ============================================================
+   7 · SERVICES
+   ============================================================ */
+.services{
+  position:relative;
+  background:var(--paper-2);
+  padding-top:clamp(30px, 4vw, 56px);
+}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:clamp(14px, 1.6vw, 22px);
+}
+.service{
+  position:relative;
+  padding:clamp(22px, 2.8vw, 36px);
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:var(--white);
+  transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .5s;
+  overflow:hidden;
+  min-width:0;
+}
+.service::after{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:2px;
+  background:linear-gradient(90deg, var(--navy), var(--steel), transparent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .6s cubic-bezier(.76,0,.24,1);
+}
+.service:hover{
+  transform:translateY(-6px);
+  border-color:var(--silver);
+  box-shadow:0 28px 52px -38px rgba(43,70,100,.55);
+}
+.service:hover::after{ transform:scaleX(1); }
+.service-icon{
+  width:48px; height:48px;
+  display:grid; place-items:center;
+  border-radius:14px;
+  background:var(--silver-lt);
+  color:var(--navy);
+  margin-bottom:18px;
+  transition:background .4s, color .4s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.service:hover .service-icon{
+  background:var(--navy);
+  color:#F2F6F8;
+  transform:rotate(-5deg) scale(1.06);
+}
+.service-icon svg{ width:22px; height:22px; }
+.service h3{
+  margin:0 0 8px;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:18px; line-height:1.2;
+  color:var(--navy);
+}
+.service p{
+  margin:0;
+  font-size:12.5px; font-weight:300;
+  line-height:1.72;
+  color:var(--ink-soft);
+}
+
+/* ============================================================
+   8 · CRAFTSMANSHIP (new)
+   ============================================================ */
+.craft{ background:var(--paper); position:relative; overflow:hidden; }
+
+.craft-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(32px, 5vw, 80px);
+  align-items:center;
+}
+.craft-media{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  aspect-ratio:4/3;
+  box-shadow:0 40px 70px -50px rgba(43,70,100,.55);
+}
+.craft-media img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.22,1,.36,1);
+}
+.craft-media:hover img{ transform:scale(1.06); }
+.craft-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 50%, rgba(30,52,80,.28) 100%);
+  pointer-events:none;
+}
+.craft-badge{
+  position:absolute;
+  bottom:20px; left:20px;
+  z-index:2;
+  padding:9px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:blur(8px);
+          backdrop-filter:blur(8px);
+  font-size:8.5px; font-weight:600;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--navy);
+}
+
+.craft-copy .section-title{ margin-bottom:18px; }
+.craft-copy .section-lede{ margin-bottom:28px; }
+
+.craft-features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px 20px;
+  margin-bottom:28px;
+}
+.craft-feat{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+.craft-feat-ico{
+  flex:none;
+  width:34px; height:34px;
+  display:grid; place-items:center;
+  border-radius:10px;
+  background:var(--silver-lt);
+  color:var(--navy);
+  transition:background .4s, color .4s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.craft-feat:hover .craft-feat-ico{
+  background:var(--navy);
+  color:#F2F6F8;
+  transform:rotate(-6deg);
+}
+.craft-feat-ico svg{ width:16px; height:16px; }
+.craft-feat b{ display:block; font-size:12px; font-weight:500; color:var(--ink); }
+.craft-feat small{ display:block; font-size:10.5px; font-weight:300; color:var(--ink-soft); }
+
+/* ============================================================
+   9 · LOOKBOOK (new)
+   ============================================================ */
+.lookbook{ background:var(--paper-2); }
+
+.lookbook-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  grid-auto-rows: clamp(140px, 16vw, 210px);
+  gap:clamp(8px, 1vw, 14px);
+}
+.look-tile{
+  position:relative;
+  overflow:hidden;
+  border-radius:14px;
+  background:var(--silver-lt);
+  min-width:0;
+}
+.look-tile img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1.4s cubic-bezier(.22,1,.36,1);
+}
+.look-tile:hover img{ transform:scale(1.09); }
+.look-tile::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 40%, rgba(30,52,80,.72) 100%);
+  opacity:0;
+  transition:opacity .5s;
+  pointer-events:none;
+}
+.look-tile:hover::after{ opacity:1; }
+.look-tile span{
+  position:absolute;
+  left:14px; bottom:12px;
+  z-index:2;
+  font-family:var(--serif);
+  font-size:13px;
+  color:#F2F6F8;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .4s, transform .4s;
+}
+.look-tile:hover span{ opacity:1; transform:translateY(0); }
+.look-tile.big{ grid-column:span 2; grid-row:span 2; }
+.look-tile.tall{ grid-row:span 2; }
+
+/* ============================================================
+   10 · REVIEWS
+   ============================================================ */
+.reviews{
+  background:var(--paper-2);
+  padding-top:clamp(30px, 4vw, 56px);
+}
+.reviews-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:clamp(14px, 1.6vw, 22px);
+}
+.review{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin:0;
+  padding:clamp(22px, 2.8vw, 34px);
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:var(--white);
+  transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .5s;
+  min-width:0;
+}
+.review:hover{
+  transform:translateY(-5px);
+  border-color:var(--silver);
+  box-shadow:0 28px 52px -38px rgba(43,70,100,.5);
+}
+.stars{
+  font-size:12px;
+  letter-spacing:.2em;
+  color:var(--gold);
+  animation:starGlow 3.2s ease-in-out infinite;
+}
+@keyframes starGlow{
+  0%,100%{ opacity:.85; text-shadow:none; }
+  50%    { opacity:1; text-shadow:0 0 14px rgba(217,179,106,.55); }
+}
+.review blockquote{
+  margin:0;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(14.5px, 1.2vw, 17px);
+  line-height:1.58;
+  color:var(--navy);
+}
+.review figcaption{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:auto;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+.avatar{
+  flex:none;
+  width:38px; height:38px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:var(--navy);
+  color:#F2F6F8;
+  font-family:var(--serif);
+  font-size:15px;
+}
+.review figcaption b{ display:block; font-size:12px; font-weight:500; color:var(--ink); }
+.review figcaption small{ display:block; font-size:10px; font-weight:300; color:var(--ink-soft); letter-spacing:.05em; }
+
+/* ============================================================
+   11 · HOW TO ORDER (new)
+   ============================================================ */
+.howto{ background:var(--paper); }
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:clamp(16px, 2vw, 26px);
+  position:relative;
+}
+.steps::before{
+  content:"";
+  position:absolute;
+  top:48px;
+  left:16%; right:16%;
+  height:1px;
+  background:repeating-linear-gradient(90deg, var(--silver) 0 8px, transparent 8px 16px);
+  z-index:0;
+}
+.step{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:12px;
+  padding:0 8px;
+  min-width:0;
+}
+.step-num{
+  width:64px; height:64px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:var(--white);
+  border:1px solid var(--line);
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:500;
+  color:var(--navy);
+  position:relative;
+  transition:background .4s, color .4s, border-color .4s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.step-num::before{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:1px dashed var(--silver);
+  animation:ringSpin 14s linear infinite;
+}
+@keyframes ringSpin{ to{ transform:rotate(360deg); } }
+.step:hover .step-num{
+  background:var(--navy);
+  color:#F2F6F8;
+  border-color:var(--navy);
+  transform:translateY(-4px);
+}
+.step:hover .step-num::before{ border-color:var(--navy); }
+.step h3{
+  margin:6px 0 0;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:17px;
+  color:var(--navy);
+}
+.step p{
+  margin:0;
+  font-size:12px; font-weight:300;
+  line-height:1.65;
+  color:var(--ink-soft);
+  max-width:230px;
+}
+
+/* ============================================================
+   12 · FAQ (new)
+   ============================================================ */
+.faq{ background:var(--paper-2); }
+.faq-list{
+  max-width:820px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.faq-item{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--white);
+  overflow:hidden;
+  transition:border-color .4s, box-shadow .4s;
+}
+.faq-item[open]{
+  border-color:var(--silver);
+  box-shadow:0 20px 44px -38px rgba(43,70,100,.55);
+}
+.faq-item summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px 22px;
+  font-size:13.5px;
+  font-weight:500;
+  color:var(--navy);
+  cursor:pointer;
+  transition:background .3s;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary:hover{ background:var(--paper); }
+.faq-item summary::after{
+  content:"+";
+  flex:none;
+  width:26px; height:26px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:var(--silver-lt);
+  font-size:16px; font-weight:400;
+  color:var(--navy);
+  transition:transform .4s, background .4s, color .4s;
+}
+.faq-item[open] summary::after{
+  content:"−";
+  transform:rotate(180deg);
+  background:var(--navy);
+  color:#F2F6F8;
+}
+.faq-item p{
+  margin:0;
+  padding:0 22px 20px;
+  font-size:12.5px; font-weight:300;
+  line-height:1.75;
+  color:var(--ink-soft);
+}
+
+/* ============================================================
+   13 · CTA BAND
+   ============================================================ */
+.cta-band{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--navy);
+  color:#F2F6F8;
+  padding:clamp(56px, 7vw, 100px) 0;
+  text-align:center;
+}
+.cta-waves{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.cw{
+  position:absolute;
+  bottom:0; left:0;
+  width:200%;
+  height:clamp(110px, 16vw, 190px);
+  display:block;
+}
+.cw-1{ animation:waveSlide 17s linear infinite; }
+.cw-2{ animation:waveSlide 27s linear infinite reverse; }
+@keyframes waveSlide{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }
+}
+.cta-band .wrap{ position:relative; z-index:2; }
+.cta-band h2{
+  margin:0 0 16px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(26px, 3.7vw, 46px);
+  line-height:1.1;
+  letter-spacing:-.022em;
+}
+.cta-band h2 em{ font-style:italic; color:var(--silver); }
+.cta-band p{
+  max-width:500px;
+  margin:0 auto 30px;
+  font-size:13.5px; font-weight:300;
+  line-height:1.8;
+  color:#C9D5DF;
+}
+
+/* ============================================================
+   14 · NEWSLETTER (new)
+   ============================================================ */
+.newsletter{
+  background:var(--paper);
+  border-top:1px solid var(--line);
+}
+.news-inner{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:clamp(26px, 4vw, 60px);
+  align-items:center;
+}
+.news-copy .section-title{ margin-bottom:12px; }
+.news-copy p{
+  margin:0;
+  font-size:13.5px; font-weight:300;
+  color:var(--ink-soft);
+  line-height:1.75;
+  max-width:420px;
+}
+.news-form{
+  display:flex;
+  gap:10px;
+  padding:6px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:999px;
+  transition:border-color .3s, box-shadow .3s;
+  width:100%;
+}
+.news-form:focus-within{
+  border-color:var(--navy);
+  box-shadow:0 0 0 4px rgba(43,70,100,.10);
+}
+.news-form input{
+  flex:1 1 auto;
+  min-width:0;
+  padding:12px 18px;
+  border:0;
+  background:transparent;
+  font-family:inherit;
+  font-size:12.5px;
+  color:var(--ink);
+  outline:none;
+}
+.news-form input::placeholder{ color:#9AA9B6; }
+.news-form button{
+  flex:none;
+  border:0;
+  border-radius:999px;
+  padding:12px 22px;
+  background:var(--navy);
+  color:#F2F6F8;
+  font-family:inherit;
+  font-size:9.5px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .35s, transform .35s;
+}
+.news-form button:hover{ background:var(--navy-deep); transform:translateY(-1px); }
+.news-note{
+  margin-top:10px;
+  font-size:9.5px;
+  letter-spacing:.12em;
+  color:#94A3B1;
+  text-transform:uppercase;
+}
+
+/* ============================================================
+   15 · FOOTER
+   ============================================================ */
+.footer{
+  background:var(--navy-deep);
+  color:#C4D0DA;
+  padding:clamp(48px, 6vw, 80px) 0 0;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.7fr 1fr 1fr 1fr 1.25fr;
+  gap:clamp(24px, 3vw, 44px);
+  padding-bottom:clamp(36px, 4.6vw, 60px);
+}
+.footer-brand .brand{ margin-bottom:18px; }
+.footer-brand .brand-name{ color:#F2F6F8; }
+.footer-brand .brand-sub{ color:var(--steel); }
+.footer-blurb{
+  margin:0 0 20px;
+  font-size:12.5px; font-weight:300;
+  line-height:1.8;
+  color:#A9BAC7;
+  max-width:290px;
+}
+.socials{ display:flex; gap:10px; }
+.socials a{
+  width:36px; height:36px;
+  display:grid; place-items:center;
+  border:1px solid rgba(188,193,197,.22);
+  border-radius:50%;
+  color:#C4D0DA;
+  transition:background .35s, color .35s, border-color .35s, transform .35s;
+}
+.socials a:hover{
+  background:var(--silver);
+  border-color:var(--silver);
+  color:var(--navy);
+  transform:translateY(-3px);
+}
+.socials svg{ width:15px; height:15px; }
+.footer h4{
+  margin:0 0 18px;
+  font-size:9.5px; font-weight:500;
+  letter-spacing:.28em; text-transform:uppercase;
+  color:#F2F6F8;
+}
+.footer ul{
+  list-style:none;
+  margin:0; padding:0;
+  display:flex; flex-direction:column; gap:11px;
+}
+.footer ul a{
+  display:inline-block;
+  font-size:12.5px; font-weight:300;
+  text-decoration:none;
+  color:#AFC0CD;
+  transition:color .3s, padding-left .3s;
+}
+.footer ul a:hover{ color:#F2F6F8; padding-left:5px; }
+.contact-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:12.5px; font-weight:300;
+  color:#AFC0CD;
+  line-height:1.6;
+  word-break:break-word;
+}
+.contact-list svg{
+  flex:none;
+  width:14px; height:14px;
+  margin-top:3px;
+  stroke:var(--steel);
+}
+.footer-bottom{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 0 26px;
+  border-top:1px solid rgba(188,193,197,.14);
+  font-size:9.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#8FA3B2;
+}
+
+/* ============================================================
+   16 · MOBILE MENU + BACK TO TOP
+   ============================================================ */
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  background:rgba(24,44,68,.98);
+  -webkit-backdrop-filter:blur(10px);
+          backdrop-filter:blur(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .4s ease;
+}
+.mobile-menu.open{ opacity:1; pointer-events:auto; }
+.mobile-menu a{
+  font-family:var(--serif);
+  font-size:24px;
+  text-decoration:none;
+  color:#F2F6F8;
+  letter-spacing:.01em;
+  transition:color .3s;
+}
+.mobile-menu a.active{ color:var(--silver); }
+.mobile-menu a:hover{ color:var(--silver); }
+.mm-close{
+  position:absolute;
+  top:22px; right:22px;
+  width:44px; height:44px;
+  display:grid; place-items:center;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  background:transparent;
+  color:#F2F6F8;
+  cursor:pointer;
+}
+.to-top{
+  position:fixed;
+  right:20px; bottom:20px;
+  z-index:80;
+  width:46px; height:46px;
+  border-radius:50%;
+  border:0;
+  background:var(--navy);
+  color:#F2F6F8;
+  display:grid; place-items:center;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(14px) scale(.9);
+  pointer-events:none;
+  transition:opacity .4s, transform .4s cubic-bezier(.22,1,.36,1), background .3s;
+  box-shadow:0 16px 30px -14px rgba(30,52,80,.85);
+}
+.to-top.show{ opacity:1; transform:none; pointer-events:auto; }
+.to-top:hover{ background:var(--navy-deep); transform:translateY(-3px); }
+.to-top svg{ width:18px; height:18px; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1120px){
+  .nav{ gap:22px; margin-left:22px; }
+  .footer-grid{ grid-template-columns:1.5fr 1fr 1fr; row-gap:36px; }
+  .lookbook-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); }
+}
+
+@media (max-width: 980px){
+  .nav{ display:none; }
+  .menu-btn{ display:grid; }
+  .hero-deco{ display:none; }
+
+  /* HERO → full-bleed slider */
+  .hero{ height:clamp(500px, 82vh, 660px); }
+  .slide-grid{
+    display:block;
+    position:static;
+    padding:0;
+    height:100%;
+  }
+  .slide-media{
+    position:absolute;
+    inset:0;
+    height:100%;
+    max-height:none;
+    min-height:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+  .slide-media::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,
+      rgba(20,38,60,.10) 0%,
+      rgba(20,38,60,.55) 55%,
+      rgba(18,34,54,.95) 100%);
+  }
+  .slide-media img{ object-position:center 22%; }
+  .slide-inner{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding:30px clamp(18px, 4vw, 32px) 90px;
+    width:100%;
+  }
+  .slide-body{ max-width:100%; width:100%; }
+  .slide-text{ display:none; }
+  .slide-title{ font-size:clamp(26px, 7vw, 42px); }
+  .slide-body .btn{ width:100%; max-width:340px; }
+
+  .intro-grid{ grid-template-columns:1fr; gap:34px; }
+  .intro-orb{ display:none; }
+
+  .collections-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .collection-feature{ grid-template-columns:1fr; }
+  .feature-inner{ grid-template-columns:1fr; }
+  .feature-media{ min-height:280px; }
+
+  .services-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .reviews-grid{ grid-template-columns:1fr; }
+
+  .craft-grid{ grid-template-columns:1fr; gap:28px; }
+  .craft-media{ aspect-ratio:16/10; }
+
+  .lookbook-grid{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    grid-auto-rows: clamp(120px, 26vw, 180px);
+  }
+  .look-tile.big{ grid-column:span 2; grid-row:span 2; }
+  .look-tile.tall{ grid-row:span 2; }
+
+  .steps{ grid-template-columns:1fr; gap:24px; }
+  .steps::before{ display:none; }
+
+  .news-inner{ grid-template-columns:1fr; gap:20px; }
+  .news-copy p{ max-width:none; }
+
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+  .footer-brand{ grid-column:1 / -1; }
+}
+
+@media (max-width: 720px){
+  .section{ padding:clamp(44px, 9vw, 68px) 0; }
+
+  .slide-inner{ padding-bottom:76px; }
+  .slider-btn{ width:40px; height:40px; }
+  .slider-dots{ bottom:20px; }
+
+  .collections-grid{ grid-template-columns:1fr; }
+  .services-grid{ grid-template-columns:1fr; }
+
+  .lookbook-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-auto-rows: clamp(120px, 36vw, 180px);
+  }
+
+  .footer-grid{ grid-template-columns:1fr; gap:28px; }
+  .footer-brand{ grid-column:auto; }
+
+  .craft-features{ grid-template-columns:1fr; }
+  .news-form{ flex-direction:column; border-radius:20px; padding:10px; }
+  .news-form button{ width:100%; border-radius:14px; padding:14px; }
+  .news-form input{ padding:12px 14px; text-align:center; }
+}
+
+@media (max-width: 480px){
+  .brand-name{ font-size:20px; }
+  .mark{ width:42px; height:42px; }
+  .brand-sub{ font-size:7px; letter-spacing:.36em; }
+  .header-inner{ gap:10px; padding:12px 0; }
+
+  .announce-group{ gap:28px; }
+  .announce-group span{ font-size:9px; letter-spacing:.14em; }
+
+  .stats{ grid-template-columns:1fr 1fr; gap:10px; }
+  .stat{ padding:16px; }
+  .stat-ico{ width:34px; height:34px; margin-bottom:10px; }
+  .stat b{ font-size:21px; }
+
+  .footer-bottom{ font-size:8.5px; letter-spacing:.12em; justify-content:center; text-align:center; }
+
+  .btn{ padding:13px 22px; font-size:9px; letter-spacing:.2em; }
+  .slide-body .btn{ max-width:100%; }
+
+  .hero{ height:clamp(480px, 86vh, 600px); }
+  .slide-title{ font-size:clamp(24px, 8vw, 34px); }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal, .reveal-fade{ opacity:1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M6 6l12 12M18 6L6 18"/>
+    </svg>
+  </button>
+  <a href="#top" data-spy="top">Home</a>
+  <a href="#collections" data-spy="collections">Collections</a>
+  <a href="#services" data-spy="services">Services</a>
+  <a href="#reviews" data-spy="reviews">Reviews</a>
+  <a href="#contact" data-spy="contact">Contact</a>
+</div>
+
+<!-- ================= ANNOUNCEMENT MARQUEE ================= -->
+<div class="announce" aria-label="Store announcements">
+  <div class="announce-track">
+    <div class="announce-group">
+      <span><span class="ico">🚚</span> Free Shipping All Over Pakistan</span>
+      <span><span class="ico">✨</span> New Arrivals Every Week</span>
+      <span><span class="ico">💎</span> Custom Made Dresses Available</span>
+    </div>
+    <div class="announce-group" aria-hidden="true">
+      <span><span class="ico">🚚</span> Free Shipping All Over Pakistan</span>
+      <span><span class="ico">✨</span> New Arrivals Every Week</span>
+      <span><span class="ico">💎</span> Custom Made Dresses Available</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header" id="top">
+  <div class="wrap header-inner">
+
+    <a class="brand" href="index.html" aria-label="Misk Official home">
+      <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Misk Official logo">
+        <circle cx="50" cy="50" r="48" fill="#2B4664"/>
+        <circle cx="50" cy="50" r="41.5" fill="none" stroke="#BCC1C5" stroke-width="1" opacity=".55"/>
+        <path d="M32 66 V40 L50 56 L68 40 V66"
+              fill="none" stroke="#EDF1F4" stroke-width="5.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="50" cy="29" r="2.4" fill="#BCC1C5"/>
+      </svg>
+      <span>
+        <span class="brand-name">Misk</span>
+        <span class="brand-sub">Official</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#top" data-spy="top">Home</a>
+      <a href="#collections" data-spy="collections">Collections</a>
+      <a href="#services" data-spy="services">Services</a>
+      <a href="#reviews" data-spy="reviews">Reviews</a>
+      <a href="#contact" data-spy="contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
+        </svg>
+      </button>
+      <button class="icon-btn" aria-label="Shopping bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+        </svg>
+        <span class="badge">2</span>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+</header>
+
+<!-- ================= HERO SLIDER ================= -->
+<section class="hero" id="hero" aria-label="Misk Official featured collections">
+
+  <div class="hero-deco" aria-hidden="true"><span>Misk</span></div>
+
+  <article class="slide is-active">
+    <div class="slide-grid">
+      <div class="slide-inner">
+        <div class="slide-body">
+          <span class="slide-eyebrow">New Season · Eid Edit</span>
+          <h2 class="slide-title">Timeless Elegance,<br><em>Reimagined</em></h2>
+          <p class="slide-text">Discover the Eid collection — hand-embellished suits in the season's most-loved silhouettes, made to be remembered.</p>
+          <a href="#collections" class="btn btn-light">Explore Collection <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="slide-media"><img src="scroll/1.jpg" alt="Misk Eid edit collection" /></div>
+    </div>
+  </article>
+
+  <article class="slide">
+    <div class="slide-grid">
+      <div class="slide-inner">
+        <div class="slide-body">
+          <span class="slide-eyebrow">The Casual Edit</span>
+          <h2 class="slide-title">Effortless<br><em>Everyday Grace</em></h2>
+          <p class="slide-text">Breathable fabrics, relaxed cuts and colours that move with you — from morning errands to evening tea.</p>
+          <a href="#collections" class="btn btn-light">Explore Collection <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="slide-media"><img src="scroll/2.jpg" alt="Misk casual wear collection" /></div>
+    </div>
+  </article>
+
+  <article class="slide">
+    <div class="slide-grid">
+      <div class="slide-inner">
+        <div class="slide-body">
+          <span class="slide-eyebrow">Signature Formal</span>
+          <h2 class="slide-title">Crafted for<br><em>Celebrations</em></h2>
+          <p class="slide-text">Structured lines and subtle shimmer for weddings, dinners and every evening that deserves more.</p>
+          <a href="#collections" class="btn btn-light">Explore Collection <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="slide-media"><img src="scroll/3.jpg" alt="Misk formal wear collection" /></div>
+    </div>
+  </article>
+
+  <article class="slide">
+    <div class="slide-grid">
+      <div class="slide-inner">
+        <div class="slide-body">
+          <span class="slide-eyebrow">The Fancy Collection</span>
+          <h2 class="slide-title">Couture for<br><em>Grand Occasions</em></h2>
+          <p class="slide-text">Hand-embroidered detail and premium fabric for Eid, mehndi and every milestone worth dressing up for.</p>
+          <a href="#collections" class="btn btn-light">Explore Collection <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="slide-media"><img src="scroll/4.jpg" alt="Misk fancy couture collection" /></div>
+    </div>
+  </article>
+
+  <article class="slide">
+    <div class="slide-grid">
+      <div class="slide-inner">
+        <div class="slide-body">
+          <span class="slide-eyebrow">Made in Pakistan</span>
+          <h2 class="slide-title">Heritage in<br><em>Every Stitch</em></h2>
+          <p class="slide-text">Designed and crafted by Pakistani artisans — supporting local craft, one suit at a time.</p>
+          <a href="#collections" class="btn btn-light">Explore Collection <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="slide-media"><img src="scroll/5.jpg" alt="Misk craftsmanship" /></div>
+    </div>
+  </article>
+
+  <article class="slide">
+    <div class="slide-grid">
+      <div class="slide-inner">
+        <div class="slide-body">
+          <span class="slide-eyebrow">Premium Fabrics</span>
+          <h2 class="slide-title">Chosen<br><em>Thread by Thread</em></h2>
+          <p class="slide-text">Only the finest lawn, chiffon, organza and silk ever make it into a Misk piece.</p>
+          <a href="#collections" class="btn btn-light">Explore Collection <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="slide-media"><img src="scroll/6.jpg" alt="Misk premium fabrics" /></div>
+    </div>
+  </article>
+
+  <article class="slide">
+    <div class="slide-grid">
+      <div class="slide-inner">
+        <div class="slide-body">
+          <span class="slide-eyebrow">Custom Made</span>
+          <h2 class="slide-title">Tailored to<br><em>Your Story</em></h2>
+          <p class="slide-text">Because no two women are the same — order custom sizing on select designs, made just for you.</p>
+          <a href="#collections" class="btn btn-light">Explore Collection <span class="ar">→</span></a>
+        </div>
+      </div>
+      <div class="slide-media"><img src="scroll/7.jpg" alt="Misk custom made dresses" /></div>
+    </div>
+  </article>
+
+  <button class="slider-btn prev" id="prevBtn" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 5l-7 7 7 7"/>
+    </svg>
+  </button>
+  <button class="slider-btn next" id="nextBtn" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+
+  <div class="slider-dots" id="sliderDots" aria-label="Choose slide"></div>
+
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <path d="M0,50 C240,90 480,0 720,30 C960,60 1200,90 1440,40 L1440,90 L0,90 Z" fill="#F6F8F9"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= INTRO / STORY ================= -->
+<section class="intro section">
+  <div class="wrap">
+    <div class="intro-grid">
+
+      <div class="intro-copy reveal">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="section-title">Where heritage meets <em>modern grace</em></h2>
+        <p class="section-lede">
+          Misk Official was born from a simple belief — that every woman in Pakistan
+          deserves clothing as considered as she is. From the first sketch to the final
+          stitch, each piece is designed in-house, cut from premium fabrics and finished
+          by hand.
+        </p>
+        <ul class="intro-points">
+          <li>
+            <span class="ip-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>
+              </svg>
+            </span>
+            <span><b>Designed in-house</b> — every silhouette begins on our studio table.</span>
+          </li>
+          <li>
+            <span class="ip-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/>
+              </svg>
+            </span>
+            <span><b>Premium fabrics only</b> — lawn, chiffon, organza and pure silk.</span>
+          </li>
+          <li>
+            <span class="ip-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/>
+                <path d="M8.2 7.6 20 18"/><path d="M8.2 16.4 20 6"/>
+              </svg>
+            </span>
+            <span><b>Hand-finished detail</b> — embroidery, trims and stitching done by artisans.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat reveal-fade" style="--d:.05s">
+          <span class="stat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/>
+            </svg>
+          </span>
+          <b class="count" data-target="4" data-pad="2">04</b>
+          <span class="stat-lab">Collections</span>
+        </div>
+        <div class="stat reveal-fade" style="--d:.12s">
+          <span class="stat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20a8 8 0 1 1 8-8c0 2-1 3-3 3h-1a2 2 0 0 0-2 2c0 1.7 1.3 3 3 3"/>
+              <circle cx="8" cy="10" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16" cy="10" r="1"/>
+            </svg>
+          </span>
+          <b class="count" data-target="120" data-suffix="+">120+</b>
+          <span class="stat-lab">Designs</span>
+        </div>
+        <div class="stat reveal-fade" style="--d:.19s">
+          <span class="stat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20s-7-4.4-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.6 12 20 12 20z"/>
+            </svg>
+          </span>
+          <b class="count" data-target="12" data-suffix="K+">12K+</b>
+          <span class="stat-lab">Happy Customers</span>
+        </div>
+        <div class="stat reveal-fade" style="--d:.26s">
+          <span class="stat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17l-5.5 4L8 14.5 3 10l6.5-.5z"/>
+            </svg>
+          </span>
+          <b class="count" data-target="100" data-suffix="%">100%</b>
+          <span class="stat-lab">Made in Pakistan</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="intro-orb" aria-hidden="true"></div>
+</section>
+
+<!-- ================= COLLECTIONS ================= -->
+<section class="collections section" id="collections">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">The Collections</span>
+      <h2 class="section-title">Four Worlds of <em>Misk</em></h2>
+      <p class="section-lede">From the ease of everyday wear to the grandeur of celebration couture — find the collection that fits the moment.</p>
+    </header>
+
+    <div class="collections-grid">
+
+      <article class="collection-feature reveal-fade">
+        <div class="feature-inner">
+          <div class="feature-media">
+            <img src="scroll/2.jpg" alt="Misk new arrivals collection" loading="lazy" />
+            <span class="feature-badge">Just In</span>
+          </div>
+          <div class="feature-body">
+            <span class="card-tag">01 · New Arrival</span>
+            <h3 class="feature-title">Fresh Off the Loom</h3>
+            <p class="feature-text">
+              The newest Misk designs land every week — fresh silhouettes, seasonal
+              colours and the fabrics our customers ask for most.
+            </p>
+            <ul class="feature-list">
+              <li>New drops every Friday</li>
+              <li>Limited pieces per design</li>
+              <li>Ready to ship nationwide</li>
+            </ul>
+            <a href="products.html" class="btn btn-navy">Explore New Arrivals <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="collection-card reveal-fade" style="--d:.08s">
+        <div class="card-inner">
+          <div class="card-media media-3">
+            <img src="scroll/c1.jpg" alt="Misk casual daily wear suit" loading="lazy" />
+            <img src="scroll/c2.jpg" alt="Misk casual lawn suit" loading="lazy" />
+            <img src="scroll/c3.jpg" alt="Misk casual cotton suit" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <span class="card-tag">02 · Daily Use</span>
+            <h3 class="card-title">Casual Wear</h3>
+            <p class="card-text">Everyday ease, elevated. Breathable lawn and cotton suits made for daily wear, office days and everything in between.</p>
+            <a href="products.html" class="card-link">View Collection <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="collection-card reveal-fade" style="--d:.16s">
+        <div class="card-inner">
+          <div class="card-media media-2">
+            <img src="scroll/f1.jpg" alt="Misk formal function suit" loading="lazy" />
+            <img src="scroll/f2.jpg" alt="Misk formal party suit" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <span class="card-tag">03 · Functions &amp; Parties</span>
+            <h3 class="card-title">Formal Wear</h3>
+            <p class="card-text">For functions, dinners and evenings that deserve more. Structured silhouettes with subtle, considered detailing.</p>
+            <a href="products.html" class="card-link">View Collection <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="collection-card reveal-fade" style="--d:.24s">
+        <div class="card-inner">
+          <div class="card-media media-2">
+            <img src="scroll/w1.jpg" alt="Misk fancy Eid suit" loading="lazy" />
+            <img src="scroll/w2.jpg" alt="Misk fancy premium couture" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <span class="card-tag">04 · Eid &amp; Premium Events</span>
+            <h3 class="card-title">Fancy Wear</h3>
+            <p class="card-text">Hand-embellished couture for Eid, mehndi and milestone moments. Our most intricate craftsmanship, made in limited numbers.</p>
+            <a href="products.html" class="card-link">View Collection <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= WATER WAVE DIVIDER ================= -->
+<div class="water-divider" aria-hidden="true">
+  <svg class="water-wave w1" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,50 C240,10 480,90 720,50 C960,10 1200,90 1440,50 L1440,120 L0,120 Z" fill="#E4E8EB"/>
+  </svg>
+  <svg class="water-wave w2" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,68 C240,28 480,108 720,68 C960,28 1200,108 1440,68 L1440,120 L0,120 Z" fill="#D8DEE3"/>
+  </svg>
+  <svg class="water-wave w3" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,84 C240,44 480,124 720,84 C960,44 1200,124 1440,84 L1440,120 L0,120 Z" fill="#EEF2F4"/>
+  </svg>
+  <span class="bubble b1"></span>
+  <span class="bubble b2"></span>
+  <span class="bubble b3"></span>
+  <span class="bubble b4"></span>
+  <span class="bubble b5"></span>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section class="services section" id="services">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">The Misk Experience</span>
+      <h2 class="section-title">Every Detail, <em>Considered</em></h2>
+      <p class="section-lede">Shopping with Misk should feel as good as wearing it. Here's what comes with every order.</p>
+    </header>
+
+    <div class="services-grid">
+
+      <div class="service reveal-fade" style="--d:.04s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 6.5h11v10H2z"/><path d="M13 9.5h4l4 4v3h-8z"/>
+            <circle cx="6.5" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/>
+          </svg>
+        </div>
+        <h3>Free Delivery</h3>
+        <p>Complimentary delivery on every order, all over Pakistan — no minimum spend required.</p>
+      </div>
+
+      <div class="service reveal-fade" style="--d:.09s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.5 11a8.5 8.5 0 1 1 2.4 6"/><path d="M3 5v6h6"/>
+          </svg>
+        </div>
+        <h3>Easy Returns</h3>
+        <p>7-day easy returns and exchanges on unworn pieces — because fit should never be a worry.</p>
+      </div>
+
+      <div class="service reveal-fade" style="--d:.14s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/>
+            <path d="M8.2 7.6 20 18"/><path d="M8.2 16.4 20 6"/>
+          </svg>
+        </div>
+        <h3>Custom Made</h3>
+        <p>Custom sizing and made-to-measure available on select designs — tailored to you.</p>
+      </div>
+
+      <div class="service reveal-fade" style="--d:.19s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/>
+            <circle cx="17" cy="14.5" r="1.3"/>
+          </svg>
+        </div>
+        <h3>Cash on Delivery</h3>
+        <p>Pay when it arrives — safe, simple and no advance payment needed anywhere in Pakistan.</p>
+      </div>
+
+      <div class="service reveal-fade" style="--d:.24s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z"/>
+          </svg>
+        </div>
+        <h3>Premium Fabrics</h3>
+        <p>Only the finest lawn, chiffon, organza and silk — sourced and checked by hand.</p>
+      </div>
+
+      <div class="service reveal-fade" style="--d:.29s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/>
+            <path d="M8.6 11.5h.01M12 11.5h.01M15.4 11.5h.01"/>
+          </svg>
+        </div>
+        <h3>Real Support</h3>
+        <p>A real person on WhatsApp, ready to help you choose sizing, fabric and fit.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CRAFTSMANSHIP (new) ================= -->
+<section class="craft section">
+  <div class="wrap">
+    <div class="craft-grid">
+
+      <div class="craft-media reveal-fade">
+        <img src="scroll/5.jpg" alt="Misk craftsmanship and fabric detail" loading="lazy" />
+        <span class="craft-badge">Since 2019</span>
+      </div>
+
+      <div class="craft-copy reveal">
+        <span class="eyebrow">Craftsmanship</span>
+        <h2 class="section-title">Made by hand, <em>made to last</em></h2>
+        <p class="section-lede">
+          Every Misk suit passes through the hands of skilled Pakistani artisans —
+          from pattern cutting to the final embroidery stitch. We work in small
+          batches so each piece gets the attention it deserves.
+        </p>
+
+        <div class="craft-features">
+          <div class="craft-feat">
+            <span class="craft-feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17l-5.5 4L8 14.5 3 10l6.5-.5z"/>
+              </svg>
+            </span>
+            <span><b>Hand embroidery</b><small>Done by master artisans</small></span>
+          </div>
+          <div class="craft-feat">
+            <span class="craft-feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/>
+                <path d="M8.2 7.6 20 18"/><path d="M8.2 16.4 20 6"/>
+              </svg>
+            </span>
+            <span><b>Small batches</b><small>Never mass produced</small></span>
+          </div>
+          <div class="craft-feat">
+            <span class="craft-feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>
+              </svg>
+            </span>
+            <span><b>In-house design</b><small>Every silhouette original</small></span>
+          </div>
+          <div class="craft-feat">
+            <span class="craft-feat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 3v18"/><path d="M5 4h12l-2.5 4L17 12H5"/>
+              </svg>
+            </span>
+            <span><b>Ethical making</b><small>Fair pay for our artisans</small></span>
+          </div>
+        </div>
+
+        <a href="craftsmanship.html" class="btn btn-navy">Learn Our Process <span class="ar">→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOOKBOOK (new) ================= -->
+<section class="lookbook section">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">The Lookbook</span>
+      <h2 class="section-title">Styled by <em>Misk</em></h2>
+      <p class="section-lede">Real pieces, real moments. A peek into how our community wears Misk.</p>
+    </header>
+
+    <div class="lookbook-grid reveal-fade">
+      <a href="products.html" class="look-tile big"><img src="scroll/1.jpg" alt="Misk lookbook 1" loading="lazy" /><span>Eid Edit</span></a>
+      <a href="products.html" class="look-tile tall"><img src="scroll/2.jpg" alt="Misk lookbook 2" loading="lazy" /><span>Everyday</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/c1.jpg" alt="Misk lookbook 3" loading="lazy" /><span>Casual</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/c2.jpg" alt="Misk lookbook 4" loading="lazy" /><span>Casual</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/f1.jpg" alt="Misk lookbook 5" loading="lazy" /><span>Formal</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/f2.jpg" alt="Misk lookbook 6" loading="lazy" /><span>Formal</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/w1.jpg" alt="Misk lookbook 7" loading="lazy" /><span>Fancy</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/w2.jpg" alt="Misk lookbook 8" loading="lazy" /><span>Fancy</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/3.jpg" alt="Misk lookbook 9" loading="lazy" /><span>Signature</span></a>
+      <a href="products.html" class="look-tile"><img src="scroll/4.jpg" alt="Misk lookbook 10" loading="lazy" /><span>Couture</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="reviews section" id="reviews">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">Customer Love</span>
+      <h2 class="section-title">Loved Across <em>Pakistan</em></h2>
+      <p class="section-lede">Real words from real Misk customers — from Karachi to Islamabad and everywhere in between.</p>
+    </header>
+
+    <div class="reviews-grid">
+
+      <figure class="review reveal-fade" style="--d:.05s">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>"The fabric quality is honestly better than brands twice the price. My Eid suit got so many compliments!"</blockquote>
+        <figcaption>
+          <span class="avatar">A</span>
+          <span><b>Ayesha K.</b><small>Lahore</small></span>
+        </figcaption>
+      </figure>
+
+      <figure class="review reveal-fade" style="--d:.12s">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>"Custom sizing fit perfectly and delivery was faster than promised. Misk is my go-to now."</blockquote>
+        <figcaption>
+          <span class="avatar">F</span>
+          <span><b>Fatima R.</b><small>Karachi</small></span>
+        </figcaption>
+      </figure>
+
+      <figure class="review reveal-fade" style="--d:.19s">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>"Elegant packaging, beautiful stitching, easy returns. It genuinely feels premium from start to finish."</blockquote>
+        <figcaption>
+          <span class="avatar">H</span>
+          <span><b>Hira S.</b><small>Islamabad</small></span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW TO ORDER (new) ================= -->
+<section class="howto section">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">How to Order</span>
+      <h2 class="section-title">Three Steps to <em>Your Suit</em></h2>
+      <p class="section-lede">From browsing to unboxing — the Misk ordering experience is as smooth as our fabrics.</p>
+    </header>
+
+    <div class="steps">
+      <div class="step reveal-fade" style="--d:.05s">
+        <span class="step-num">1</span>
+        <h3>Browse &amp; Choose</h3>
+        <p>Explore the collections and pick the style, size and colour that speaks to you.</p>
+      </div>
+      <div class="step reveal-fade" style="--d:.15s">
+        <span class="step-num">2</span>
+        <h3>Place Your Order</h3>
+        <p>Checkout in seconds with COD or online payment. Custom sizing available at checkout.</p>
+      </div>
+      <div class="step reveal-fade" style="--d:.25s">
+        <span class="step-num">3</span>
+        <h3>Unbox &amp; Enjoy</h3>
+        <p>Delivered free to your door in 2–5 days. Not the right fit? Easy 7-day returns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ (new) ================= -->
+<section class="faq section">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">Need Help?</span>
+      <h2 class="section-title">Frequently <em>Asked</em></h2>
+      <p class="section-lede">Quick answers to the questions we hear most.</p>
+    </header>
+
+    <div class="faq-list">
+
+      <details class="faq-item reveal-fade">
+        <summary>How long does delivery take?</summary>
+        <p>Orders are delivered in 2–5 working days anywhere in Pakistan. Major cities usually receive in 2–3 days. Delivery is completely free on all orders.</p>
+      </details>
+
+      <details class="faq-item reveal-fade">
+        <summary>Can I order a custom size?</summary>
+        <p>Yes! Custom sizing is available on select designs. Choose "Custom Made" at checkout and share your measurements — our team will confirm within 24 hours.</p>
+      </details>
+
+      <details class="faq-item reveal-fade">
+        <summary>What is your return policy?</summary>
+        <p>Unworn pieces with tags intact can be returned or exchanged within 7 days of delivery. Custom-made orders are final sale. See our Returns page for full details.</p>
+      </details>
+
+      <details class="faq-item reveal-fade">
+        <summary>Do you offer cash on delivery?</summary>
+        <p>Yes — COD is available across Pakistan. Pay when your order arrives, no advance payment needed.</p>
+      </details>
+
+      <details class="faq-item reveal-fade">
+        <summary>Are the fabrics really premium?</summary>
+        <p>Absolutely. We source lawn, chiffon, organza and silk directly from trusted mills, and every roll is checked by hand before cutting.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band">
+  <div class="cta-waves" aria-hidden="true">
+    <svg class="cw cw-1" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path d="M0,80 Q180,20 360,80 T720,80 T1080,80 T1440,80 L1440,160 L0,160 Z" fill="rgba(255,255,255,0.07)"/>
+    </svg>
+    <svg class="cw cw-2" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path d="M0,105 Q180,150 360,105 T720,105 T1080,105 T1440,105 L1440,160 L0,160 Z" fill="rgba(255,255,255,0.05)"/>
+    </svg>
+  </div>
+
+  <div class="wrap reveal">
+    <h2>Find your perfect <em>Misk</em></h2>
+    <p>From daily casuals to celebration couture — your next favourite suit is waiting.</p>
+    <a href="products.html" class="btn btn-light">Shop All Collections <span class="ar">→</span></a>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER (new) ================= -->
+<section class="newsletter section">
+  <div class="wrap">
+    <div class="news-inner">
+
+      <div class="news-copy reveal">
+        <span class="eyebrow">Stay in the Loop</span>
+        <h2 class="section-title">New drops, <em>first look</em></h2>
+        <p>Be the first to know about new arrivals, exclusive drops and members-only offers. No spam, ever.</p>
+      </div>
+
+      <form class="news-form reveal-fade" onsubmit="event.preventDefault(); this.querySelector('input').value=''; alert('Thank you for subscribing to Misk Official!');">
+        <input type="email" placeholder="Your email address" required aria-label="Email address" />
+        <button type="submit">Subscribe</button>
+      </form>
+
+    </div>
+    <p class="news-note reveal-fade">Join 12,000+ women across Pakistan</p>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Misk Official home">
+          <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Misk Official logo">
+            <circle cx="50" cy="50" r="48" fill="#BCC1C5"/>
+            <circle cx="50" cy="50" r="41.5" fill="none" stroke="#1E3450" stroke-width="1" opacity=".35"/>
+            <path d="M32 66 V40 L50 56 L68 40 V66"
+                  fill="none" stroke="#1E3450" stroke-width="5.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="50" cy="29" r="2.4" fill="#1E3450"/>
+          </svg>
+          <span>
+            <span class="brand-name">Misk</span>
+            <span class="brand-sub">Official</span>
+          </span>
+        </a>
+        <p class="footer-blurb">
+          Premium women's clothing designed and crafted in Pakistan — casual, formal
+          and fancy suits for every moment worth remembering.
+        </p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.2" cy="6.8" r="1"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13.5 21v-7.5H11V10h2.5V7.8c0-2.4 1.4-3.8 3.6-3.8 1 0 2 .2 2 .2v3h-1.2c-1.2 0-1.6.7-1.6 1.5V10H17l-.5 3.5h-2.2V21z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Collections</h4>
+        <ul>
+          <li><a href="products.html">New Arrival</a></li>
+          <li><a href="products.html">Casual Wear</a></li>
+          <li><a href="products.html">Formal Wear</a></li>
+          <li><a href="products.html">Fancy Wear</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="shipping-policy.html">Shipping Policy</a></li>
+          <li><a href="returns-exchanges.html">Returns &amp; Exchanges</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="our-story.html">Our Story</a></li>
+          <li><a href="craftsmanship.html">Craftsmanship</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul class="contact-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>
+            </svg>
+            <span>hello@miskofficial.pk</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h3l1.5 4-2 1.5a12 12 0 0 0 5 5L15 11.5 19 13v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4 5.2 2 2 0 0 1 6 3z"/>
+            </svg>
+            <span>+92 300 1234567</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z"/>
+              <circle cx="12" cy="11" r="2.2"/>
+            </svg>
+            <span>Lahore, Pakistan</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Misk Official — All rights reserved</span>
+      <span>Crafted in Pakistan with love</span>
+    </div>
+
+  </div>
+</footer>
+
+<!-- back to top -->
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V6M6 12l6-6 6 6"/>
+  </svg>
+</button>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------------------------------------------------
+     1 · SCROLL PROGRESS + BACK TO TOP
+     --------------------------------------------------------- */
+  var scrollBar = document.getElementById('scrollBar');
+  var toTop = document.getElementById('toTop');
+
+  function updateScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (scrollBar) scrollBar.style.width = p + '%';
+    if (toTop) toTop.classList.toggle('show', h.scrollTop > 600);
+  }
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  window.addEventListener('resize', updateScroll);
+  updateScroll();
+
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ---------------------------------------------------------
+     2 · HERO SLIDER  (interval 3s · transition 0.5s)
+     --------------------------------------------------------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.hero .slide'));
+  var dotsWrap = document.getElementById('sliderDots');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var current = 0;
+  var timer = null;
+  var INTERVAL = 3000;
+
+  slides.forEach(function (_, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    if (i === 0) b.className = 'on';
+    b.addEventListener('click', function () { goTo(i); restart(); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function goTo(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle('is-active', k === current); });
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === current); });
+  }
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function start() { stop(); timer = window.setInterval(next, INTERVAL); }
+  function stop() { if (timer) { window.clearInterval(timer); timer = null; } }
+  function restart() { start(); }
+
+  if (slides.length) {
+    start();
+    nextBtn.addEventListener('click', function () { next(); restart(); });
+    prevBtn.addEventListener('click', function () { prev(); restart(); });
+
+    var hero = document.getElementById('hero');
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+
+    var sx = 0, sy = 0, swiping = false;
+    hero.addEventListener('touchstart', function (e) {
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+      swiping = true; stop();
+    }, { passive: true });
+    hero.addEventListener('touchend', function (e) {
+      if (!swiping) return;
+      swiping = false;
+      var dx = e.changedTouches[0].clientX - sx;
+      var dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) next(); else prev();
+      }
+      start();
+    }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------
+     3 · REVEAL ON SCROLL
+     --------------------------------------------------------- */
+  var revealEls = document.querySelectorAll('.reveal, .reveal-fade');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------------------------------------------------------
+     4 · COUNT-UP STATS  (1.5s, then stop)
+     --------------------------------------------------------- */
+  var counted = false;
+  function startCounts() {
+    if (counted) return;
+    counted = true;
+    document.querySelectorAll('.count').forEach(function (el) {
+      var target = parseFloat(el.getAttribute('data-target') || '0');
+      var suffix = el.getAttribute('data-suffix') || '';
+      var pad = parseInt(el.getAttribute('data-pad') || '0', 10);
+      var DURATION = 1500;
+      var startTs = null;
+      function frame(ts) {
+        if (startTs === null) startTs = ts;
+        var p = Math.min((ts - startTs) / DURATION, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.round(target * eased);
+        var str = String(val);
+        if (pad) str = str.padStart(pad, '0');
+        el.textContent = str + suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+  var statsBox = document.getElementById('stats');
+  if (statsBox) {
+    if ('IntersectionObserver' in window) {
+      var sio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { startCounts(); sio.disconnect(); }
+        });
+      }, { threshold: 0.35 });
+      sio.observe(statsBox);
+    } else {
+      startCounts();
+    }
+  }
+
+  /* ---------------------------------------------------------
+     5 · SCROLL SPY (nav link highlights current section)
+     --------------------------------------------------------- */
+  var spyIds = ['top', 'collections', 'services', 'reviews', 'contact'];
+  var navLinks = document.querySelectorAll('.nav a[data-spy], .mobile-menu a[data-spy]');
+
+  function updateSpy() {
+    var scrollPos = window.scrollY + 120;   /* offset for sticky header */
+    var active = spyIds[0];
+
+    spyIds.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollPos) active = id;
+    });
+
+    /* bottom of page → contact */
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 4) {
+      active = 'contact';
+    }
+
+    navLinks.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('data-spy') === active);
+    });
+  }
+  window.addEventListener('scroll', updateSpy, { passive: true });
+  window.addEventListener('resize', updateSpy);
+  updateSpy();
+
+  /* ---------------------------------------------------------
+     6 · MOBILE MENU
+     --------------------------------------------------------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var mmClose = document.getElementById('mmClose');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  function openMenu() { mobileMenu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+  if (menuBtn) menuBtn.addEventListener('click', openMenu);
+  if (mmClose) mmClose.addEventListener('click', closeMenu);
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') closeMenu();
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+})();
+</script>
+
+</body>
+</html>

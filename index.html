@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Misk Official — Pakistan's Finest Womenswear</title>
+<meta name="description" content="Misk Official — Pakistan's premium women's clothing brand. Casual, formal and fancy suits crafted with love." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MISK OFFICIAL — SINGLE-SCREEN LANDING
+   Slate Navy · Cool Silver · Light editorial
+   ============================================================ */
+
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; height:100%; }
+
+:root{
+  --navy:        #2B4664;
+  --navy-deep:   #1E3450;
+  --steel:       #7D93A8;
+  --silver:      #BCC1C5;
+  --silver-lt:   #E4E8EB;
+  --paper:       #F6F8F9;
+  --paper-2:     #EEF2F4;
+  --ink:         #24384D;
+  --ink-soft:    #62758A;
+  --line:        #D8DEE3;
+
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Jost', system-ui, -apple-system, sans-serif;
+}
+
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(900px 620px at 88% -8%, #E9EEF2 0%, rgba(233,238,242,0) 62%),
+    radial-gradient(760px 520px at -6% 106%, #EBEFF2 0%, rgba(235,239,242,0) 58%);
+  height:100vh;
+  height:100dvh;
+  overflow:hidden;                 /* ← no page scroll */
+  display:flex;
+  flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* ---------- top colour strip ---------- */
+.strip{
+  flex:0 0 auto;
+  display:flex;
+  height:5px;
+}
+.strip i{ flex:1; display:block; }
+
+/* ---------- shell ---------- */
+.page{
+  flex:1 1 auto;
+  min-height:0;
+  width:100%;
+  max-width:1320px;
+  margin:0 auto;
+  padding:0 clamp(16px, 3vw, 36px);
+  display:flex;
+  flex-direction:column;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:clamp(11px, 2.1vh, 22px) 0;
+  border-bottom:1px solid var(--line);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  text-decoration:none;
+  color:inherit;
+}
+.mark{
+  width:52px;
+  height:52px;
+  flex:none;
+  display:block;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover .mark{ transform:rotate(-6deg) scale(1.05); }
+
+.brand-name{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(20px, 2.1vw, 27px);
+  font-weight:500;
+  line-height:1;
+  color:var(--navy);
+  letter-spacing:.005em;
+}
+.brand-sub{
+  display:block;
+  margin-top:5px;
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.46em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+
+.header-right{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.nav{ display:flex; gap:28px; }
+.nav a{
+  position:relative;
+  padding-bottom:4px;
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink-soft);
+  transition:color .3s;
+}
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:0;
+  width:100%; height:1.5px;
+  background:var(--navy);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform .45s cubic-bezier(.76,0,.24,1);
+}
+.nav a:hover{ color:var(--navy); }
+.nav a:hover::after{ transform:scaleX(1); transform-origin:left; }
+
+.nav-cta{
+  padding:11px 24px;
+  border-radius:999px;
+  background:var(--navy);
+  color:#F2F6F8;
+  font-size:9.5px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .35s, transform .35s cubic-bezier(.22,1,.36,1);
+}
+.nav-cta:hover{ background:var(--navy-deep); transform:translateY(-2px); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  flex:1 1 auto;
+  min-height:0;
+  display:grid;
+  grid-template-columns:1.06fr .94fr;
+  align-items:center;
+  gap:clamp(18px, 3vw, 52px);
+  padding:clamp(8px, 2.4vh, 30px) 0;
+}
+
+/* ---------- copy ---------- */
+.copy{ min-width:0; }
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:7px 15px;
+  margin-bottom:clamp(10px, 2vh, 22px);
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--navy);
+  animation:fadeUp .8s .05s backwards;
+}
+.eyebrow .dot{
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--steel);
+  flex:none;
+}
+
+.hero-title{
+  margin:0 0 clamp(12px, 2.2vh, 26px);
+  line-height:.98;
+}
+.line-1{
+  display:block;
+  margin-bottom:.2em;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(14px, min(1.9vw, 2.4vh), 24px);
+  letter-spacing:.015em;
+  color:var(--ink-soft);
+}
+.line-2{
+  display:block;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(30px, min(5.6vw, 8.6vh), 76px);
+  letter-spacing:-.022em;
+  color:var(--navy);
+}
+
+/* typed characters */
+.ch{
+  opacity:0;
+  transition:opacity .16s linear;
+  will-change:opacity;
+}
+.ch.on{ opacity:1; }
+
+.lede{
+  max-width:440px;
+  margin:0 0 clamp(14px, 2.6vh, 32px);
+  font-size:clamp(12.5px, min(1.05vw, 1.7vh), 15.5px);
+  font-weight:300;
+  line-height:1.75;
+  color:var(--ink-soft);
+  animation:fadeUp .8s 1.95s backwards;
+}
+.lede b{ font-weight:500; color:var(--ink); }
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:13px;
+  padding:clamp(13px, 1.9vh, 17px) clamp(26px, 2.6vw, 36px);
+  border-radius:999px;
+  background:var(--navy);
+  color:#F2F6F8;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .4s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+  box-shadow:0 14px 28px -18px rgba(43,70,100,.9);
+  animation:fadeUp .8s 2.15s backwards;
+}
+.btn span{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.btn:hover{
+  background:var(--navy-deep);
+  transform:translateY(-2px);
+  box-shadow:0 20px 34px -18px rgba(43,70,100,1);
+}
+.btn:hover span{ transform:translateX(6px); }
+.btn:active{ transform:translateY(0); }
+
+.meta{
+  display:flex;
+  gap:clamp(20px, 3vw, 42px);
+  margin-top:clamp(14px, 2.6vh, 32px);
+  padding-top:clamp(10px, 1.9vh, 22px);
+  border-top:1px solid var(--line);
+  animation:fadeUp .8s 2.35s backwards;
+}
+.meta-num{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(17px, 2.3vh, 23px);
+  font-weight:500;
+  line-height:1;
+  color:var(--navy);
+}
+.meta-lab{
+  display:block;
+  margin-top:5px;
+  font-size:8px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(14px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   SHOWCASE · 3D IMAGE CUBE   (bigger now)
+   ============================================================ */
+.showcase{
+  --h: min(50vh, 440px);           /* laptop: bigger than before */
+  --w: calc(var(--h) * .74);
+  --z: calc(var(--w) / 2);
+
+  position:relative;
+  height:100%;
+  min-height:0;
+  display:grid;
+  place-items:center;
+}
+
+/* solid colour shapes */
+.shape{ position:absolute; pointer-events:none; z-index:0; }
+
+.shape-silver{
+  left:50%; top:50%;
+  width:calc(var(--w) * 1.46);
+  height:calc(var(--h) * 1.12);
+  border-radius:24px;
+  background:var(--silver-lt);
+  transform:translate(-53%,-48%) rotate(-7deg);
+}
+
+.shape-navy{
+  left:calc(50% + var(--w) * .74);
+  top:calc(50% - var(--h) * .40);
+  width:calc(var(--w) * .32);
+  height:calc(var(--w) * .32);
+  border-radius:50%;
+  background:var(--navy);
+  transform:translate(-50%,-50%);
+}
+
+.shape-ring{
+  left:calc(50% - var(--w) * .74);
+  top:calc(50% + var(--h) * .34);
+  width:calc(var(--w) * .26);
+  height:calc(var(--w) * .26);
+  border-radius:50%;
+  border:2px solid var(--silver);
+  transform:translate(-50%,-50%);
+}
+
+.shape-chip{
+  left:calc(50% + var(--w) * .56);
+  top:calc(50% + var(--h) * .43);
+  width:calc(var(--w) * .17);
+  height:calc(var(--w) * .17);
+  border-radius:6px;
+  background:var(--steel);
+  transform:translate(-50%,-50%) rotate(15deg);
+}
+
+/* stage column */
+.stage-col{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:clamp(8px, 1.5vh, 16px);
+  animation:float 7s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(-9px); }
+}
+
+.ground{
+  position:absolute;
+  left:50%;
+  top:calc(var(--h) - 14px);
+  width:calc(var(--w) * .64);
+  height:18px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(ellipse at center, rgba(43,70,100,.32) 0%, rgba(43,70,100,0) 70%);
+  filter:blur(7px);
+  z-index:1;
+}
+
+.stage{
+  position:relative;
+  width:var(--w);
+  height:var(--h);
+  perspective:1300px;
+}
+
+.cube{
+  position:absolute;
+  inset:0;
+  transform-style:preserve-3d;
+  transform:rotateX(-6deg) rotateY(0deg);
+  transition:transform .82s cubic-bezier(.76,0,.24,1);
+}
+
+.face{
+  position:absolute;
+  inset:0;
+  border-radius:9px;
+  overflow:hidden;
+  background:var(--paper-2);
+  box-shadow:0 40px 70px -42px rgba(30,52,80,.8);
+}
+.face img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.face:nth-child(1){ transform:rotateY(0deg)    translateZ(var(--z)); }
+.face:nth-child(2){ transform:rotateY(90deg)   translateZ(var(--z)); }
+.face:nth-child(3){ transform:rotateY(180deg)  translateZ(var(--z)); }
+.face:nth-child(4){ transform:rotateY(-90deg)  translateZ(var(--z)); }
+
+/* dots */
+.dots{
+  display:flex;
+  gap:8px;
+  z-index:3;
+}
+.dots span{
+  display:block;
+  width:18px;
+  height:3px;
+  border-radius:2px;
+  background:rgba(43,70,100,.18);
+  transition:background .45s, width .45s;
+}
+.dots span.on{ background:var(--navy); width:32px; }
+
+/* ============================================================
+   TRUST BAR  ·  infinite horizontal marquee
+   ============================================================ */
+.trust-bar{
+  flex:0 0 auto;
+  position:relative;
+  overflow:hidden;
+  border-radius:14px;
+  background:var(--navy);
+  color:#DCE4EB;
+  margin-top:clamp(6px, 1.4vh, 16px);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 42px,#000 calc(100% - 42px),transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 42px,#000 calc(100% - 42px),transparent 100%);
+}
+
+.marquee{
+  display:flex;
+  width:100%;
+  overflow:hidden;
+}
+
+.track{
+  display:flex;
+  align-items:center;
+  gap:clamp(22px, 3vw, 46px);
+  padding:clamp(9px, 1.7vh, 15px) 0;
+  animation:trustScroll 26s linear infinite;
+  will-change:transform;
+}
+.track:hover{ animation-play-state:paused; }
+
+.group{
+  display:flex;
+  align-items:center;
+  gap:clamp(22px, 3vw, 46px);
+  flex:0 0 auto;
+}
+
+@keyframes trustScroll{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }
+}
+
+.ti{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  white-space:nowrap;
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#DCE4EB;
+}
+.ti svg{
+  width:13px;
+  height:13px;
+  flex:none;
+  stroke:var(--silver);
+  fill:none;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.foot{
+  flex:0 0 auto;
+  padding:clamp(8px, 1.6vh, 20px) 0 clamp(9px, 1.9vh, 24px);
+  text-align:center;
+  font-size:8.5px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:#94A3B1;
+}
+
+/* ============================================================
+   RESPONSIVE — always one screen
+   ============================================================ */
+@media (max-width: 1020px){
+  .nav{ display:none; }
+  .header-right{ gap:0; }
+}
+
+@media (max-width: 940px){
+  .hero{
+    grid-template-columns:1fr;
+    gap:clamp(10px, 2vh, 22px);
+    text-align:center;
+    padding:clamp(6px, 2vh, 20px) 0;
+  }
+  .eyebrow{ margin-inline:auto; }
+  .lede{ margin-inline:auto; max-width:420px; }
+  .meta{ display:none; }            /* keep it single-screen */
+
+  /* mobile: slightly bigger than before */
+  .showcase{ --h: min(38vh, 330px); }
+
+  .shape-navy{ left:calc(50% + var(--w) * .70); top:calc(50% - var(--h) * .38); }
+  .shape-ring{ left:calc(50% - var(--w) * .70); top:calc(50% + var(--h) * .32); }
+  .shape-chip{ display:none; }
+}
+
+@media (max-height: 740px){
+  .lede{ margin-bottom:12px; line-height:1.65; }
+  .hero-title{ margin-bottom:10px; }
+  .meta{ margin-top:10px; padding-top:9px; }
+  .showcase{ --h: min(46vh, 400px); }
+}
+
+@media (max-height: 700px){
+  .meta{ display:none; }
+}
+
+@media (max-height: 620px){
+  .lede{ display:none; }
+  .eyebrow{ margin-bottom:9px; }
+  .showcase{ --h: min(42vh, 340px); }
+}
+
+@media (max-height: 500px){
+  .eyebrow{ display:none; }
+  .trust-bar{ display:none; }
+  .showcase{ --h: min(38vh, 280px); }
+}
+
+@media (max-width: 560px){
+  .page{ padding:0 18px; }
+  .site-header{ padding:14px 0; gap:12px; }
+  .mark{ width:44px; height:44px; }
+  .brand-name{ font-size:21px; }
+  .brand-sub{ font-size:7.5px; letter-spacing:.38em; }
+  .nav-cta{ padding:9px 16px; font-size:8.5px; letter-spacing:.18em; }
+
+  /* mobile: slightly bigger than before */
+  .showcase{ --h: min(33vh, 288px); }
+
+  .btn{ font-size:9px; letter-spacing:.2em; gap:10px; }
+
+  .trust-bar{ border-radius:12px; }
+  .ti{ font-size:7.5px; letter-spacing:.16em; gap:7px; }
+  .ti svg{ width:11px; height:11px; }
+
+  .foot{ font-size:7.5px; letter-spacing:.18em; }
+}
+
+@media (max-width: 380px){
+  .showcase{ --h: min(30vh, 258px); }
+  .brand-sub{ letter-spacing:.3em; }
+}
+
+/* ---------- accessibility ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= COLOUR STRIP ================= -->
+<div class="strip" aria-hidden="true">
+  <i style="background:var(--navy)"></i>
+  <i style="background:var(--steel)"></i>
+  <i style="background:var(--silver)"></i>
+  <i style="background:var(--silver-lt)"></i>
+</div>
+
+<div class="page">
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+
+    <!-- LOGO + TITLE -->
+    <a class="brand" href="#top" aria-label="Misk Official home">
+      <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Misk Official logo">
+        <circle cx="50" cy="50" r="48" fill="#2B4664"/>
+        <circle cx="50" cy="50" r="41.5" fill="none" stroke="#BCC1C5" stroke-width="1" opacity=".55"/>
+        <path d="M32 66 V40 L50 56 L68 40 V66"
+              fill="none" stroke="#EDF1F4" stroke-width="5.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="50" cy="29" r="2.4" fill="#BCC1C5"/>
+      </svg>
+
+      <span class="brand-words">
+        <span class="brand-name">Misk</span>
+        <span class="brand-sub">Official</span>
+      </span>
+    </a>
+
+    <div class="header-right">
+      <nav class="nav" aria-label="Collections">
+        <a href="#">Casual</a>
+        <a href="#">Formal</a>
+        <a href="#">Fancy</a>
+      </nav>
+      <a href="index1.html" class="nav-cta">Shop</a>
+    </div>
+
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <main class="hero" id="top">
+
+    <!-- ---------- COPY ---------- -->
+    <section class="copy">
+      <span class="eyebrow"><span class="dot"></span> Pakistan's Finest Womenswear</span>
+
+      <h1 class="hero-title">
+        <span class="line-1">Welcome to</span>
+        <span class="line-2">Misk Official</span>
+      </h1>
+
+      <p class="lede">
+        Pakistan's most loved destination for women's fashion —
+        <b>casual</b>, <b>formal</b> and <b>fancy</b> suits crafted from the finest
+        fabrics, finished with hand-embellished detail, and designed for the woman
+        who wears confidence.
+      </p>
+
+      <a href="index1.html" class="btn">
+        Continue to Shopping
+        <span aria-hidden="true">→</span>
+      </a>
+
+      <div class="meta">
+        <div>
+          <span class="meta-num">04</span>
+          <span class="meta-lab">Collections</span>
+        </div>
+        <div>
+          <span class="meta-num">120+</span>
+          <span class="meta-lab">Designs</span>
+        </div>
+        <div>
+          <span class="meta-num">100%</span>
+          <span class="meta-lab">Made in Pakistan</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- 3D CUBE ---------- -->
+    <section class="showcase" aria-label="3D collection showcase">
+
+      <div class="shape shape-silver" aria-hidden="true"></div>
+      <div class="shape shape-navy"   aria-hidden="true"></div>
+      <div class="shape shape-ring"   aria-hidden="true"></div>
+      <div class="shape shape-chip"   aria-hidden="true"></div>
+
+      <div class="stage-col">
+        <div class="stage">
+          <div class="cube" id="cube">
+            <div class="face"><img src="1.jpg" alt="Misk casual suit" /></div>
+            <div class="face"><img src="2.jpg" alt="Misk formal suit" /></div>
+            <div class="face"><img src="3.jpg" alt="Misk fancy suit" /></div>
+            <div class="face"><img src="4.jpg" alt="Misk premium collection" /></div>
+          </div>
+        </div>
+
+        <div class="ground" aria-hidden="true"></div>
+
+        <div class="dots" id="dots" aria-hidden="true">
+          <span class="on"></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= TRUST BAR (MARQUEE) ================= -->
+  <div class="trust-bar" aria-label="Misk Official services">
+    <div class="marquee">
+      <div class="track">
+
+        <!-- group 1 -->
+        <div class="group">
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 7h10v8H3z"/><path d="M13 10h4l3 3v2h-7z"/>
+              <circle cx="7" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/>
+            </svg>
+            Free Shipping All Over Pakistan
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z"/>
+              <circle cx="12" cy="11" r="2.2"/>
+            </svg>
+            Nationwide Delivery
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="7" width="19" height="10" rx="2"/>
+              <circle cx="12" cy="12" r="2.4"/>
+              <path d="M6 10v4M18 10v4"/>
+            </svg>
+            Cash on Delivery
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>
+            </svg>
+            Premium Fabrics
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 3v18"/>
+              <path d="M5 4h12l-2.5 4L17 12H5"/>
+            </svg>
+            Made in Pakistan
+          </span>
+        </div>
+
+        <!-- group 2 · identical clone for seamless loop -->
+        <div class="group" aria-hidden="true">
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 7h10v8H3z"/><path d="M13 10h4l3 3v2h-7z"/>
+              <circle cx="7" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/>
+            </svg>
+            Free Shipping All Over Pakistan
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z"/>
+              <circle cx="12" cy="11" r="2.2"/>
+            </svg>
+            Nationwide Delivery
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="7" width="19" height="10" rx="2"/>
+              <circle cx="12" cy="12" r="2.4"/>
+              <path d="M6 10v4M18 10v4"/>
+            </svg>
+            Cash on Delivery
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>
+            </svg>
+            Premium Fabrics
+          </span>
+
+          <span class="ti">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 3v18"/>
+              <path d="M5 4h12l-2.5 4L17 12H5"/>
+            </svg>
+            Made in Pakistan
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="foot">
+    © 2020 Misk Official · Crafted in Pakistan with love
+  </footer>
+
+</div>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------------------------------------------------
+     1 · TYPING — "Welcome to Misk Official"
+         revealed letter-by-letter in exactly 2 seconds
+     --------------------------------------------------------- */
+  var lines = document.querySelectorAll('.hero-title .line-1, .hero-title .line-2');
+  var chars = [];
+
+  lines.forEach(function (line) {
+    var text = line.textContent.trim();
+    line.textContent = '';
+
+    Array.prototype.forEach.call(text, function (ch) {
+      var span = document.createElement('span');
+      span.className = 'ch';
+      span.textContent = ch === ' ' ? '\u00A0' : ch;   /* keep width, no jump */
+      line.appendChild(span);
+      chars.push(span);
+    });
+  });
+
+  var TOTAL_MS = 2000;
+  var step = TOTAL_MS / Math.max(chars.length, 1);
+
+  chars.forEach(function (ch, i) {
+    window.setTimeout(function () { ch.classList.add('on'); }, i * step);
+  });
+
+  /* ---------------------------------------------------------
+     2 · 3D CUBE — next image every 1 second
+     --------------------------------------------------------- */
+  var cube = document.getElementById('cube');
+  var dots = document.querySelectorAll('#dots span');
+  var index = 0;
+  var SLIDE_MS = 1000;
+
+  if (cube) {
+    window.setInterval(function () {
+      index = (index + 1) % 4;
+
+      cube.style.transform =
+        'rotateX(-6deg) rotateY(' + (-90 * index) + 'deg)';
+
+      dots.forEach(function (d, i) {
+        d.classList.toggle('on', i === index);
+      });
+    }, SLIDE_MS);
+  }
+
+})();
+</script>
+
+</body>
+</html>
