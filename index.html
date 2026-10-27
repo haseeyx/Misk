@@ -44,7 +44,7 @@ body{
     radial-gradient(760px 520px at -6% 106%, #EBEFF2 0%, rgba(235,239,242,0) 58%);
   height:100vh;
   height:100dvh;
-  overflow:hidden;                 /* ← no page scroll */
+  overflow:hidden;
   display:flex;
   flex-direction:column;
   -webkit-font-smoothing:antialiased;
@@ -244,6 +244,103 @@ body{
 }
 .lede b{ font-weight:500; color:var(--ink); }
 
+/* ============================================================
+   CTA AREA (new attention-grabbing wrapper)
+   ============================================================ */
+.cta-wrap{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  gap:clamp(9px, 1.6vh, 14px);
+  position:relative;
+}
+
+/* "Tap to enter" hint */
+.cta-hint{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 14px;
+  border-radius:999px;
+  background:rgba(43,70,100,.07);
+  border:1px solid rgba(43,70,100,.14);
+  color:var(--navy);
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  animation:fadeUp .8s 2s backwards;
+}
+.cta-hint .hint-arrow{
+  display:inline-block;
+  font-size:10px;
+  line-height:1;
+  animation:arrowBounce 1.3s ease-in-out 2.8s infinite;
+}
+@keyframes arrowBounce{
+  0%,100%{ transform:translateY(-2px); }
+  50%    { transform:translateY(2px); }
+}
+
+/* button + pulse rings */
+.cta-stage{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  animation:fadeUp .8s 2.15s backwards;
+}
+.cta-ring{
+  position:absolute;
+  inset:-3px;
+  border-radius:999px;
+  border:1.5px solid var(--navy);
+  pointer-events:none;
+  opacity:0;
+  animation:ringPulse 2.8s ease-out infinite;
+}
+.cta-ring.r1{ animation-delay:3s; }
+.cta-ring.r2{ animation-delay:4.4s; }
+@keyframes ringPulse{
+  0%  { transform:scale(1);    opacity:.55; }
+  70% {                        opacity:.08; }
+  100%{ transform:scale(1.36); opacity:0;   }
+}
+
+/* Pakistan flag badge */
+.pk-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:7px 15px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  box-shadow:0 6px 14px -10px rgba(43,70,100,.4);
+  animation:fadeUp .8s 2.3s backwards;
+}
+.pk-flag{
+  width:20px;
+  height:12px;
+  flex:none;
+  display:inline-block;
+  border-radius:2px;
+  overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,.18);
+  transform-origin:left center;
+  animation:flagWave 2.4s ease-in-out 3s infinite;
+}
+@keyframes flagWave{
+  0%,100%{ transform:skewY(-2deg) rotate(-1deg); }
+  50%    { transform:skewY(2deg)  rotate(1deg);  }
+}
+
+/* ---------- button (no fadeUp here; parent handles it) ---------- */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -259,7 +356,8 @@ body{
   text-decoration:none;
   transition:background .4s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
   box-shadow:0 14px 28px -18px rgba(43,70,100,.9);
-  animation:fadeUp .8s 2.15s backwards;
+  position:relative;
+  z-index:2;
 }
 .btn span{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
 .btn:hover{
@@ -276,7 +374,7 @@ body{
   margin-top:clamp(14px, 2.6vh, 32px);
   padding-top:clamp(10px, 1.9vh, 22px);
   border-top:1px solid var(--line);
-  animation:fadeUp .8s 2.35s backwards;
+  animation:fadeUp .8s 2.55s backwards;
 }
 .meta-num{
   display:block;
@@ -301,10 +399,10 @@ body{
 }
 
 /* ============================================================
-   SHOWCASE · 3D IMAGE CUBE   (bigger now)
+   SHOWCASE · 3D IMAGE CUBE
    ============================================================ */
 .showcase{
-  --h: min(50vh, 440px);           /* laptop: bigger than before */
+  --h: min(50vh, 440px);
   --w: calc(var(--h) * .74);
   --z: calc(var(--w) / 2);
 
@@ -315,7 +413,6 @@ body{
   place-items:center;
 }
 
-/* solid colour shapes */
 .shape{ position:absolute; pointer-events:none; z-index:0; }
 
 .shape-silver{
@@ -326,7 +423,6 @@ body{
   background:var(--silver-lt);
   transform:translate(-53%,-48%) rotate(-7deg);
 }
-
 .shape-navy{
   left:calc(50% + var(--w) * .74);
   top:calc(50% - var(--h) * .40);
@@ -336,7 +432,6 @@ body{
   background:var(--navy);
   transform:translate(-50%,-50%);
 }
-
 .shape-ring{
   left:calc(50% - var(--w) * .74);
   top:calc(50% + var(--h) * .34);
@@ -346,7 +441,6 @@ body{
   border:2px solid var(--silver);
   transform:translate(-50%,-50%);
 }
-
 .shape-chip{
   left:calc(50% + var(--w) * .56);
   top:calc(50% + var(--h) * .43);
@@ -357,7 +451,6 @@ body{
   transform:translate(-50%,-50%) rotate(15deg);
 }
 
-/* stage column */
 .stage-col{
   position:relative;
   z-index:2;
@@ -420,7 +513,6 @@ body{
 .face:nth-child(3){ transform:rotateY(180deg)  translateZ(var(--z)); }
 .face:nth-child(4){ transform:rotateY(-90deg)  translateZ(var(--z)); }
 
-/* dots */
 .dots{
   display:flex;
   gap:8px;
@@ -437,7 +529,7 @@ body{
 .dots span.on{ background:var(--navy); width:32px; }
 
 /* ============================================================
-   TRUST BAR  ·  infinite horizontal marquee
+   TRUST BAR · infinite marquee
    ============================================================ */
 .trust-bar{
   flex:0 0 auto;
@@ -531,14 +623,18 @@ body{
   }
   .eyebrow{ margin-inline:auto; }
   .lede{ margin-inline:auto; max-width:420px; }
-  .meta{ display:none; }            /* keep it single-screen */
+  .meta{ display:none; }
 
-  /* mobile: slightly bigger than before */
   .showcase{ --h: min(38vh, 330px); }
 
   .shape-navy{ left:calc(50% + var(--w) * .70); top:calc(50% - var(--h) * .38); }
   .shape-ring{ left:calc(50% - var(--w) * .70); top:calc(50% + var(--h) * .32); }
   .shape-chip{ display:none; }
+
+  /* CTA responsive */
+  .cta-hint{ font-size:7.5px; padding:5px 12px; letter-spacing:.22em; }
+  .pk-badge{ font-size:7.5px; padding:6px 12px; letter-spacing:.2em; gap:7px; }
+  .pk-flag{ width:18px; height:11px; }
 }
 
 @media (max-height: 740px){
@@ -546,6 +642,9 @@ body{
   .hero-title{ margin-bottom:10px; }
   .meta{ margin-top:10px; padding-top:9px; }
   .showcase{ --h: min(46vh, 400px); }
+
+  /* hide tap hint on shorter screens to save space */
+  .cta-hint{ display:none; }
 }
 
 @media (max-height: 700px){
@@ -556,6 +655,7 @@ body{
   .lede{ display:none; }
   .eyebrow{ margin-bottom:9px; }
   .showcase{ --h: min(42vh, 340px); }
+  .pk-badge{ font-size:7px; padding:5px 11px; letter-spacing:.18em; }
 }
 
 @media (max-height: 500px){
@@ -572,10 +672,14 @@ body{
   .brand-sub{ font-size:7.5px; letter-spacing:.38em; }
   .nav-cta{ padding:9px 16px; font-size:8.5px; letter-spacing:.18em; }
 
-  /* mobile: slightly bigger than before */
   .showcase{ --h: min(33vh, 288px); }
 
   .btn{ font-size:9px; letter-spacing:.2em; gap:10px; }
+
+  .cta-wrap{ gap:9px; }
+  .cta-hint{ font-size:7px; letter-spacing:.2em; padding:4px 10px; }
+  .pk-badge{ font-size:7px; letter-spacing:.18em; padding:5px 11px; }
+  .pk-flag{ width:16px; height:10px; }
 
   .trust-bar{ border-radius:12px; }
   .ti{ font-size:7.5px; letter-spacing:.16em; gap:7px; }
@@ -596,6 +700,9 @@ body{
     animation-iteration-count:1 !important;
     transition-duration:.001ms !important;
   }
+  .cta-ring{ display:none; }
+  .cta-hint .hint-arrow{ animation:none; }
+  .pk-flag{ animation:none; }
 }
 </style>
 </head>
@@ -615,7 +722,6 @@ body{
   <!-- ================= HEADER ================= -->
   <header class="site-header">
 
-    <!-- LOGO + TITLE -->
     <a class="brand" href="#top" aria-label="Misk Official home">
       <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Misk Official logo">
         <circle cx="50" cy="50" r="48" fill="#2B4664"/>
@@ -662,10 +768,42 @@ body{
         who wears confidence.
       </p>
 
-      <a href="index1.html" class="btn">
-        Continue to Shopping
-        <span aria-hidden="true">→</span>
-      </a>
+      <!-- ===== CTA WRAP · attention-grabbing ===== -->
+      <div class="cta-wrap">
+
+        <!-- 1 · bouncing "Tap to enter" hint -->
+        <span class="cta-hint">
+          <span>Tap to enter</span>
+          <span class="hint-arrow" aria-hidden="true">↓</span>
+        </span>
+
+        <!-- 2 · pulsing rings + button -->
+        <div class="cta-stage">
+          <span class="cta-ring r1" aria-hidden="true"></span>
+          <span class="cta-ring r2" aria-hidden="true"></span>
+
+          <a href="index1.html" class="btn">
+            Continue to Shopping
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <!-- 3 · waving Pakistan flag badge -->
+        <span class="pk-badge">
+          <span class="pk-flag" aria-hidden="true">
+            <svg viewBox="0 0 100 60" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+              <rect width="25" height="60" fill="#fff"/>
+              <rect x="25" width="75" height="60" fill="#01411C"/>
+              <circle cx="62" cy="30" r="14" fill="#fff"/>
+              <circle cx="68" cy="25" r="11" fill="#01411C"/>
+              <polygon points="81,12 82.2,15.4 85.8,15.5 82.9,17.6 83.9,21 81,19 78.1,21 79.1,17.6 76.2,15.5 79.8,15.4" fill="#fff"/>
+            </svg>
+          </span>
+          Proudly Pakistani
+        </span>
+
+      </div>
+      <!-- ===== /CTA WRAP ===== -->
 
       <div class="meta">
         <div>
@@ -717,7 +855,6 @@ body{
     <div class="marquee">
       <div class="track">
 
-        <!-- group 1 -->
         <div class="group">
           <span class="ti">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -760,7 +897,6 @@ body{
           </span>
         </div>
 
-        <!-- group 2 · identical clone for seamless loop -->
         <div class="group" aria-hidden="true">
           <span class="ti">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -809,7 +945,7 @@ body{
 
   <!-- ================= FOOTER ================= -->
   <footer class="foot">
-    © 2020 Misk Official · Crafted in Pakistan with love
+    © 2025 Misk Official · Crafted in Pakistan with love
   </footer>
 
 </div>
@@ -822,8 +958,7 @@ body{
   "use strict";
 
   /* ---------------------------------------------------------
-     1 · TYPING — "Welcome to Misk Official"
-         revealed letter-by-letter in exactly 2 seconds
+     1 · TYPING — "Welcome to Misk Official" in exactly 2s
      --------------------------------------------------------- */
   var lines = document.querySelectorAll('.hero-title .line-1, .hero-title .line-2');
   var chars = [];
@@ -835,7 +970,7 @@ body{
     Array.prototype.forEach.call(text, function (ch) {
       var span = document.createElement('span');
       span.className = 'ch';
-      span.textContent = ch === ' ' ? '\u00A0' : ch;   /* keep width, no jump */
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
       line.appendChild(span);
       chars.push(span);
     });
