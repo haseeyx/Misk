@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="icon" type="image/png" href="log.png">
+
 <title>Misk Official — Collections · Casual · Formal · Fancy</title>
 <meta name="description" content="Explore the Misk Official collections — New Arrivals, Casual, Formal and Fancy wear. Free shipping all over Pakistan." />
 
@@ -1755,14 +1757,19 @@ button{ font-family:inherit; }
 <div class="announce" aria-label="Store announcements">
   <div class="announce-track">
     <div class="announce-group">
-      <span><span class="ico">🚚</span> Free Shipping All Over Pakistan</span>
-      <span><span class="ico">✨</span> New Arrivals Every Week</span>
-      <span><span class="ico">💎</span> Custom Made Dresses Available</span>
+      <span><span class="ico">✨</span> Elegance in Every Wear</span>
+      <span><span class="ico">🌸</span> New Arrivals Every Week</span>
+      <span><span class="ico">💖</span> Where Grace Meets Style</span>
+      <span><span class="ico">👗</span> Discover Your Signature Style</span>
+      <span><span class="ico">💎</span> Premium Pret Collection</span>
     </div>
+
     <div class="announce-group" aria-hidden="true">
-      <span><span class="ico">🚚</span> Free Shipping All Over Pakistan</span>
-      <span><span class="ico">✨</span> New Arrivals Every Week</span>
-      <span><span class="ico">💎</span> Custom Made Dresses Available</span>
+      <span><span class="ico">✨</span> Elegance in Every Wear</span>
+      <span><span class="ico">🌸</span> New Arrivals Every Week</span>
+      <span><span class="ico">💖</span> Where Grace Meets Style</span>
+      <span><span class="ico">👗</span> Discover Your Signature Style</span>
+      <span><span class="ico">💎</span> Premium Pret Collection</span>
     </div>
   </div>
 </div>
@@ -1771,20 +1778,16 @@ button{ font-family:inherit; }
 <header class="header" id="top">
   <div class="wrap header-inner">
 
-    <a class="brand" href="index.html" aria-label="Misk Official home">
-      <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Misk Official logo">
-        <circle cx="50" cy="50" r="48" fill="#2B4664"/>
-        <circle cx="50" cy="50" r="41.5" fill="none" stroke="#BCC1C5" stroke-width="1" opacity=".55"/>
-        <path d="M32 66 V40 L50 56 L68 40 V66"
-              fill="none" stroke="#EDF1F4" stroke-width="5.6"
-              stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="50" cy="29" r="2.4" fill="#BCC1C5"/>
-      </svg>
-      <span>
-        <span class="brand-name">Misk</span>
-        <span class="brand-sub">Official</span>
-      </span>
-    </a>
+   <a class="brand" href="index.html" aria-label="Misk Official home">
+  <img src="log.png" alt="Misk Official logo"
+       class="mark"
+       style="width:50px;height:50px;object-fit:cover;border-radius:50%;border:2px solid #BCC1C5;display:block;flex-shrink:0;">
+
+  <span>
+    <span class="brand-name">Misk</span>
+    <span class="brand-sub">Official</span>
+  </span>
+</a>
 
     <nav class="nav" aria-label="Main navigation">
       <a href="#top" data-spy="top">Home</a>
@@ -2458,20 +2461,16 @@ button{ font-family:inherit; }
     <div class="footer-grid">
 
       <div class="footer-brand">
-        <a class="brand" href="index.html" aria-label="Misk Official home">
-          <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Misk Official logo">
-            <circle cx="50" cy="50" r="48" fill="#BCC1C5"/>
-            <circle cx="50" cy="50" r="41.5" fill="none" stroke="#1E3450" stroke-width="1" opacity=".35"/>
-            <path d="M32 66 V40 L50 56 L68 40 V66"
-                  fill="none" stroke="#1E3450" stroke-width="5.6"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="50" cy="29" r="2.4" fill="#1E3450"/>
-          </svg>
-          <span>
-            <span class="brand-name">Misk</span>
-            <span class="brand-sub">Official</span>
-          </span>
-        </a>
+       <a class="brand" href="index.html" aria-label="Misk Official home">
+  <img src="log.png" alt="Misk Official logo"
+       class="mark"
+       style="width:50px;height:50px;object-fit:cover;border-radius:50%;border:2px solid #BCC1C5;display:block;flex-shrink:0;">
+
+  <span>
+    <span class="brand-name">Misk</span>
+    <span class="brand-sub">Official</span>
+  </span>
+</a>
         <p class="footer-blurb">
           Premium women's clothing designed and crafted in Pakistan — casual, formal
           and fancy suits for every moment worth remembering.
@@ -2764,6 +2763,34 @@ button{ font-family:inherit; }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMenu();
   });
+
+
+
+
+
+document.querySelectorAll('.brand .mark').forEach(function(logo) {
+  logo.style.animation = 'miskLogoMove 4s ease-in-out infinite';
+
+  if (!document.getElementById('miskLogoAnimation')) {
+    const style = document.createElement('style');
+    style.id = 'miskLogoAnimation';
+    style.textContent = `
+      @keyframes miskLogoMove {
+        0%, 100% { transform: rotate(0deg) scale(1); }
+        50% { transform: rotate(5deg) scale(1.05); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .brand .mark { animation: none !important; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  logo.onerror = function() {
+    console.warn('Check that log.png is in the same folder as your HTML file.');
+  };
+});
+
 
 })();
 </script>
