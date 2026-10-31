@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="icon" type="image/png" href="log.png">
+
+<title>Size Guide — Misk Official</title>
+<meta name="description" content="Misk Official Size Guide — sizes are listed on every product page. Contact us if you need help choosing the right fit." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MISK OFFICIAL — SIZE GUIDE (very short)
+   ============================================================ */
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{ max-width:100%; display:block; height:auto; }
+a{ color:inherit; }
+
+:root{
+  --navy:      #2B4664;
+  --navy-deep: #1E3450;
+  --steel:     #7D93A8;
+  --silver:    #BCC1C5;
+  --silver-lt: #E4E8EB;
+  --paper:     #F6F8F9;
+  --paper-2:   #EEF2F4;
+  --white:     #FFFFFF;
+  --ink:       #24384D;
+  --ink-soft:  #62758A;
+  --line:      #D8DEE3;
+  --gold:      #D9B36A;
+
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Jost', system-ui, -apple-system, sans-serif;
+}
+
+.wrap{
+  width:100%;
+  max-width:820px;
+  margin:0 auto;
+  padding:0 clamp(16px, 3vw, 32px);
+}
+
+.reveal{ opacity:0; }
+.reveal.in{ animation:revealUp .8s cubic-bezier(.22,1,.36,1) var(--d,0s) forwards; }
+@keyframes revealUp{
+  from{ opacity:0; transform:translateY(22px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(246,248,249,.94);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+          backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 0;
+  max-width:820px;
+  margin:0 auto;
+  padding-left:clamp(16px, 3vw, 32px);
+  padding-right:clamp(16px, 3vw, 32px);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+.logo-img{
+  width:42px; height:42px;
+  object-fit:contain;
+  border-radius:50%;
+  flex:none;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover .logo-img{ transform:rotate(-6deg) scale(1.05); }
+.brand-name{
+  display:block;
+  font-family:var(--serif);
+  font-size:21px;
+  font-weight:500;
+  line-height:1;
+  color:var(--navy);
+}
+.brand-sub{
+  display:block;
+  margin-top:4px;
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.44em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.back-btn{
+  margin-left:auto;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--navy);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.back-btn svg{ width:13px; height:13px; transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.back-btn:hover{
+  background:var(--silver-lt);
+  border-color:var(--silver);
+  transform:translateX(-3px);
+}
+.back-btn:hover svg{ transform:translateX(-3px); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg, #1a2f47 0%, var(--navy) 55%, #2e4a6a 100%);
+  color:#F2F6F8;
+  padding:clamp(52px, 8vw, 88px) 0 clamp(60px, 9vw, 100px);
+  text-align:center;
+}
+.hero-deco{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.hero-deco span{
+  position:absolute;
+  font-family:var(--serif);
+  font-weight:500;
+  line-height:1;
+  color:rgba(188,193,197,.06);
+  letter-spacing:-.04em;
+  user-select:none;
+}
+.hero-deco span:nth-child(1){ top:-4vw; left:-2vw; font-size:min(22vw, 240px); }
+.hero-deco span:nth-child(2){ bottom:-6vw; right:-3vw; font-size:min(16vw, 190px); font-style:italic; }
+
+.hero-inner{ position:relative; z-index:2; }
+
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:18px;
+  padding:8px 18px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(6px);
+          backdrop-filter:blur(6px);
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#E4E8EB;
+  animation:fadeUp .8s .1s backwards;
+}
+.hero-eyebrow::before{
+  content:"";
+  width:5px; height:5px;
+  border-radius:50%;
+  background:var(--gold);
+  animation:blink 2.4s ease-in-out infinite;
+}
+@keyframes blink{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%    { opacity:.3; transform:scale(.7); }
+}
+
+.hero h1{
+  margin:0 0 14px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(32px, 5.4vw, 58px);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  animation:fadeUp .9s .2s backwards;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(100deg, #BCC1C5 0%, #F2F6F8 40%, #BCC1C5 70%, #F2F6F8 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{
+  from{ background-position:0% 0; }
+  to  { background-position:200% 0; }
+}
+
+.hero p{
+  max-width:440px;
+  margin:0 auto;
+  font-size:clamp(12.5px, 1vw, 14.5px);
+  font-weight:300;
+  line-height:1.8;
+  color:#C9D5DF;
+  animation:fadeUp .9s .35s backwards;
+}
+
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(16px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   INFO CARD + CHART
+   ============================================================ */
+.info{
+  position:relative;
+  z-index:4;
+  margin-top:clamp(-40px, -4vw, -24px);
+  padding-bottom:clamp(30px, 5vw, 50px);
+}
+
+.info-card{
+  padding:clamp(22px, 3vw, 32px);
+  border-radius:18px;
+  background:var(--white);
+  border:1px solid var(--line);
+  box-shadow:0 22px 46px -34px rgba(43,70,100,.5);
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:20px;
+}
+.info-ico{
+  flex:none;
+  width:40px; height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:var(--silver-lt);
+  color:var(--navy);
+}
+.info-ico svg{ width:18px; height:18px; }
+.info-card b{
+  display:block;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:15px;
+  color:var(--navy);
+  margin-bottom:2px;
+  line-height:1.3;
+}
+.info-card p{
+  margin:0;
+  font-size:12.5px;
+  font-weight:300;
+  color:var(--ink-soft);
+  line-height:1.65;
+}
+
+/* ============================================================
+   SIZE CHART
+   ============================================================ */
+.chart-wrap{
+  border-radius:18px;
+  background:var(--white);
+  border:1px solid var(--line);
+  overflow:hidden;
+  box-shadow:0 22px 46px -34px rgba(43,70,100,.4);
+}
+.chart-head{
+  padding:16px 22px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.chart-head h3{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:15px;
+  color:var(--navy);
+  letter-spacing:-.01em;
+}
+.chart-head small{
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+
+.chart-table-wrap{ overflow-x:auto; }
+.chart-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12.5px;
+}
+.chart-table thead th{
+  padding:12px 14px;
+  text-align:center;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--steel);
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+  white-space:nowrap;
+}
+.chart-table tbody td{
+  padding:13px 14px;
+  text-align:center;
+  color:var(--ink-soft);
+  border-bottom:1px solid var(--line);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.chart-table tbody tr:last-child td{ border-bottom:0; }
+.chart-table tbody tr{ transition:background .25s; }
+.chart-table tbody tr:hover{ background:var(--paper); }
+
+.chart-table tbody td:first-child{
+  font-family:var(--serif);
+  font-weight:600;
+  color:var(--navy);
+  font-size:13.5px;
+  letter-spacing:.02em;
+}
+
+.chart-note{
+  padding:12px 22px;
+  border-top:1px solid var(--line);
+  background:var(--paper);
+  font-size:10.5px;
+  font-weight:300;
+  color:var(--ink-soft);
+  text-align:center;
+  letter-spacing:.02em;
+}
+.chart-note b{ color:var(--navy); font-weight:500; }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact{
+  padding:clamp(30px, 5vw, 50px) 0 clamp(40px, 6vw, 60px);
+}
+.contact-card{
+  position:relative;
+  padding:clamp(26px, 4vw, 40px) clamp(22px, 3.6vw, 36px);
+  border-radius:20px;
+  background:
+    radial-gradient(400px 200px at 80% 20%, rgba(217,179,106,.14), transparent 65%),
+    linear-gradient(135deg, #FAFCFD 0%, var(--white) 100%);
+  border:1.5px solid var(--silver);
+  text-align:center;
+  overflow:hidden;
+}
+.contact-card::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:3px;
+  background:linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+  background-size:200% 100%;
+  animation:gradientSlide 4s linear infinite;
+}
+@keyframes gradientSlide{
+  from{ background-position:0% 0; }
+  to  { background-position:200% 0; }
+}
+
+.contact-card h3{
+  margin:0 0 8px;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(18px, 2.4vw, 24px);
+  line-height:1.2;
+  color:var(--navy);
+  letter-spacing:-.01em;
+}
+.contact-card h3 em{ font-style:italic; color:var(--steel); }
+.contact-card p{
+  max-width:380px;
+  margin:0 auto 20px;
+  font-size:12.5px;
+  font-weight:300;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+
+.email-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:13px 24px;
+  border-radius:999px;
+  background:var(--navy);
+  color:#F2F6F8;
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-decoration:none;
+  box-shadow:0 14px 28px -18px rgba(43,70,100,.9);
+  transition:background .35s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+  word-break:break-all;
+  max-width:100%;
+}
+.email-btn svg{ width:15px; height:15px; flex:none; }
+.email-btn:hover{
+  background:var(--navy-deep);
+  transform:translateY(-2px);
+  box-shadow:0 20px 34px -18px rgba(43,70,100,1);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  background:var(--navy-deep);
+  color:#8FA3B2;
+  padding:20px 0;
+  text-align:center;
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.footer a{
+  color:#AFC0CD;
+  text-decoration:none;
+  transition:color .3s;
+}
+.footer a:hover{ color:#F2F6F8; }
+.footer .dot{
+  display:inline-block;
+  margin:0 8px;
+  opacity:.5;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 620px){
+  .logo-img{ width:38px; height:38px; }
+  .brand-name{ font-size:18px; }
+  .brand-sub{ font-size:7px; letter-spacing:.36em; }
+  .back-btn{ padding:8px 12px; font-size:9px; }
+  .back-btn .back-label{ display:none; }
+
+  .info-card{ flex-direction:column; text-align:center; align-items:center; }
+  .chart-table thead th,
+  .chart-table tbody td{ padding:10px 8px; font-size:11.5px; }
+  .chart-table tbody td:first-child{ font-size:12.5px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{ opacity:1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Misk Official home">
+      <img class="logo-img" src="log.png" alt="Misk Official logo" />
+      <span>
+        <span class="brand-name">Misk</span>
+        <span class="brand-sub">Official</span>
+      </span>
+    </a>
+
+    <a class="back-btn" href="index1.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span class="back-label">Back</span>
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-deco" aria-hidden="true">
+    <span>Size</span>
+    <span>Misk</span>
+  </div>
+
+  <div class="wrap hero-inner">
+    <span class="hero-eyebrow">Fit &amp; Measurements</span>
+    <h1>Size <em>Guide</em></h1>
+    <p>Every Misk product page shows its available sizes and fabric details — this page is just a quick reference.</p>
+  </div>
+</section>
+
+<!-- ================= INFO + CHART ================= -->
+<section class="info">
+  <div class="wrap">
+
+    <div class="info-card reveal" style="--d:.05s">
+      <div class="info-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12l5 5L20 7"/>
+        </svg>
+      </div>
+      <div>
+        <b>Sizes are on every product page</b>
+        <p>Each product card and modal clearly lists what sizes are available — Small, Medium, Large, or custom. Look for the "Sizes Available" chip before ordering.</p>
+      </div>
+    </div>
+
+    <div class="chart-wrap reveal" style="--d:.1s">
+      <div class="chart-head">
+        <h3>Standard Reference Chart</h3>
+        <small>Inches</small>
+      </div>
+
+      <div class="chart-table-wrap">
+        <table class="chart-table">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Bust</th>
+              <th>Waist</th>
+              <th>Hip</th>
+              <th>Shirt Length</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>S</td>
+              <td>34–36</td>
+              <td>28–30</td>
+              <td>36–38</td>
+              <td>40–42</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>36–38</td>
+              <td>30–32</td>
+              <td>38–40</td>
+              <td>42–44</td>
+            </tr>
+            <tr>
+              <td>L</td>
+              <td>38–40</td>
+              <td>32–34</td>
+              <td>40–42</td>
+              <td>44–46</td>
+            </tr>
+            <tr>
+              <td>XL</td>
+              <td>40–42</td>
+              <td>34–36</td>
+              <td>42–44</td>
+              <td>46–48</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="chart-note">
+        These are approximate ranges. <b>Custom sizing</b> is available on select made-to-order pieces.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <h3>Still not sure about your <em>size?</em></h3>
+      <p>Message us anytime — share your measurements or the product you're looking at, and we'll help you pick the right fit.</p>
+
+      <a class="email-btn" href="mailto:misk.official20@gmail.com?subject=Size%20Help">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"/>
+          <path d="M3.5 6.5 12 13l8.5-6.5"/>
+        </svg>
+        misk.official20@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  © 2025 Misk Official
+  <span class="dot">·</span>
+  <a href="index1.html">Shop</a>
+  <span class="dot">·</span>
+  <a href="shipping-policy.html">Shipping</a>
+  <span class="dot">·</span>
+  <a href="returns-policy.html">Returns</a>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+(function () {
+  "use strict";
+
+  var els = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+
+})();
+</script>
+
+</body>
+</html>

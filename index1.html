@@ -657,14 +657,28 @@ button{ font-family:inherit; }
 /* ============================================================
    5 · COLLECTIONS (animated dark-blue border)
    ============================================================ */
+/* ============================================================
+   COLLECTIONS — BENTO / ASYMMETRIC LAYOUT
+   Row 1: Feature (2 cols)  |  Best Sellers (1 col, tall)
+   Row 2: Basics | Solids   |  Embroidered (3 equal)
+   ============================================================ */
+
 .collections{ background:var(--paper); }
 
 .collections-grid{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  grid-auto-rows:auto;
   gap:clamp(16px, 1.8vw, 24px);
+  align-items:stretch;
 }
 
+/* feature spans 2 of 3 columns in row 1 */
+.collection-feature{
+  grid-column:1 / 3;
+}
+
+/* ---------- shared animated border ---------- */
 .collection-feature,
 .collection-card{
   position:relative;
@@ -672,6 +686,8 @@ button{ font-family:inherit; }
   overflow:hidden;
   isolation:isolate;
   min-width:0;
+  display:flex;
+  flex-direction:column;
 }
 .collection-feature::before,
 .collection-card::before{
@@ -708,8 +724,8 @@ button{ font-family:inherit; }
   to  { transform:translate(-50%,-50%) rotate(360deg); }
 }
 
+/* ---------- FEATURE (New Arrival) ---------- */
 .collection-feature{
-  grid-column:1 / -1;
   border-radius:26px;
   transition:box-shadow .5s, transform .5s cubic-bezier(.22,1,.36,1);
 }
@@ -722,6 +738,7 @@ button{ font-family:inherit; }
   z-index:1;
   display:grid;
   grid-template-columns:1.08fr .92fr;
+  height:100%;
   min-height:clamp(360px, 40vw, 460px);
   border-radius:24px;
   overflow:hidden;
@@ -734,6 +751,178 @@ button{ font-family:inherit; }
   transition:transform 1.4s cubic-bezier(.22,1,.36,1);
 }
 .collection-feature:hover .feature-media img{ transform:scale(1.05); }
+.feature-badge{
+  position:absolute;
+  top:20px; left:20px;
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.93);
+  -webkit-backdrop-filter:blur(8px);
+          backdrop-filter:blur(8px);
+  font-size:8.5px; font-weight:600;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--navy);
+}
+.feature-body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:14px;
+  padding:clamp(24px, 3.4vw, 48px);
+}
+
+/* ---------- CARDS (Basics · Solids · Embroidered · Best Sellers) ---------- */
+.collection-card{
+  border-radius:24px;
+  transition:transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s;
+}
+.collection-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 32px 62px -40px rgba(43,70,100,.6);
+}
+.card-inner{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  border-radius:22px;
+  overflow:hidden;
+  background:var(--white);
+}
+.card-media{
+  position:relative;
+  aspect-ratio:4 / 5;
+  display:grid;
+  gap:3px;
+  overflow:hidden;
+  background:var(--silver-lt);
+}
+.card-media img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1s cubic-bezier(.22,1,.36,1);
+}
+.collection-card:hover .card-media img{ transform:scale(1.07); }
+
+/* ---------- BEST SELLERS — spotlight refinements ---------- */
+.best-sellers .card-media{
+  aspect-ratio:auto;          /* let it fill the tall row-1 cell */
+  flex:1;
+  min-height:280px;
+}
+/* ---------- BEST SELLERS — tall spotlight ---------- */
+.best-sellers .card-inner{
+  height:100%;
+  min-height:0;
+}
+.best-sellers .card-media{
+  flex:1 1 auto;        /* media absorbs the extra height */
+  aspect-ratio:auto;    /* remove the 4/5 lock so it can stretch */
+  min-height:260px;
+}
+.best-sellers .card-media img{
+  object-position:center 15%;  /* show more of the suit, less head/floor */
+}
+.best-sellers .card-body{
+  flex:0 0 auto;        /* body keeps its natural height */
+  padding-bottom:20px;
+}
+.best-sellers .card-title{
+  font-size:clamp(22px, 2vw, 28px);
+}
+@keyframes badgeFloat{
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(-3px); }
+}
+
+/* card media mosaic variants */
+.media-3{
+  grid-template-columns:1.34fr 1fr;
+  grid-template-rows:1fr 1fr;
+}
+.media-3 img:first-child{ grid-row:span 2; }
+.media-2{
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr;
+}
+
+/* ---------- body ---------- */
+.card-body{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  flex:1;
+  padding:22px 22px 24px;
+}
+.card-tag{
+  font-size:8px; font-weight:500;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--steel);
+}
+.card-title{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(19px, 1.7vw, 23px);
+  line-height:1.15;
+  color:var(--navy);
+}
+.card-text{
+  margin:0;
+  font-size:12.5px; font-weight:300;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.card-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:auto;
+  padding-top:12px;
+  font-size:9.5px; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase;
+  text-decoration:none;
+  color:var(--navy);
+}
+.card-link .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.collection-card:hover .card-link .ar{ transform:translateX(6px); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 980px){
+  .collections-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr));
+  }
+  .collection-feature{
+    grid-column:1 / -1;         /* full width on tablet */
+  }
+  .feature-inner{
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+  .feature-media{ min-height:280px; }
+  .best-sellers .card-media{ aspect-ratio:4 / 5; }  /* reset to natural */
+  .best-sellers .card-inner{ height:auto; }
+}
+
+@media (max-width: 720px){
+  .collections-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .feature-badge{
   position:absolute;
   top:20px; left:20px;
@@ -2037,12 +2226,13 @@ button{ font-family:inherit; }
 
     <header class="section-head reveal">
       <span class="eyebrow">The Collections</span>
-      <h2 class="section-title">Four Worlds of <em>Misk</em></h2>
+      <h2 class="section-title">Five Worlds of <em>Misk</em></h2>
       <p class="section-lede">From the ease of everyday wear to the grandeur of celebration couture — find the collection that fits the moment.</p>
     </header>
 
     <div class="collections-grid">
 
+      <!-- ── 01 · NEW ARRIVAL (large, 2 columns wide) ── -->
       <article class="collection-feature reveal-fade">
         <div class="feature-inner">
           <div class="feature-media">
@@ -2061,12 +2251,33 @@ button{ font-family:inherit; }
               <li>Limited pieces per design</li>
               <li>Ready to ship nationwide</li>
             </ul>
-            <a href="products.html" class="btn btn-navy">Explore New Arrivals <span class="ar">→</span></a>
+            <a href="New Arrival/new.html" class="btn btn-navy">Explore New Arrivals <span class="ar">→</span></a>
           </div>
         </div>
       </article>
 
-      <article class="collection-card reveal-fade" style="--d:.08s">
+      <!-- ── 02 · BEST SELLERS (tall spotlight card, right of feature) ── -->
+      <article class="collection-card best-sellers reveal-fade" style="--d:.08s">
+
+        <div class="card-inner">
+
+          <div class="card-media media-3">
+            <img src="scroll/b1.jpg" alt="Misk best seller 1" loading="lazy" />
+            <img src="scroll/b2.jpg" alt="Misk best seller 2" loading="lazy" />
+                        <img src="scroll/b3.jpg" alt="Misk best seller 2" loading="lazy" />
+
+          </div>
+          <div class="card-body">
+            <span class="card-tag">02 · Most Loved</span>
+            <h3 class="card-title">Best Sellers</h3>
+            <p class="card-text">The pieces Pakistan keeps coming back for. Our most-loved designs — restocked because you asked, again and again.</p>
+            <a href="Best Sellers/best.html" class="card-link">View Collection <span class="ar">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 03 · BASICS ── -->
+      <article class="collection-card reveal-fade" style="--d:.16s">
         <div class="card-inner">
           <div class="card-media media-3">
             <img src="scroll/c1.jpg" alt="Misk casual daily wear suit" loading="lazy" />
@@ -2074,40 +2285,42 @@ button{ font-family:inherit; }
             <img src="scroll/c3.jpg" alt="Misk casual cotton suit" loading="lazy" />
           </div>
           <div class="card-body">
-            <span class="card-tag">02 · Daily Use</span>
-            <h3 class="card-title">Casual Wear</h3>
+            <span class="card-tag">03 · Daily Use</span>
+            <h3 class="card-title">Basics</h3>
             <p class="card-text">Everyday ease, elevated. Breathable lawn and cotton suits made for daily wear, office days and everything in between.</p>
-            <a href="products.html" class="card-link">View Collection <span class="ar">→</span></a>
+            <a href="Basics/basic.html" class="card-link">View Collection <span class="ar">→</span></a>
           </div>
         </div>
       </article>
 
-      <article class="collection-card reveal-fade" style="--d:.16s">
+      <!-- ── 04 · SOLIDS ── -->
+      <article class="collection-card reveal-fade" style="--d:.24s">
         <div class="card-inner">
           <div class="card-media media-2">
             <img src="scroll/f1.jpg" alt="Misk formal function suit" loading="lazy" />
             <img src="scroll/f2.jpg" alt="Misk formal party suit" loading="lazy" />
           </div>
           <div class="card-body">
-            <span class="card-tag">03 · Functions &amp; Parties</span>
-            <h3 class="card-title">Formal Wear</h3>
+            <span class="card-tag">04 · Functions &amp; Parties</span>
+            <h3 class="card-title">Solids</h3>
             <p class="card-text">For functions, dinners and evenings that deserve more. Structured silhouettes with subtle, considered detailing.</p>
-            <a href="products.html" class="card-link">View Collection <span class="ar">→</span></a>
+            <a href="Solids/solids.html" class="card-link">View Collection <span class="ar">→</span></a>
           </div>
         </div>
       </article>
 
-      <article class="collection-card reveal-fade" style="--d:.24s">
+      <!-- ── 05 · EMBROIDERED & FORMALS ── -->
+      <article class="collection-card reveal-fade" style="--d:.32s">
         <div class="card-inner">
           <div class="card-media media-2">
             <img src="scroll/w1.jpg" alt="Misk fancy Eid suit" loading="lazy" />
             <img src="scroll/w2.jpg" alt="Misk fancy premium couture" loading="lazy" />
           </div>
           <div class="card-body">
-            <span class="card-tag">04 · Eid &amp; Premium Events</span>
-            <h3 class="card-title">Fancy Wear</h3>
+            <span class="card-tag">05 · Eid &amp; Premium Events</span>
+            <h3 class="card-title">Embroidered &amp; Formals</h3>
             <p class="card-text">Hand-embellished couture for Eid, mehndi and milestone moments. Our most intricate craftsmanship, made in limited numbers.</p>
-            <a href="products.html" class="card-link">View Collection <span class="ar">→</span></a>
+            <a href="E & F/ef.html" class="card-link">View Collection <span class="ar">→</span></a>
           </div>
         </div>
       </article>
@@ -2277,7 +2490,7 @@ button{ font-family:inherit; }
 </section>
 
 <!-- ================= LOOKBOOK (new) ================= -->
-<section class="lookbook section">
+<!-- <section class="lookbook section">
   <div class="wrap">
 
     <header class="section-head reveal">
@@ -2299,7 +2512,7 @@ button{ font-family:inherit; }
       <a href="products.html" class="look-tile"><img src="scroll/4.jpg" alt="Misk lookbook 10" loading="lazy" /><span>Couture</span></a>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ================= REVIEWS ================= -->
 <section class="reviews section" id="reviews">
@@ -2375,7 +2588,7 @@ button{ font-family:inherit; }
 </section>
 
 <!-- ================= FAQ (new) ================= -->
-<section class="faq section">
+<!-- <section class="faq section">
   <div class="wrap">
 
     <header class="section-head reveal">
@@ -2413,7 +2626,7 @@ button{ font-family:inherit; }
 
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ================= CTA BAND ================= -->
 <section class="cta-band">
@@ -2499,10 +2712,12 @@ button{ font-family:inherit; }
       <div>
         <h4>Collections</h4>
         <ul>
-          <li><a href="products.html">New Arrival</a></li>
-          <li><a href="products.html">Casual Wear</a></li>
-          <li><a href="products.html">Formal Wear</a></li>
-          <li><a href="products.html">Fancy Wear</a></li>
+          <li><a href="New Arrival/new.html">New Arrival</a></li>
+          <li><a href="Basics/basic.html">Basics Wear</a></li>
+          <li><a href="Solids/solids.html">Solids Wear</a></li>
+          <li><a href="Best Sellers/best.html">Best Sellers</a></li>
+                    <li><a href="E & F/ef.html">Embroidered & Formals</a></li>
+
         </ul>
       </div>
 
@@ -2533,14 +2748,9 @@ button{ font-family:inherit; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>
             </svg>
-            <span>hello@miskofficial.pk</span>
+            <span>Misk.official20@gmail.com</span>
           </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 3h3l1.5 4-2 1.5a12 12 0 0 0 5 5L15 11.5 19 13v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4 5.2 2 2 0 0 1 6 3z"/>
-            </svg>
-            <span>+92 300 1234567</span>
-          </li>
+        
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z"/>

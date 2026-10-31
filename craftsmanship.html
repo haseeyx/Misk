@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="icon" type="image/png" href="log.png">
+
+<title>Craftsmanship — Misk Official</title>
+<meta name="description" content="The craftsmanship behind every Misk Official piece — hand embroidery, small batches, made in Pakistan." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MISK OFFICIAL — CRAFTSMANSHIP (compact)
+   ============================================================ */
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{ max-width:100%; display:block; height:auto; }
+a{ color:inherit; }
+
+:root{
+  --navy:      #2B4664;
+  --navy-deep: #1E3450;
+  --steel:     #7D93A8;
+  --silver:    #BCC1C5;
+  --silver-lt: #E4E8EB;
+  --paper:     #F6F8F9;
+  --paper-2:   #EEF2F4;
+  --white:     #FFFFFF;
+  --ink:       #24384D;
+  --ink-soft:  #62758A;
+  --line:      #D8DEE3;
+  --gold:      #D9B36A;
+  --green:     #2F5E2A;
+
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Jost', system-ui, -apple-system, sans-serif;
+}
+
+.wrap{
+  width:100%;
+  max-width:960px;
+  margin:0 auto;
+  padding:0 clamp(16px, 3vw, 32px);
+}
+
+.reveal{ opacity:0; }
+.reveal.in{ animation:revealUp .8s cubic-bezier(.22,1,.36,1) var(--d,0s) forwards; }
+@keyframes revealUp{
+  from{ opacity:0; transform:translateY(24px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(246,248,249,.94);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+          backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+.logo-img{
+  width:42px; height:42px;
+  object-fit:contain;
+  border-radius:50%;
+  flex:none;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover .logo-img{ transform:rotate(-6deg) scale(1.05); }
+.brand-name{
+  display:block;
+  font-family:var(--serif);
+  font-size:21px;
+  font-weight:500;
+  line-height:1;
+  color:var(--navy);
+}
+.brand-sub{
+  display:block;
+  margin-top:4px;
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.44em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.back-btn{
+  margin-left:auto;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--navy);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.back-btn svg{ width:13px; height:13px; transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.back-btn:hover{
+  background:var(--silver-lt);
+  border-color:var(--silver);
+  transform:translateX(-3px);
+}
+.back-btn:hover svg{ transform:translateX(-3px); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg, #1a2f47 0%, var(--navy) 55%, #2e4a6a 100%);
+  color:#F2F6F8;
+  padding:clamp(60px, 10vw, 110px) 0;
+  text-align:center;
+}
+.hero-deco{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.hero-deco span{
+  position:absolute;
+  font-family:var(--serif);
+  font-weight:500;
+  line-height:1;
+  color:rgba(188,193,197,.06);
+  letter-spacing:-.04em;
+  user-select:none;
+}
+.hero-deco span:nth-child(1){ top:-4vw; left:-2vw; font-size:min(24vw, 280px); }
+.hero-deco span:nth-child(2){ bottom:-6vw; right:-3vw; font-size:min(18vw, 220px); font-style:italic; }
+
+.hero-inner{ position:relative; z-index:2; }
+
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:18px;
+  padding:8px 18px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(6px);
+          backdrop-filter:blur(6px);
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#E4E8EB;
+  animation:fadeUp .8s .1s backwards;
+}
+.hero-eyebrow::before{
+  content:"";
+  width:5px; height:5px;
+  border-radius:50%;
+  background:var(--gold);
+  animation:blink 2.4s ease-in-out infinite;
+}
+@keyframes blink{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%    { opacity:.3; transform:scale(.7); }
+}
+
+.hero h1{
+  margin:0 0 16px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(34px, 6vw, 64px);
+  line-height:1.02;
+  letter-spacing:-.025em;
+  animation:fadeUp .9s .2s backwards;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(100deg, #BCC1C5 0%, #F2F6F8 40%, #BCC1C5 70%, #F2F6F8 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{
+  from{ background-position:0% 0; }
+  to  { background-position:200% 0; }
+}
+
+.hero p{
+  max-width:460px;
+  margin:0 auto;
+  font-size:clamp(13px, 1.1vw, 15px);
+  font-weight:300;
+  line-height:1.8;
+  color:#C9D5DF;
+  animation:fadeUp .9s .35s backwards;
+}
+
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(16px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   CRAFT GRID
+   ============================================================ */
+.craft{
+  padding:clamp(50px, 8vw, 90px) 0 clamp(30px, 5vw, 50px);
+}
+.craft-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(24px, 4vw, 56px);
+  align-items:center;
+}
+.craft-media{
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:var(--silver-lt);
+  box-shadow:0 30px 60px -40px rgba(13,26,43,.6);
+}
+.craft-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+.craft-media:hover img{ transform:scale(1.04); }
+.craft-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(13,26,43,.25) 100%);
+  pointer-events:none;
+}
+.craft-badge{
+  position:absolute;
+  top:16px; left:16px;
+  z-index:2;
+  padding:7px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(8px);
+          backdrop-filter:blur(8px);
+  font-size:7.5px;
+  font-weight:600;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--navy);
+}
+
+.craft-copy .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:12px;
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.craft-copy .eyebrow::before{
+  content:"";
+  width:18px; height:1px;
+  background:currentColor;
+  opacity:.55;
+}
+.craft-copy h2{
+  margin:0 0 14px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(24px, 3.2vw, 36px);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  color:var(--navy);
+}
+.craft-copy h2 em{ font-style:italic; color:var(--steel); }
+.craft-copy p{
+  margin:0 0 22px;
+  font-size:13px;
+  font-weight:300;
+  line-height:1.8;
+  color:var(--ink-soft);
+}
+
+/* compact points */
+.points{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:24px;
+}
+.point{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:var(--white);
+  border:1px solid var(--line);
+  transition:border-color .35s, transform .35s;
+}
+.point:hover{ border-color:var(--silver); transform:translateY(-2px); }
+.point-ico{
+  flex:none;
+  width:30px; height:30px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  background:var(--silver-lt);
+  color:var(--navy);
+  transition:background .35s, color .35s;
+}
+.point:hover .point-ico{ background:var(--navy); color:#F2F6F8; }
+.point-ico svg{ width:14px; height:14px; }
+.point b{
+  display:block;
+  font-size:11.5px;
+  font-weight:500;
+  color:var(--ink);
+  line-height:1.3;
+}
+.point small{
+  display:block;
+  font-size:10px;
+  font-weight:300;
+  color:var(--ink-soft);
+  margin-top:2px;
+  line-height:1.4;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 26px;
+  border-radius:999px;
+  border:0;
+  font-family:inherit;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  text-decoration:none;
+  background:var(--navy);
+  color:#F2F6F8;
+  box-shadow:0 14px 28px -18px rgba(43,70,100,.9);
+  transition:background .35s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+}
+.btn:hover{
+  background:var(--navy-deep);
+  transform:translateY(-2px);
+  box-shadow:0 20px 34px -18px rgba(43,70,100,1);
+}
+.btn .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.btn:hover .ar{ transform:translateX(5px); }
+
+/* ============================================================
+   MINI QUOTE
+   ============================================================ */
+.mini-quote{
+  padding:clamp(30px, 5vw, 50px) 0 clamp(50px, 7vw, 80px);
+  text-align:center;
+  background:var(--paper-2);
+}
+.mini-quote blockquote{
+  margin:0 auto;
+  max-width:640px;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(18px, 2.4vw, 26px);
+  line-height:1.5;
+  letter-spacing:-.01em;
+  color:var(--navy);
+}
+.mini-quote blockquote em{ color:var(--steel); }
+.mini-quote .sig{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:20px;
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.mini-quote .sig::before{
+  content:"";
+  width:18px; height:1px;
+  background:currentColor;
+  opacity:.55;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  background:var(--navy-deep);
+  color:#8FA3B2;
+  padding:22px 0;
+  text-align:center;
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.footer a{
+  color:#AFC0CD;
+  text-decoration:none;
+  transition:color .3s;
+}
+.footer a:hover{ color:#F2F6F8; }
+.footer .dot{
+  display:inline-block;
+  margin:0 8px;
+  opacity:.5;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 780px){
+  .craft-grid{ grid-template-columns:1fr; gap:26px; }
+  .craft-media{ aspect-ratio:4/4.2; max-width:420px; margin:0 auto; }
+  .craft-copy{ text-align:center; }
+  .craft-copy .eyebrow{ justify-content:center; }
+  .points{ grid-template-columns:1fr; }
+  .point{ text-align:left; }
+  .btn{ margin:0 auto; }
+}
+
+@media (max-width: 620px){
+  .logo-img{ width:38px; height:38px; }
+  .brand-name{ font-size:18px; }
+  .brand-sub{ font-size:7px; letter-spacing:.36em; }
+  .back-btn{ padding:8px 12px; font-size:9px; }
+  .back-btn .back-label{ display:none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{ opacity:1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Misk Official home">
+      <img class="logo-img" src="log.png" alt="Misk Official logo" />
+      <span>
+        <span class="brand-name">Misk</span>
+        <span class="brand-sub">Official</span>
+      </span>
+    </a>
+
+    <a class="back-btn" href="index1.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span class="back-label">Back to Shop</span>
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-deco" aria-hidden="true">
+    <span>Craft</span>
+    <span>Misk</span>
+  </div>
+
+  <div class="wrap hero-inner">
+    <span class="hero-eyebrow">In the Atelier</span>
+    <h1>Made by hand, <em>made to last</em></h1>
+    <p>Every Misk piece passes through the hands of real Pakistani artisans — never rushed, never mass-produced.</p>
+  </div>
+</section>
+
+<!-- ================= CRAFT CONTENT ================= -->
+<section class="craft">
+  <div class="wrap">
+    <div class="craft-grid">
+
+      <div class="craft-media reveal" style="--d:.05s">
+        <span class="craft-badge">Karigari</span>
+        <img src="scroll/5.jpg" alt="Misk hand embroidery detail" loading="lazy" />
+      </div>
+
+      <div class="craft-copy reveal" style="--d:.15s">
+        <span class="eyebrow">Our Process</span>
+        <h2>Small batches, <em>careful hands</em></h2>
+        <p>From the first sketch to the final stitch, every Misk suit is designed in-house, cut from premium fabrics, and finished by hand in Lahore. We make in small batches so each piece gets the attention it deserves.</p>
+
+        <div class="points">
+          <div class="point">
+            <span class="point-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17l-5.5 4L8 14.5 3 10l6.5-.5z"/>
+              </svg>
+            </span>
+            <span>
+              <b>Hand embroidery</b>
+              <small>Master karigars</small>
+            </span>
+          </div>
+
+          <div class="point">
+            <span class="point-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/>
+                <path d="M8.2 7.6 20 18"/><path d="M8.2 16.4 20 6"/>
+              </svg>
+            </span>
+            <span>
+              <b>Small batches</b>
+              <small>Never generic</small>
+            </span>
+          </div>
+
+          <div class="point">
+            <span class="point-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>
+              </svg>
+            </span>
+            <span>
+              <b>In-house design</b>
+              <small>Original silhouettes</small>
+            </span>
+          </div>
+
+          <div class="point">
+            <span class="point-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 3v18"/><path d="M5 4h12l-2.5 4L17 12H5"/>
+              </svg>
+            </span>
+            <span>
+              <b>Ethical making</b>
+              <small>Fair pay, always</small>
+            </span>
+          </div>
+        </div>
+
+        <a href="index1.html#collections" class="btn">
+          Explore Collections
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUOTE ================= -->
+<section class="mini-quote">
+  <div class="wrap">
+    <blockquote class="reveal">
+      "The best pieces aren't the loudest — they're the ones you reach for <em>again and again</em>."
+    </blockquote>
+    <span class="sig reveal" style="--d:.15s">Misk Atelier, Lahore</span>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  © 2025 Misk Official
+  <span class="dot">·</span>
+  <a href="index1.html">Shop</a>
+  <span class="dot">·</span>
+  <a href="our-story.html">Our Story</a>
+  <span class="dot">·</span>
+  <a href="shipping-policy.html">Shipping</a>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+(function () {
+  "use strict";
+
+  var els = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+
+})();
+</script>
+
+</body>
+</html>

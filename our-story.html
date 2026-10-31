@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="icon" type="image/png" href="log.png">
+
+<title>Our Story — Misk Official</title>
+<meta name="description" content="The story of Misk Official — a Pakistani women's clothing brand built on heritage, handcraft and everyday elegance." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MISK OFFICIAL — OUR STORY
+   ============================================================ */
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{ max-width:100%; display:block; height:auto; }
+a{ color:inherit; }
+
+:root{
+  --navy:      #2B4664;
+  --navy-deep: #1E3450;
+  --navy-ink:  #0d1a2b;
+  --steel:     #7D93A8;
+  --silver:    #BCC1C5;
+  --silver-lt: #E4E8EB;
+  --paper:     #F6F8F9;
+  --paper-2:   #EEF2F4;
+  --white:     #FFFFFF;
+  --ink:       #24384D;
+  --ink-soft:  #62758A;
+  --line:      #D8DEE3;
+  --red:       #B04242;
+  --green:     #2F5E2A;
+  --gold:      #D9B36A;
+
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Jost', system-ui, -apple-system, sans-serif;
+}
+
+.wrap{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 clamp(16px, 3vw, 40px);
+}
+
+/* ---------- reveal ---------- */
+.reveal{ opacity:0; }
+.reveal.in{ animation:revealUp .9s cubic-bezier(.22,1,.36,1) var(--d,0s) forwards; }
+@keyframes revealUp{
+  from{ opacity:0; transform:translateY(30px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+.reveal-left{ opacity:0; }
+.reveal-left.in{ animation:revealLeft .9s cubic-bezier(.22,1,.36,1) var(--d,0s) forwards; }
+@keyframes revealLeft{
+  from{ opacity:0; transform:translateX(-40px); }
+  to  { opacity:1; transform:translateX(0); }
+}
+
+.reveal-right{ opacity:0; }
+.reveal-right.in{ animation:revealRight .9s cubic-bezier(.22,1,.36,1) var(--d,0s) forwards; }
+@keyframes revealRight{
+  from{ opacity:0; transform:translateX(40px); }
+  to  { opacity:1; transform:translateX(0); }
+}
+
+.reveal-scale{ opacity:0; }
+.reveal-scale.in{ animation:revealScale .9s cubic-bezier(.22,1,.36,1) var(--d,0s) forwards; }
+@keyframes revealScale{
+  from{ opacity:0; transform:scale(.92); }
+  to  { opacity:1; transform:scale(1); }
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+.scroll-progress{
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:3px;
+  background:rgba(188,193,197,.3);
+  z-index:200;
+  pointer-events:none;
+}
+.scroll-progress span{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--navy), var(--gold));
+  box-shadow:0 0 10px rgba(43,70,100,.5);
+  transition:width .08s linear;
+  will-change:width;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(246,248,249,.94);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+          backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  text-decoration:none;
+}
+.logo-img{
+  width:44px; height:44px;
+  object-fit:contain;
+  border-radius:50%;
+  flex:none;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover .logo-img{ transform:rotate(-6deg) scale(1.05); }
+.brand-name{
+  display:block;
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:500;
+  line-height:1;
+  color:var(--navy);
+}
+.brand-sub{
+  display:block;
+  margin-top:4px;
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.44em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.back-btn{
+  margin-left:auto;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--navy);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.back-btn svg{ width:14px; height:14px; transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.back-btn:hover{
+  background:var(--silver-lt);
+  border-color:var(--silver);
+  transform:translateX(-3px);
+}
+.back-btn:hover svg{ transform:translateX(-3px); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg, #1a2f47 0%, var(--navy) 55%, #2e4a6a 100%);
+  color:#F2F6F8;
+  padding:clamp(60px, 10vw, 130px) 0 clamp(110px, 15vw, 180px);
+  text-align:center;
+}
+.hero-deco{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.hero-deco span{
+  position:absolute;
+  font-family:var(--serif);
+  font-weight:500;
+  line-height:1;
+  color:rgba(188,193,197,.055);
+  letter-spacing:-.04em;
+  user-select:none;
+}
+.hero-deco span:nth-child(1){ top:-6vw; left:-3vw; font-size:min(30vw, 340px); }
+.hero-deco span:nth-child(2){ bottom:-8vw; right:-4vw; font-size:min(22vw, 280px); font-style:italic; }
+
+.hero-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(50px);
+  opacity:.22;
+  pointer-events:none;
+  z-index:1;
+}
+.hero-orb.a{
+  width:280px; height:280px;
+  background:#BCC1C5;
+  top:8%; right:6%;
+  animation:orbFloat 10s ease-in-out infinite;
+}
+.hero-orb.b{
+  width:220px; height:220px;
+  background:#D9B36A;
+  bottom:15%; left:5%;
+  animation:orbFloat 13s ease-in-out infinite reverse;
+}
+@keyframes orbFloat{
+  0%,100%{ transform:translateY(0) translateX(0) scale(1); }
+  50%    { transform:translateY(-24px) translateX(16px) scale(1.08); }
+}
+
+.hero-inner{ position:relative; z-index:3; }
+
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:24px;
+  padding:9px 20px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(6px);
+          backdrop-filter:blur(6px);
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#E4E8EB;
+  animation:fadeUp .8s .1s backwards;
+}
+.hero-eyebrow::before{
+  content:"";
+  width:5px; height:5px;
+  border-radius:50%;
+  background:var(--silver);
+  animation:blink 2.4s ease-in-out infinite;
+}
+@keyframes blink{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%    { opacity:.3; transform:scale(.7); }
+}
+
+.hero h1{
+  margin:0 0 22px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(40px, 7.5vw, 88px);
+  line-height:1.02;
+  letter-spacing:-.03em;
+  animation:fadeUp 1s .2s backwards;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(100deg, #BCC1C5 0%, #F2F6F8 40%, #BCC1C5 70%, #F2F6F8 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{
+  from{ background-position:0% 0; }
+  to  { background-position:200% 0; }
+}
+
+.hero p{
+  max-width:560px;
+  margin:0 auto;
+  font-size:clamp(13.5px, 1.15vw, 16px);
+  font-weight:300;
+  line-height:1.85;
+  color:#C9D5DF;
+  animation:fadeUp 1s .4s backwards;
+}
+
+/* scroll indicator */
+.scroll-indicator{
+  position:absolute;
+  left:50%;
+  bottom:clamp(60px, 8vw, 90px);
+  transform:translateX(-50%);
+  z-index:4;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  animation:fadeUp 1s .8s backwards;
+}
+.scroll-indicator span{
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:rgba(201,213,223,.6);
+}
+.scroll-line{
+  width:1.5px;
+  height:44px;
+  background:rgba(188,193,197,.25);
+  position:relative;
+  overflow:hidden;
+  border-radius:2px;
+}
+.scroll-line::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:50%;
+  background:linear-gradient(180deg, transparent, #BCC1C5, transparent);
+  animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{
+  0%  { top:-50%; }
+  100%{ top:100%; }
+}
+
+.hero-wave{
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  z-index:3;
+  line-height:0;
+  pointer-events:none;
+}
+.hero-wave svg{ display:block; width:100%; height:clamp(50px, 7vw, 90px); }
+
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(20px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   MARQUEE BAND
+   ============================================================ */
+.marquee-band{
+  position:relative;
+  z-index:5;
+  margin-top:clamp(-70px, -7vw, -44px);
+  padding:0;
+  overflow:hidden;
+  background:var(--navy-ink);
+  border-radius:16px;
+  max-width:1200px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:clamp(-70px, -7vw, -44px);
+  margin-bottom:0;
+  box-shadow:0 20px 44px -34px rgba(13,26,43,.85);
+  -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+          mask-image:linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+}
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:marqueeScroll 32s linear infinite;
+  will-change:transform;
+}
+.marquee-track:hover{ animation-play-state:paused; }
+.marquee-group{
+  display:flex;
+  align-items:center;
+  gap:clamp(28px, 3.6vw, 52px);
+  padding:16px clamp(20px, 2.4vw, 32px);
+  flex:0 0 auto;
+}
+.marquee-group span{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  white-space:nowrap;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(15px, 1.6vw, 19px);
+  font-weight:400;
+  letter-spacing:.01em;
+  color:#C9D5DF;
+}
+.marquee-group span::after{
+  content:"◆";
+  font-size:8px;
+  font-style:normal;
+  color:var(--gold);
+  opacity:.7;
+}
+.marquee-group span:last-child::after{ display:none; }
+@keyframes marqueeScroll{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }
+}
+
+/* ============================================================
+   MISSION QUOTE
+   ============================================================ */
+.mission{
+  padding:clamp(60px, 10vw, 120px) 0 clamp(50px, 8vw, 100px);
+  position:relative;
+  background:var(--paper);
+}
+.mission-wrap{
+  max-width:820px;
+  margin:0 auto;
+  text-align:center;
+  position:relative;
+}
+.mission-mark{
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(72px, 10vw, 120px);
+  line-height:1;
+  color:var(--silver-lt);
+  margin-bottom:-28px;
+  font-weight:500;
+  animation:markFloat 5s ease-in-out infinite;
+}
+@keyframes markFloat{
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(-6px); }
+}
+.mission-quote{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(20px, 3vw, 34px);
+  line-height:1.42;
+  letter-spacing:-.015em;
+  color:var(--navy);
+}
+.mission-quote em{ font-style:italic; color:var(--steel); }
+.mission-quote .word{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+  margin-right:.24em;
+}
+.mission-quote.in .word{
+  opacity:1;
+  transform:translateY(0);
+}
+.mission-sig{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:32px;
+  padding:9px 20px;
+  border-radius:999px;
+  background:var(--white);
+  border:1px solid var(--line);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.mission-sig::before{
+  content:"";
+  width:20px;
+  height:1px;
+  background:var(--steel);
+  opacity:.6;
+}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats{
+  padding:clamp(40px, 6vw, 70px) 0 clamp(60px, 9vw, 110px);
+  background:var(--paper);
+}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:clamp(14px, 2vw, 24px);
+}
+.stat{
+  position:relative;
+  padding:clamp(24px, 3vw, 36px) clamp(16px, 2vw, 24px);
+  border-radius:20px;
+  background:var(--white);
+  border:1px solid var(--line);
+  text-align:center;
+  overflow:hidden;
+  transition:transform .5s cubic-bezier(.22,1,.36,1), border-color .4s, box-shadow .5s;
+}
+.stat::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:3px;
+  background:linear-gradient(90deg, var(--navy), var(--gold), transparent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .7s cubic-bezier(.76,0,.24,1);
+}
+.stat:hover{
+  transform:translateY(-6px);
+  border-color:var(--silver);
+  box-shadow:0 30px 56px -36px rgba(43,70,100,.6);
+}
+.stat:hover::before{ transform:scaleX(1); }
+
+/* ghosted background number */
+.stat::after{
+  content:attr(data-num);
+  position:absolute;
+  right:-8px;
+  bottom:-24px;
+  font-family:var(--serif);
+  font-size:clamp(60px, 8vw, 96px);
+  font-weight:600;
+  color:var(--paper-2);
+  letter-spacing:-.04em;
+  z-index:0;
+  pointer-events:none;
+  transition:color .5s, transform .5s;
+}
+.stat:hover::after{
+  color:var(--silver-lt);
+  transform:scale(1.05) rotate(-4deg);
+}
+
+.stat-num{
+  position:relative;
+  z-index:1;
+  display:block;
+  font-family:var(--serif);
+  font-size:clamp(32px, 4vw, 48px);
+  font-weight:500;
+  color:var(--navy);
+  line-height:1;
+  letter-spacing:-.03em;
+  margin-bottom:8px;
+  font-variant-numeric:tabular-nums;
+}
+.stat-lab{
+  position:relative;
+  z-index:1;
+  display:block;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline-section{
+  padding:clamp(60px, 9vw, 110px) 0;
+  background:var(--paper-2);
+  position:relative;
+  overflow:hidden;
+}
+.timeline-section::before{
+  content:"";
+  position:absolute;
+  top:10%; right:-200px;
+  width:500px; height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(217,179,106,.08), transparent 60%);
+  pointer-events:none;
+}
+.timeline-section::after{
+  content:"";
+  position:absolute;
+  bottom:10%; left:-200px;
+  width:500px; height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(43,70,100,.06), transparent 60%);
+  pointer-events:none;
+}
+
+.section-head{
+  max-width:600px;
+  margin:0 auto clamp(36px, 5vw, 60px);
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+  font-size:9.5px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.eyebrow::before{
+  content:"";
+  width:22px; height:1px;
+  background:currentColor;
+  opacity:.55;
+}
+.section-title{
+  margin:0 0 14px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(28px, 4vw, 48px);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  color:var(--navy);
+}
+.section-title em{ font-style:italic; color:var(--steel); }
+.section-lede{
+  margin:0;
+  font-size:clamp(13px, 1.05vw, 15px);
+  font-weight:300;
+  line-height:1.8;
+  color:var(--ink-soft);
+}
+
+.timeline{
+  max-width:780px;
+  margin:0 auto;
+  position:relative;
+  padding-left:60px;
+  z-index:2;
+}
+/* SVG line drawn by scroll */
+.timeline-line{
+  position:absolute;
+  left:20px;
+  top:14px;
+  bottom:14px;
+  width:2px;
+  overflow:hidden;
+  border-radius:2px;
+  background:rgba(188,193,197,.25);
+}
+.timeline-line-fill{
+  display:block;
+  width:100%;
+  height:0%;
+  background:linear-gradient(180deg, var(--navy), var(--gold));
+  transition:height .1s linear;
+  border-radius:2px;
+}
+
+.tl-item{
+  position:relative;
+  padding-bottom:clamp(28px, 3.6vw, 44px);
+  padding-left:16px;
+}
+.tl-item:last-child{ padding-bottom:0; }
+
+.tl-dot{
+  position:absolute;
+  left:-46px;
+  top:6px;
+  width:26px; height:26px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--white);
+  border:2px solid var(--line);
+  transition:background .5s, border-color .5s, transform .5s cubic-bezier(.22,1,.36,1);
+  z-index:2;
+}
+.tl-dot::before{
+  content:"";
+  width:8px; height:8px;
+  border-radius:50%;
+  background:var(--silver);
+  transition:background .5s, transform .5s;
+}
+.tl-item.in .tl-dot{
+  background:var(--navy);
+  border-color:var(--navy);
+  transform:scale(1.15);
+}
+.tl-item.in .tl-dot::before{
+  background:#F2F6F8;
+  transform:scale(1);
+}
+
+.tl-year{
+  display:inline-block;
+  margin-bottom:6px;
+  padding:4px 12px;
+  border-radius:99px;
+  background:var(--white);
+  border:1px solid var(--line);
+  font-family:var(--serif);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.14em;
+  color:var(--navy);
+  transition:background .4s, color .4s, border-color .4s;
+}
+.tl-item.in .tl-year{
+  background:var(--navy);
+  color:#F2F6F8;
+  border-color:var(--navy);
+}
+
+.tl-title{
+  margin:0 0 6px;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(18px, 2vw, 23px);
+  line-height:1.2;
+  color:var(--navy);
+  letter-spacing:-.01em;
+}
+.tl-text{
+  margin:0;
+  font-size:13px;
+  font-weight:300;
+  line-height:1.75;
+  color:var(--ink-soft);
+  max-width:560px;
+}
+
+/* ============================================================
+   CRAFTSMANSHIP (parallax)
+   ============================================================ */
+.craft{
+  padding:clamp(60px, 10vw, 120px) 0;
+  background:var(--paper);
+  overflow:hidden;
+}
+.craft-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(30px, 5vw, 80px);
+  align-items:center;
+}
+.craft-media{
+  position:relative;
+  border-radius:26px;
+  overflow:hidden;
+  aspect-ratio:4/5;
+  background:var(--silver-lt);
+  box-shadow:0 40px 80px -50px rgba(13,26,43,.7);
+}
+.craft-media img{
+  width:100%;
+  height:130%;
+  object-fit:cover;
+  position:absolute;
+  top:-15%;
+  left:0;
+  will-change:transform;
+}
+.craft-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 55%, rgba(13,26,43,.3) 100%);
+  pointer-events:none;
+}
+.craft-badge{
+  position:absolute;
+  top:22px; left:22px;
+  z-index:2;
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(8px);
+          backdrop-filter:blur(8px);
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--navy);
+  box-shadow:0 10px 22px -14px rgba(13,26,43,.6);
+}
+
+.craft-copy .section-title{ margin-bottom:20px; }
+.craft-copy .section-lede{ margin-bottom:26px; }
+
+.craft-points{
+  list-style:none;
+  margin:0 0 28px;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.craft-points li{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  font-size:13px;
+  font-weight:300;
+  line-height:1.65;
+  color:var(--ink-soft);
+}
+.craft-points b{ color:var(--ink); font-weight:500; }
+.craft-points .pt-ico{
+  flex:none;
+  width:30px; height:30px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  background:var(--silver-lt);
+  color:var(--navy);
+  margin-top:-3px;
+  transition:background .4s, color .4s, transform .5s cubic-bezier(.22,1,.36,1);
+}
+.craft-points li:hover .pt-ico{
+  background:var(--navy);
+  color:#F2F6F8;
+  transform:rotate(-8deg) scale(1.06);
+}
+.craft-points .pt-ico svg{ width:14px; height:14px; }
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:11px;
+  padding:15px 30px;
+  border-radius:999px;
+  border:0;
+  font-family:inherit;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .35s, color .35s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+}
+.btn-navy{
+  background:var(--navy);
+  color:#F2F6F8;
+  box-shadow:0 16px 30px -18px rgba(43,70,100,.9);
+}
+.btn-navy:hover{
+  background:var(--navy-deep);
+  transform:translateY(-3px);
+  box-shadow:0 24px 40px -18px rgba(43,70,100,1);
+}
+.btn-navy .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.btn-navy:hover .ar{ transform:translateX(6px); }
+
+/* ============================================================
+   VALUES
+   ============================================================ */
+.values{
+  padding:clamp(60px, 10vw, 120px) 0;
+  background:var(--paper-2);
+}
+.values-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:clamp(14px, 2vw, 22px);
+}
+.value-card{
+  position:relative;
+  padding:clamp(24px, 3vw, 34px);
+  border-radius:20px;
+  background:var(--white);
+  border:1px solid var(--line);
+  transition:transform .5s cubic-bezier(.22,1,.36,1), border-color .4s, box-shadow .5s;
+  overflow:hidden;
+  isolation:isolate;
+}
+.value-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, transparent 60%, rgba(43,70,100,.03) 100%);
+  z-index:0;
+  transition:opacity .5s;
+  opacity:0;
+}
+.value-card:hover::before{ opacity:1; }
+.value-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--silver);
+  box-shadow:0 30px 60px -38px rgba(43,70,100,.6);
+}
+.value-icon{
+  position:relative;
+  z-index:1;
+  width:56px; height:56px;
+  margin-bottom:18px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:var(--silver-lt);
+  color:var(--navy);
+  font-size:24px;
+  transition:background .4s, color .4s, transform .6s cubic-bezier(.22,1,.36,1);
+}
+.value-card:hover .value-icon{
+  background:var(--navy);
+  color:#F2F6F8;
+  transform:rotate(-8deg) scale(1.08);
+}
+.value-icon svg{ width:26px; height:26px; }
+.value-num{
+  position:absolute;
+  top:18px; right:20px;
+  font-family:var(--serif);
+  font-size:clamp(36px, 4vw, 52px);
+  font-weight:600;
+  color:var(--paper-2);
+  letter-spacing:-.04em;
+  z-index:0;
+  line-height:1;
+  transition:color .5s, transform .5s;
+}
+.value-card:hover .value-num{
+  color:var(--silver-lt);
+  transform:scale(1.1);
+}
+.value-card h3{
+  position:relative;
+  z-index:1;
+  margin:0 0 8px;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(17px, 1.8vw, 20px);
+  line-height:1.2;
+  color:var(--navy);
+}
+.value-card p{
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:12px;
+  font-weight:300;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+
+/* ============================================================
+   PROMISE BAND
+   ============================================================ */
+.promise{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--navy);
+  color:#F2F6F8;
+  padding:clamp(60px, 9vw, 110px) 0;
+  text-align:center;
+}
+.promise-waves{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.promise-waves .cw{
+  position:absolute;
+  bottom:0; left:0;
+  width:200%;
+  height:clamp(110px, 16vw, 190px);
+  display:block;
+}
+.cw-1{ animation:waveSlide 18s linear infinite; }
+.cw-2{ animation:waveSlide 28s linear infinite reverse; }
+@keyframes waveSlide{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(-50%,0,0); }
+}
+.promise .wrap{ position:relative; z-index:2; }
+
+.promise-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:22px;
+  padding:8px 18px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(6px);
+          backdrop-filter:blur(6px);
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#E4E8EB;
+}
+.promise-badge::before{
+  content:"★";
+  color:var(--gold);
+  font-size:11px;
+}
+.promise h2{
+  margin:0 0 18px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(28px, 4.2vw, 54px);
+  line-height:1.1;
+  letter-spacing:-.025em;
+}
+.promise h2 em{
+  font-style:italic;
+  background:linear-gradient(100deg, #BCC1C5 0%, #F2F6F8 40%, #BCC1C5 70%, #F2F6F8 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+.promise p{
+  max-width:500px;
+  margin:0 auto 32px;
+  font-size:13.5px;
+  font-weight:300;
+  line-height:1.8;
+  color:#C9D5DF;
+}
+.btn-light{
+  background:#F6F8F9;
+  color:var(--navy);
+  box-shadow:0 14px 28px -18px rgba(0,0,0,.55);
+}
+.btn-light:hover{
+  background:var(--silver-lt);
+  transform:translateY(-3px);
+  box-shadow:0 22px 40px -18px rgba(0,0,0,.7);
+}
+.btn-light .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.btn-light:hover .ar{ transform:translateX(6px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  background:var(--navy-deep);
+  color:#8FA3B2;
+  padding:26px 0;
+  text-align:center;
+  font-size:9.5px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.footer a{
+  color:#AFC0CD;
+  text-decoration:none;
+  transition:color .3s;
+}
+.footer a:hover{ color:#F2F6F8; }
+.footer .dot{
+  display:inline-block;
+  margin:0 10px;
+  opacity:.5;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px){
+  .stats-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .values-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .craft-grid{ grid-template-columns:1fr; gap:32px; }
+  .craft-media{ aspect-ratio:4/4.4; }
+}
+
+@media (max-width: 620px){
+  .logo-img{ width:40px; height:40px; }
+  .brand-name{ font-size:19px; }
+  .brand-sub{ font-size:7px; letter-spacing:.36em; }
+  .back-btn{ padding:9px 14px; font-size:9px; }
+  .back-btn .back-label{ display:none; }
+
+  .marquee-group span{ font-size:14px; }
+  .marquee-group{ gap:24px; padding:14px 20px; }
+
+  .mission-quote{ font-size:19px; }
+
+  .timeline{ padding-left:44px; }
+  .timeline-line{ left:14px; }
+  .tl-dot{ left:-32px; width:22px; height:22px; }
+  .tl-dot::before{ width:6px; height:6px; }
+  .tl-item{ padding-left:8px; }
+
+  .values-grid{ grid-template-columns:1fr; }
+
+  .craft-points li{ font-size:12.5px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal, .reveal-left, .reveal-right, .reveal-scale{ opacity:1; transform:none; }
+  .mission-quote .word{ opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCROLL PROGRESS BAR -->
+<div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Misk Official home">
+      <img class="logo-img" src="log.png" alt="Misk Official logo" />
+      <span>
+        <span class="brand-name">Misk</span>
+        <span class="brand-sub">Official</span>
+      </span>
+    </a>
+
+    <a class="back-btn" href="index1.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span class="back-label">Back to Shop</span>
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-deco" aria-hidden="true">
+    <span>Story</span>
+    <span>Misk</span>
+  </div>
+  <div class="hero-orb a" aria-hidden="true"></div>
+  <div class="hero-orb b" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <span class="hero-eyebrow">Since 2019</span>
+    <h1>A quieter kind of <em>elegance</em></h1>
+    <p>Misk Official was born from a simple belief — that every woman in Pakistan deserves clothing as considered as she is. This is our story.</p>
+  </div>
+
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <path d="M0,50 C240,90 480,0 720,30 C960,60 1200,90 1440,40 L1440,90 L0,90 Z" fill="#F6F8F9"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee-band" aria-label="Misk brand values">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span>Hand-Finished Detail</span>
+      <span>Made in Pakistan</span>
+      <span>Premium Fabrics</span>
+      <span>Designed In-House</span>
+      <span>Small Batch Craft</span>
+      <span>Everyday Elegance</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span>Hand-Finished Detail</span>
+      <span>Made in Pakistan</span>
+      <span>Premium Fabrics</span>
+      <span>Designed In-House</span>
+      <span>Small Batch Craft</span>
+      <span>Everyday Elegance</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MISSION QUOTE ================= -->
+<section class="mission">
+  <div class="wrap">
+    <div class="mission-wrap">
+      <span class="mission-mark" aria-hidden="true">"</span>
+      <p class="mission-quote" id="missionQuote">
+        We make clothing for the woman who doesn't need to be the loudest in the room — only the most considered. Every stitch is a promise to her.
+      </p>
+      <span class="mission-sig reveal" style="--d:.3s">The Misk Team</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+
+      <div class="stat reveal-scale" style="--d:.05s" data-num="19">
+        <span class="stat-num" data-target="2019" data-year="true">2019</span>
+        <span class="stat-lab">Founded In Lahore</span>
+      </div>
+
+      <div class="stat reveal-scale" style="--d:.12s" data-num="12">
+        <span class="stat-num" data-target="12" data-suffix="K+">0</span>
+        <span class="stat-lab">Happy Customers</span>
+      </div>
+
+      <div class="stat reveal-scale" style="--d:.19s" data-num="04">
+        <span class="stat-num" data-target="5" data-pad="2">00</span>
+        <span class="stat-lab">Signature Collections</span>
+      </div>
+
+      <div class="stat reveal-scale" style="--d:.26s" data-num="100">
+        <span class="stat-num" data-target="100" data-suffix="%">0%</span>
+        <span class="stat-lab">Made In Pakistan</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section class="timeline-section">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">The Journey</span>
+      <h2 class="section-title">From one sketch to <em>every home</em></h2>
+      <p class="section-lede">A quiet beginning, a lot of late nights, and a belief that Pakistani women deserved better everyday pieces.</p>
+    </header>
+
+    <div class="timeline">
+      <div class="timeline-line" aria-hidden="true">
+        <span class="timeline-line-fill" id="timelineFill"></span>
+      </div>
+
+      <article class="tl-item reveal-left" style="--d:.05s">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <span class="tl-year">2019</span>
+        <h3 class="tl-title">A studio, two machines, and a belief</h3>
+        <p class="tl-text">Misk Official began in a small room in Lahore with two sewing machines, a hand-drawn sketchbook, and the simple idea that Pakistani women deserved everyday clothing that felt as considered as occasion wear.</p>
+      </article>
+
+      <article class="tl-item reveal-left" style="--d:.1s">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <span class="tl-year">2021</span>
+        <h3 class="tl-title">Our first full collection</h3>
+        <p class="tl-text">The Basics edit launched with just six designs. Every piece sold out within a week. That was the moment we knew the approach was right — hand-embellished, honest fabrics, made in small batches.</p>
+      </article>
+
+      <article class="tl-item reveal-left" style="--d:.15s">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <span class="tl-year">2023</span>
+        <h3 class="tl-title">Building the atelier</h3>
+        <p class="tl-text">We partnered with a small team of master karigars in Lahore — specialists in hand embroidery, gota work, and zardozi. Every Misk piece from that point on has been touched by real hands, not machines.</p>
+      </article>
+
+      <article class="tl-item reveal-left" style="--d:.2s">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <span class="tl-year">2024</span>
+        <h3 class="tl-title">Nationwide delivery</h3>
+        <p class="tl-text">We expanded to deliver free across all of Pakistan, added Cash on Delivery and Advance Payment with a 10% discount, and set up real-person support on WhatsApp for every order.</p>
+      </article>
+
+      <article class="tl-item reveal-left" style="--d:.25s">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <span class="tl-year">Today</span>
+        <h3 class="tl-title">Five collections, one promise</h3>
+        <p class="tl-text">Basics, Solids, Embroidered, Formals and Best Sellers — with new arrivals every Friday. Over 12,000 women across Pakistan have worn Misk. The promise hasn't changed: hand-finished, honest fabrics, made with care.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CRAFTSMANSHIP (parallax) ================= -->
+<section class="craft">
+  <div class="wrap">
+    <div class="craft-grid">
+
+      <div class="craft-media reveal-scale" style="--d:.05s">
+        <span class="craft-badge">In the Atelier</span>
+        <img id="craftImg" src="scroll/5.jpg" alt="Misk craftsmanship — hand embroidery detail" loading="lazy" />
+      </div>
+
+      <div class="craft-copy reveal-right" style="--d:.2s">
+        <span class="eyebrow">Craftsmanship</span>
+        <h2 class="section-title">Made slowly, <em>made well</em></h2>
+        <p class="section-lede">
+          Every Misk piece passes through the hands of skilled Pakistani artisans — from pattern cutting
+          to the final embroidery stitch. We work in small batches so each suit gets the attention
+          it deserves, never rushed, never mass-produced.
+        </p>
+
+        <ul class="craft-points">
+          <li>
+            <span class="pt-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17l-5.5 4L8 14.5 3 10l6.5-.5z"/>
+              </svg>
+            </span>
+            <span><b>Hand embroidery</b> — done by master karigars, thread by thread.</span>
+          </li>
+          <li>
+            <span class="pt-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/>
+                <path d="M8.2 7.6 20 18"/><path d="M8.2 16.4 20 6"/>
+              </svg>
+            </span>
+            <span><b>Small batches</b> — never mass-produced, never generic.</span>
+          </li>
+          <li>
+            <span class="pt-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>
+              </svg>
+            </span>
+            <span><b>Designed in-house</b> — every silhouette starts on our own sketch table.</span>
+          </li>
+          <li>
+            <span class="pt-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 3v18"/><path d="M5 4h12l-2.5 4L17 12H5"/>
+              </svg>
+            </span>
+            <span><b>Ethical making</b> — fair pay for every artisan we work with.</span>
+          </li>
+        </ul>
+
+        <a href="index1.html#collections" class="btn btn-navy">
+          Explore The Collections
+          <span class="ar" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUES ================= -->
+<section class="values">
+  <div class="wrap">
+
+    <header class="section-head reveal">
+      <span class="eyebrow">What We Stand For</span>
+      <h2 class="section-title">Four values, <em>every piece</em></h2>
+    </header>
+
+    <div class="values-grid">
+
+      <div class="value-card reveal-scale" style="--d:.05s">
+        <span class="value-num">01</span>
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l2.5 6.5L21 10l-5 4.5L17.5 21 12 17l-5.5 4L8 14.5 3 10l6.5-.5z"/>
+          </svg>
+        </div>
+        <h3>Quality First</h3>
+        <p>Premium fabrics only — lawn, chiffon, organza, silk. Nothing that isn't worth wearing.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="--d:.12s">
+        <span class="value-num">02</span>
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s-7-4.4-7-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 21 11c0 5.6-9 10-9 10z"/>
+          </svg>
+        </div>
+        <h3>Made with Care</h3>
+        <p>Every piece is checked, folded, and sealed by a real person on our team.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="--d:.19s">
+        <span class="value-num">03</span>
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
+          </svg>
+        </div>
+        <h3>For All of Pakistan</h3>
+        <p>Free delivery nationwide. From Karachi to Gilgit, the same care in every box.</p>
+      </div>
+
+      <div class="value-card reveal-scale" style="--d:.26s">
+        <span class="value-num">04</span>
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/>
+          </svg>
+        </div>
+        <h3>Real Support</h3>
+        <p>A person on WhatsApp who actually knows the products — not a bot.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROMISE BAND ================= -->
+<section class="promise">
+  <div class="promise-waves" aria-hidden="true">
+    <svg class="cw cw-1" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path d="M0,80 Q180,20 360,80 T720,80 T1080,80 T1440,80 L1440,160 L0,160 Z" fill="rgba(255,255,255,0.07)"/>
+    </svg>
+    <svg class="cw cw-2" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path d="M0,105 Q180,150 360,105 T720,105 T1080,105 T1440,105 L1440,160 L0,160 Z" fill="rgba(255,255,255,0.05)"/>
+    </svg>
+  </div>
+
+  <div class="wrap reveal">
+    <span class="promise-badge">Our Promise</span>
+    <h2>Wear it once, <em>love it forever</em></h2>
+    <p>Every Misk piece is made to be lived in — for the everyday, the celebrations, and all the small moments in between. If it's ever not right, we'll make it right.</p>
+    <a href="index1.html" class="btn btn-light">
+      Shop The Collections
+      <span class="ar" aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  © 2025 Misk Official
+  <span class="dot">·</span>
+  <a href="index1.html">Shop</a>
+  <span class="dot">·</span>
+  <a href="shipping-policy.html">Shipping</a>
+  <span class="dot">·</span>
+  <a href="returns-policy.html">Returns</a>
+  <span class="dot">·</span>
+  <a href="privacy-policy.html">Privacy</a>
+  <span class="dot">·</span>
+  <a href="terms-of-service.html">Terms</a>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------------------------------------------------
+     1 · SCROLL PROGRESS BAR
+     --------------------------------------------------------- */
+  var scrollBar = document.getElementById('scrollBar');
+
+  function updateScrollBar() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (scrollBar) scrollBar.style.width = p + '%';
+  }
+  window.addEventListener('scroll', updateScrollBar, { passive: true });
+  window.addEventListener('resize', updateScrollBar);
+  updateScrollBar();
+
+  /* ---------------------------------------------------------
+     2 · INTERSECTION OBSERVER — REVEAL ON SCROLL
+     --------------------------------------------------------- */
+  var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------------------------------------------------------
+     3 · WORD-BY-WORD MISSION QUOTE REVEAL
+     --------------------------------------------------------- */
+  var quote = document.getElementById('missionQuote');
+
+  if (quote) {
+    var words = quote.textContent.trim().split(/\s+/);
+    quote.textContent = '';
+
+    words.forEach(function (w, i) {
+      var span = document.createElement('span');
+      span.className = 'word';
+      span.textContent = w;
+      span.style.transitionDelay = (i * 0.045) + 's';
+      quote.appendChild(span);
+      quote.appendChild(document.createTextNode(' '));
+    });
+
+    if ('IntersectionObserver' in window) {
+      var qio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            qio.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      qio.observe(quote);
+    } else {
+      quote.classList.add('in');
+    }
+  }
+
+  /* ---------------------------------------------------------
+     4 · COUNT-UP STATS
+     --------------------------------------------------------- */
+  var counted = false;
+
+  function startCounts() {
+    if (counted) return;
+    counted = true;
+
+    document.querySelectorAll('.stat-num').forEach(function (el) {
+      var isYear = el.getAttribute('data-year') === 'true';
+      var target = parseFloat(el.getAttribute('data-target') || '0');
+      var suffix = el.getAttribute('data-suffix') || '';
+      var pad    = parseInt(el.getAttribute('data-pad') || '0', 10);
+
+      /* For year, just animate from 2000 to 2019 */
+      var startVal = isYear ? target - 19 : 0;
+      var DURATION = 1600;
+      var startTs = null;
+
+      function frame(ts) {
+        if (startTs === null) startTs = ts;
+        var p = Math.min((ts - startTs) / DURATION, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.round(startVal + (target - startVal) * eased);
+
+        var str = String(val);
+        if (pad) str = str.padStart(pad, '0');
+        el.textContent = str + suffix;
+
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  }
+
+  var statsSection = document.querySelector('.stats');
+  if (statsSection) {
+    if ('IntersectionObserver' in window) {
+      var sio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            startCounts();
+            sio.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      sio.observe(statsSection);
+    } else {
+      startCounts();
+    }
+  }
+
+  /* ---------------------------------------------------------
+     5 · TIMELINE — FILL LINE + ITEMS AS YOU SCROLL
+     --------------------------------------------------------- */
+  var timelineFill = document.getElementById('timelineFill');
+  var tlItems = document.querySelectorAll('.tl-item');
+
+  if ('IntersectionObserver' in window && tlItems.length) {
+    var tio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          tio.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -30px 0px' });
+
+    tlItems.forEach(function (item) { tio.observe(item); });
+  } else {
+    tlItems.forEach(function (item) { item.classList.add('in'); });
+  }
+
+  /* progress fill of the timeline line */
+  function updateTimelineFill() {
+    if (!timelineFill) return;
+    var section = document.querySelector('.timeline-section');
+    if (!section) return;
+
+    var rect = section.getBoundingClientRect();
+    var windowH = window.innerHeight;
+
+    /* how far into the section we've scrolled */
+    var visible = Math.max(0, Math.min(1, (windowH - rect.top) / (rect.height + windowH * 0.4)));
+    timelineFill.style.height = (visible * 100) + '%';
+  }
+
+  window.addEventListener('scroll', updateTimelineFill, { passive: true });
+  window.addEventListener('resize', updateTimelineFill);
+  updateTimelineFill();
+
+  /* ---------------------------------------------------------
+     6 · PARALLAX ON CRAFTSMANSHIP IMAGE
+     --------------------------------------------------------- */
+  var craftImg = document.getElementById('craftImg');
+  var craftSection = document.querySelector('.craft');
+
+  function updateParallax() {
+    if (!craftImg || !craftSection) return;
+    /* disable on mobile for perf */
+    if (window.innerWidth < 780) {
+      craftImg.style.transform = 'translate3d(0,0,0)';
+      return;
+    }
+    var rect = craftSection.getBoundingClientRect();
+    var windowH = window.innerHeight;
+
+    /* only animate when section is in view */
+    if (rect.bottom < 0 || rect.top > windowH) return;
+
+    /* -1 (bottom) → 1 (top) */
+    var centerOffset = (rect.top + rect.height / 2) - windowH / 2;
+    var range = windowH / 2 + rect.height / 2;
+    var progress = Math.max(-1, Math.min(1, centerOffset / range));
+
+    /* translate from -10% to +10% (image is 130% height so there's room) */
+    var shift = progress * 12; /* percent of the img height */
+    craftImg.style.transform = 'translate3d(0,' + shift + '%,0)';
+  }
+
+  /* throttle via rAF */
+  var parallaxTicking = false;
+  window.addEventListener('scroll', function () {
+    if (parallaxTicking) return;
+    parallaxTicking = true;
+    window.requestAnimationFrame(function () {
+      updateParallax();
+      parallaxTicking = false;
+    });
+  }, { passive: true });
+  window.addEventListener('resize', updateParallax);
+  updateParallax();
+
+})();
+</script>
+
+</body>
+</html>

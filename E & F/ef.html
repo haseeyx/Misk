@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<link rel="icon" type="image/png" href="../log.png">
+
+<title>Embroidered &amp; Formals — Misk Official</title>
+<meta name="description" content="Two collections within one edit — Embroidered artistry and Formal elegance at Misk Official." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MISK OFFICIAL — EMBROIDERED & FORMALS (SUB COLLECTION PICKER)
+   ============================================================ */
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{ max-width:100%; display:block; height:auto; }
+a{ color:inherit; }
+
+:root{
+  --navy:      #2B4664;
+  --navy-deep: #1E3450;
+  --steel:     #7D93A8;
+  --silver:    #BCC1C5;
+  --silver-lt: #E4E8EB;
+  --paper:     #F6F8F9;
+  --paper-2:   #EEF2F4;
+  --white:     #FFFFFF;
+  --ink:       #24384D;
+  --ink-soft:  #62758A;
+  --line:      #D8DEE3;
+  --gold:      #D9B36A;
+
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Jost', system-ui, -apple-system, sans-serif;
+}
+
+.wrap{
+  width:100%;
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 clamp(16px, 3vw, 36px);
+}
+
+/* ---------- reveal ---------- */
+.reveal{ opacity:0; }
+.reveal.in{ animation:revealUp .9s cubic-bezier(.22,1,.36,1) var(--d,0s) forwards; }
+@keyframes revealUp{
+  from{ opacity:0; transform:translateY(28px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(246,248,249,.95);
+  -webkit-backdrop-filter:blur(16px) saturate(1.4);
+          backdrop-filter:blur(16px) saturate(1.4);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  text-decoration:none;
+}
+.logo-img{
+  width:48px; height:48px;
+  object-fit:contain;
+  border-radius:50%;
+  flex:none;
+  transition:transform .55s cubic-bezier(.22,1,.36,1);
+}
+.brand:hover .logo-img{ transform:rotate(-6deg) scale(1.05); }
+.brand-name{
+  display:block;
+  font-family:var(--serif);
+  font-size:23px;
+  font-weight:500;
+  line-height:1;
+  color:var(--navy);
+}
+.brand-sub{
+  display:block;
+  margin-top:4px;
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.44em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+
+.back-btn{
+  margin-left:auto;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--navy);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.back-btn svg{ width:14px; height:14px; transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.back-btn:hover{
+  background:var(--silver-lt);
+  border-color:var(--silver);
+  transform:translateX(-3px);
+}
+.back-btn:hover svg{ transform:translateX(-3px); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:linear-gradient(135deg, #1a2f47 0%, var(--navy) 55%, #2e4a6a 100%);
+  color:#F2F6F8;
+  padding:clamp(50px, 8vw, 96px) 0 clamp(70px, 10vw, 120px);
+  text-align:center;
+}
+.hero-deco{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.hero-deco span{
+  position:absolute;
+  font-family:var(--serif);
+  font-weight:500;
+  line-height:1;
+  color:rgba(188,193,197,.06);
+  letter-spacing:-.04em;
+  user-select:none;
+}
+.hero-deco span:nth-child(1){ top:-4vw; left:-2vw; font-size:min(24vw, 300px); }
+.hero-deco span:nth-child(2){ bottom:-6vw; right:-3vw; font-size:min(18vw, 240px); font-style:italic; }
+
+.hero-inner{ position:relative; z-index:2; }
+
+.breadcrumb{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:22px;
+  padding:8px 18px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  -webkit-backdrop-filter:blur(6px);
+          backdrop-filter:blur(6px);
+  font-size:8.5px;
+  font-weight:500;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:#C9D5DF;
+  animation:fadeUp .8s .1s backwards;
+}
+.breadcrumb a{ color:#C9D5DF; text-decoration:none; transition:color .3s; }
+.breadcrumb a:hover{ color:#F2F6F8; }
+.breadcrumb .sep{ opacity:.5; }
+.breadcrumb .cur{ color:#F2F6F8; font-weight:600; }
+
+.hero h1{
+  margin:0 0 18px;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(32px, 5.5vw, 64px);
+  line-height:1.05;
+  letter-spacing:-.025em;
+  animation:fadeUp .9s .2s backwards;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(100deg, #BCC1C5 0%, #F2F6F8 40%, #BCC1C5 70%, #F2F6F8 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{
+  from{ background-position:0% 0; }
+  to  { background-position:200% 0; }
+}
+
+.hero p{
+  max-width:540px;
+  margin:0 auto;
+  font-size:clamp(13px, 1.1vw, 15.5px);
+  font-weight:300;
+  line-height:1.8;
+  color:#C9D5DF;
+  animation:fadeUp .9s .35s backwards;
+}
+
+.hero-wave{
+  position:absolute;
+  left:0; right:0; bottom:-1px;
+  z-index:3;
+  line-height:0;
+  pointer-events:none;
+}
+.hero-wave svg{ display:block; width:100%; height:clamp(50px, 7vw, 90px); }
+
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(18px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* ============================================================
+   TWO COLLECTION CARDS  (image on top, text below)
+   ============================================================ */
+.selector{
+  position:relative;
+  z-index:4;
+  padding:clamp(40px, 6vw, 70px) 0 clamp(60px, 9vw, 100px);
+  margin-top:clamp(-40px, -4vw, -24px);
+}
+
+.selector-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(18px, 2.6vw, 32px);
+  align-items:stretch;
+}
+
+/* --- card shell --- */
+.sub-card{
+  display:flex;
+  flex-direction:column;
+  background:var(--white);
+  border-radius:24px;
+  overflow:hidden;
+  text-decoration:none;
+  color:var(--ink);
+  border:1px solid var(--line);
+  box-shadow:0 24px 50px -38px rgba(13,26,43,.55);
+  transition:transform .55s cubic-bezier(.22,1,.36,1),
+             box-shadow .55s,
+             border-color .55s;
+}
+.sub-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--silver);
+  box-shadow:0 40px 76px -46px rgba(13,26,43,.7);
+}
+
+/* --- media area: FULL image always visible --- */
+.sub-card-media{
+  position:relative;
+  aspect-ratio:4/5;
+  background:linear-gradient(135deg, #F1F5F8 0%, #E2E9EF 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:clamp(14px, 1.8vw, 26px);
+}
+.sub-card-media img{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  transition:transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+.sub-card:hover .sub-card-media img{
+  transform:scale(1.04);
+}
+
+/* small corner tag */
+.sub-card-tag{
+  position:absolute;
+  top:16px; left:16px;
+  padding:6px 13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(6px);
+          backdrop-filter:blur(6px);
+  color:var(--navy);
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  z-index:2;
+  box-shadow:0 6px 14px -8px rgba(13,26,43,.4);
+}
+
+/* --- text panel --- */
+.sub-card-content{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  flex:1;
+  padding:clamp(22px, 2.8vw, 32px);
+  border-top:1px solid var(--line);
+  background:var(--white);
+}
+
+.sub-card-num{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.sub-card-num::before{
+  content:"";
+  width:20px;
+  height:1px;
+  background:currentColor;
+  opacity:.7;
+}
+
+.sub-card-title{
+  margin:0;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(24px, 2.8vw, 34px);
+  line-height:1.05;
+  letter-spacing:-.022em;
+  color:var(--navy);
+  transition:color .3s;
+}
+.sub-card:hover .sub-card-title{ color:var(--navy-deep); }
+
+.sub-card-desc{
+  margin:0;
+  font-size:13px;
+  font-weight:300;
+  line-height:1.72;
+  color:var(--ink-soft);
+}
+
+.sub-card-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  align-self:flex-start;
+  margin-top:auto;
+  padding-top:12px;
+  font-size:9.5px;
+  font-weight:500;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--navy);
+  position:relative;
+}
+.sub-card-cta::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:-4px;
+  width:100%; height:1.5px;
+  background:var(--navy);
+  transform:scaleX(.35);
+  transform-origin:left;
+  transition:transform .45s cubic-bezier(.76,0,.24,1);
+}
+.sub-card:hover .sub-card-cta::after{
+  transform:scaleX(1);
+}
+.sub-card-cta .ar{
+  display:inline-block;
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.sub-card:hover .sub-card-cta .ar{
+  transform:translateX(6px);
+}
+
+/* ============================================================
+   INFO STRIP
+   ============================================================ */
+.info-strip{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:18px 48px;
+  margin-top:clamp(32px, 4.6vw, 54px);
+  padding-top:clamp(24px, 3.4vw, 38px);
+  border-top:1px solid var(--line);
+  font-size:10.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.info-strip span{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+}
+.info-strip span::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--silver);
+}
+.info-strip span:nth-child(1)::before{ background:var(--navy); }
+.info-strip span:nth-child(2)::before{ background:var(--gold); }
+.info-strip span:nth-child(3)::before{ background:var(--steel); }
+.info-strip span:nth-child(4)::before{ background:var(--silver); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  background:var(--navy-deep);
+  color:#8FA3B2;
+  padding:26px 0;
+  text-align:center;
+  font-size:9.5px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.footer a{
+  color:#AFC0CD;
+  text-decoration:none;
+  transition:color .3s;
+}
+.footer a:hover{ color:#F2F6F8; }
+.footer .dot{
+  display:inline-block;
+  margin:0 10px;
+  opacity:.5;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 860px){
+  .selector-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+  .sub-card-media{
+    aspect-ratio:4/4.2;
+  }
+}
+
+@media (max-width: 620px){
+  .logo-img{ width:42px; height:42px; }
+  .brand-name{ font-size:20px; }
+  .brand-sub{ font-size:7px; letter-spacing:.36em; }
+
+  .back-btn{ padding:9px 14px; font-size:9px; }
+  .back-btn .back-label{ display:none; }
+
+  .sub-card{ border-radius:20px; }
+  .sub-card-media{ aspect-ratio:4/4.4; }
+  .sub-card-content{ padding:20px; }
+
+  .info-strip{
+    font-size:9px;
+    gap:14px 26px;
+    letter-spacing:.14em;
+  }
+
+  .breadcrumb{
+    font-size:7.5px;
+    padding:7px 14px;
+    letter-spacing:.22em;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .reveal{ opacity:1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Misk Official home">
+      <img class="logo-img" src="../log.png" alt="Misk Official logo" />
+      <span>
+        <span class="brand-name">Misk</span>
+        <span class="brand-sub">Official</span>
+      </span>
+    </a>
+
+    <a class="back-btn" href="../index1.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span class="back-label">Back</span>
+    </a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-deco" aria-hidden="true">
+    <span>Formal</span>
+    <span>Edit</span>
+  </div>
+
+  <div class="wrap hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index1.html">Collections</a>
+      <span class="sep">/</span>
+      <span class="cur">Embroidered &amp; Formals</span>
+    </nav>
+
+    <h1>Embroidered &amp; <em>Formals</em></h1>
+    <p>Two worlds within one edit — the artistry of hand embroidery, and the quiet elegance of formal tailoring.</p>
+  </div>
+
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <path d="M0,50 C240,90 480,0 720,30 C960,60 1200,90 1440,40 L1440,90 L0,90 Z" fill="#F6F8F9"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= TWO CARDS ================= -->
+<section class="selector">
+  <div class="wrap">
+
+    <div class="selector-grid">
+
+      <!-- ════════ EMBROIDERED ════════ -->
+      <a class="sub-card reveal" href="e/e.html" style="--d:.05s">
+        <div class="sub-card-media">
+          <span class="sub-card-tag">New</span>
+          <img src="e.jpg" alt="Misk embroidered collection" loading="lazy" />
+        </div>
+        <div class="sub-card-content">
+          <span class="sub-card-num">01 · Artistry</span>
+          <h2 class="sub-card-title">Embroidered</h2>
+          <p class="sub-card-desc">Hand-embellished detail on premium fabrics — for Eid, mehndi and every moment worth dressing up for.</p>
+          <span class="sub-card-cta">
+            Explore Collection
+            <span class="ar" aria-hidden="true">→</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- ════════ FORMALS ════════ -->
+      <a class="sub-card reveal" href="f/f.html" style="--d:.15s">
+        <div class="sub-card-media">
+          <span class="sub-card-tag">Signature</span>
+          <img src="f.jpg" alt="Misk formal collection" loading="lazy" />
+        </div>
+        <div class="sub-card-content">
+          <span class="sub-card-num">02 · Elegance</span>
+          <h2 class="sub-card-title">Formals</h2>
+          <p class="sub-card-desc">Structured silhouettes and refined detailing — for functions, dinners and evenings that deserve more.</p>
+          <span class="sub-card-cta">
+            Explore Collection
+            <span class="ar" aria-hidden="true">→</span>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- info strip -->
+    <div class="info-strip">
+      <span>Nationwide Delivery</span>
+      <span>Premium Fabrics</span>
+      <span>Hand-Finished Detail</span>
+      <span>Made in Pakistan</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  © 2025 Misk Official
+  <span class="dot">·</span>
+  <a href="../index1.html">Collections</a>
+  <span class="dot">·</span>
+  <a href="../shipping-policy.html">Shipping</a>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS — reveal only
+     ============================================================ -->
+<script>
+(function () {
+  "use strict";
+
+  var els = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function (el) { io.observe(el); });
+  } else {
+    els.forEach(function (el) { el.classList.add('in'); });
+  }
+
+})();
+</script>
+
+</body>
+</html>
