@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="log.png">
 
 <title>Misk Official — Collections · Casual · Formal · Fancy</title>
-<meta name="description" content="Explore the Misk Official collections — New Arrivals, Casual, Formal and Fancy wear. Free shipping all over Pakistan." />
+<meta name="description" content="Explore the Misk Official collections — New Arrivals, Casual, Formal and Fancy wear. Free shipping on orders above Rs. 10,000." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 
 <style>
 /* ============================================================
-   MISK OFFICIAL — STOREFRONT (full)
+   MISK OFFICIAL — STOREFRONT (enhanced)
    ============================================================ */
 
 *,*::before,*::after{ box-sizing:border-box; }
@@ -30,7 +30,7 @@ body{
   color:var(--ink);
   background:var(--paper);
   line-height:1.6;
-  overflow-x:clip;                 /* prevents mobile horizontal scroll */
+  overflow-x:clip;
   max-width:100vw;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -135,9 +135,23 @@ button{ font-family:inherit; }
   text-transform:uppercase;
   text-decoration:none;
   cursor:pointer;
+  position:relative;
+  overflow:hidden;
   transition:background .4s, color .4s, transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
 }
-.btn .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
+.btn::after{
+  content:"";
+  position:absolute;
+  top:0; left:-120%;
+  width:50%;
+  height:100%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent);
+  transform:skewX(-20deg);
+  transition:left .6s ease;
+  pointer-events:none;
+}
+.btn:hover::after{ left:140%; }
+.btn .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); position:relative; z-index:2; }
 .btn:hover .ar{ transform:translateX(5px); }
 .btn-navy{ background:var(--navy); color:#F2F6F8; box-shadow:0 14px 28px -18px rgba(43,70,100,.9); }
 .btn-navy:hover{ background:var(--navy-deep); transform:translateY(-2px); box-shadow:0 20px 34px -18px rgba(43,70,100,1); }
@@ -161,31 +175,56 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   1 · ANNOUNCEMENT MARQUEE
+   1 · ANNOUNCEMENT MARQUEE (enhanced with shine + gradient)
    ============================================================ */
 .announce{
   position:relative;
   overflow:hidden;
-  background:var(--navy-deep);
+  background:linear-gradient(90deg, var(--navy-deep) 0%, var(--navy) 50%, var(--navy-deep) 100%);
+  background-size:200% 100%;
   color:#DCE4EB;
   width:100%;
+  animation:announceGradient 12s ease-in-out infinite;
+}
+@keyframes announceGradient{
+  0%,100%{ background-position:0% 50%; }
+  50%    { background-position:100% 50%; }
 }
 .announce::before,
 .announce::after{
   content:"";
   position:absolute;
   top:0; bottom:0;
-  width:48px;
+  width:60px;
   z-index:2;
   pointer-events:none;
 }
 .announce::before{ left:0; background:linear-gradient(90deg, var(--navy-deep), rgba(30,52,80,0)); }
 .announce::after{ right:0; background:linear-gradient(270deg, var(--navy-deep), rgba(30,52,80,0)); }
 
+/* shine sweep */
+.announce-shine{
+  position:absolute;
+  top:0; left:-100%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(217,179,106,.28), transparent);
+  transform:skewX(-20deg);
+  animation:announceShine 6s ease-in-out infinite;
+  pointer-events:none;
+  z-index:1;
+}
+@keyframes announceShine{
+  0%, 45%{ left:-100%; }
+  65%, 100%{ left:180%; }
+}
+
 .announce-track{
   display:flex;
   width:max-content;
-  animation:announceScroll 34s linear infinite;
+  animation:announceScroll 38s linear infinite;
+  position:relative;
+  z-index:2;
 }
 .announce:hover .announce-track{ animation-play-state:paused; }
 
@@ -204,8 +243,11 @@ button{ font-family:inherit; }
   font-weight:400;
   letter-spacing:.2em;
   text-transform:uppercase;
+  transition:color .3s;
 }
+.announce-group span:hover{ color:#F2F6F8; }
 .announce-group .ico{ font-size:12px; line-height:1; }
+.announce-group .ico.gold{ filter:drop-shadow(0 0 6px rgba(217,179,106,.6)); }
 @keyframes announceScroll{
   from{ transform:translate3d(0,0,0); }
   to  { transform:translate3d(-50%,0,0); }
@@ -231,7 +273,6 @@ button{ font-family:inherit; }
   width:100%;
 }
 
-/* dark navy scroll progress */
 .scroll-progress{
   position:absolute;
   left:0; right:0; bottom:0;
@@ -242,10 +283,16 @@ button{ font-family:inherit; }
 .scroll-progress span{
   display:block;
   height:100%; width:0%;
-  background:linear-gradient(90deg, var(--navy) 0%, var(--navy-ink) 100%);
-  box-shadow:0 0 10px rgba(13,26,43,.7);
+  background:linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy-ink) 100%);
+  background-size:200% 100%;
+  box-shadow:0 0 10px rgba(43,70,100,.7);
   transition:width .08s linear;
   will-change:width;
+  animation:progressShimmer 3s linear infinite;
+}
+@keyframes progressShimmer{
+  from{ background-position:0% 0; }
+  to  { background-position:200% 0; }
 }
 
 .brand{
@@ -256,10 +303,18 @@ button{ font-family:inherit; }
   flex:none;
 }
 .mark{
-  width:48px; height:48px; flex:none;
-  transition:transform .55s cubic-bezier(.22,1,.36,1);
+  width:50px; height:50px;
+  flex:none;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid var(--silver);
+  display:block;
+  transition:transform .55s cubic-bezier(.22,1,.36,1), box-shadow .4s;
 }
-.brand:hover .mark{ transform:rotate(-6deg) scale(1.05); }
+.brand:hover .mark{
+  transform:rotate(-6deg) scale(1.05);
+  box-shadow:0 0 0 4px rgba(188,193,197,.25);
+}
 .brand-name{
   display:block;
   font-family:var(--serif);
@@ -338,11 +393,11 @@ button{ font-family:inherit; }
 .menu-btn{ display:none; }
 
 /* ============================================================
-   3 · HERO SLIDER
+   3 · HERO SLIDER (enhanced)
    ============================================================ */
 .hero{
   position:relative;
-  height:clamp(540px, 78vh, 720px);
+  height:clamp(560px, 80vh, 740px);
   background:
     radial-gradient(900px 500px at 20% 40%, rgba(125,147,168,.18), transparent 60%),
     linear-gradient(120deg, #1a2f47 0%, var(--navy) 58%, #2e4a6a 100%);
@@ -351,6 +406,7 @@ button{ font-family:inherit; }
   width:100%;
 }
 
+/* floating hero decorations */
 .hero-deco{
   position:absolute;
   inset:0;
@@ -372,12 +428,38 @@ button{ font-family:inherit; }
   user-select:none;
 }
 
+/* floating orbs */
+.hero-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(40px);
+  opacity:.22;
+  pointer-events:none;
+  z-index:1;
+}
+.hero-orb.a{
+  width:220px; height:220px;
+  background:#BCC1C5;
+  top:15%; right:6%;
+  animation:heroOrb 11s ease-in-out infinite;
+}
+.hero-orb.b{
+  width:180px; height:180px;
+  background:#D9B36A;
+  bottom:18%; left:8%;
+  animation:heroOrb 14s ease-in-out infinite reverse;
+}
+@keyframes heroOrb{
+  0%,100%{ transform:translateY(0) translateX(0) scale(1); }
+  50%    { transform:translateY(-24px) translateX(14px) scale(1.06); }
+}
+
 .slide{
   position:absolute;
   inset:0;
   opacity:0;
   pointer-events:none;
-  transition:opacity .5s ease;   /* faster fade */
+  transition:opacity .6s ease;
 }
 .slide.is-active{ opacity:1; pointer-events:auto; }
 
@@ -427,7 +509,12 @@ button{ font-family:inherit; }
   content:"";
   width:5px; height:5px;
   border-radius:50%;
-  background:var(--silver);
+  background:var(--gold);
+  animation:eyebrowPulse 2.4s ease-in-out infinite;
+}
+@keyframes eyebrowPulse{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%    { opacity:.4; transform:scale(.7); }
 }
 
 .slide-title{
@@ -440,7 +527,19 @@ button{ font-family:inherit; }
   word-wrap:break-word;
   overflow-wrap:break-word;
 }
-.slide-title em{ font-style:italic; color:var(--silver); }
+.slide-title em{
+  font-style:italic;
+  background:linear-gradient(100deg, #BCC1C5 0%, #F2F6F8 40%, #BCC1C5 70%, #F2F6F8 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{
+  from{ background-position:0% 0; }
+  to  { background-position:200% 0; }
+}
 
 .slide-text{
   max-width:430px;
@@ -466,11 +565,12 @@ button{ font-family:inherit; }
   width:100%; height:100%;
   object-fit:cover;
   object-position:center 18%;
-  transform:scale(1.06);
-  transition:transform 6.4s cubic-bezier(.2,.7,.3,1);
+  transform:scale(1.08);
+  transition:transform 7s cubic-bezier(.2,.7,.3,1);
 }
 .slide.is-active .slide-media img{ transform:scale(1); }
 
+/* slider controls */
 .slider-btn{
   position:absolute;
   top:50%; z-index:5;
@@ -485,7 +585,7 @@ button{ font-family:inherit; }
   color:#fff; cursor:pointer;
   transition:background .35s, transform .35s, border-color .35s;
 }
-.slider-btn:hover{ background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.6); }
+.slider-btn:hover{ background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.6); transform:translateY(-50%) scale(1.08); }
 .slider-btn.prev{ left:clamp(10px, 2vw, 28px); }
 .slider-btn.next{ right:clamp(10px, 2vw, 28px); }
 .slider-btn svg{ width:16px; height:16px; }
@@ -505,6 +605,51 @@ button{ font-family:inherit; }
   transition:background .4s, width .4s;
 }
 .slider-dots button.on{ width:42px; background:#F2F6F8; }
+
+/* scroll indicator */
+.scroll-indicator{
+  position:absolute;
+  left:50%;
+  bottom:clamp(58px, 7vw, 78px);
+  transform:translateX(-50%);
+  z-index:4;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  pointer-events:none;
+  opacity:.65;
+  animation:fadeIn 1.4s 1s backwards;
+}
+.scroll-indicator span{
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#C9D5DF;
+}
+.scroll-line{
+  width:1.5px;
+  height:36px;
+  background:rgba(188,193,197,.28);
+  position:relative;
+  overflow:hidden;
+  border-radius:2px;
+}
+.scroll-line::before{
+  content:"";
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:45%;
+  background:linear-gradient(180deg, transparent, #BCC1C5, transparent);
+  animation:scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse{
+  0%  { top:-50%; }
+  100%{ top:100%; }
+}
+@keyframes fadeIn{ from{ opacity:0; } to{ opacity:.65; } }
 
 .hero-wave{
   position:absolute;
@@ -551,10 +696,10 @@ button{ font-family:inherit; }
   height:3px; width:0;
   margin-top:18px;
   border-radius:2px;
-  background:linear-gradient(90deg, var(--navy), var(--steel));
-  transition:width 1.1s .35s cubic-bezier(.22,1,.36,1);
+  background:linear-gradient(90deg, var(--navy), var(--gold), var(--steel));
+  transition:width 1.2s .4s cubic-bezier(.22,1,.36,1);
 }
-.intro-copy.in .section-title::after{ width:68px; }
+.intro-copy.in .section-title::after{ width:82px; }
 .intro-copy .section-lede{ margin-bottom:26px; }
 
 .intro-points{
@@ -569,7 +714,9 @@ button{ font-family:inherit; }
   font-size:13px; font-weight:300;
   color:var(--ink-soft);
   line-height:1.6;
+  transition:transform .3s;
 }
+.intro-points li:hover{ transform:translateX(4px); }
 .ip-ico{
   flex:none;
   width:36px; height:36px;
@@ -594,18 +741,31 @@ button{ font-family:inherit; }
   gap:clamp(12px, 1.6vw, 18px);
 }
 .stat{
+  position:relative;
   padding:clamp(20px, 2.4vw, 30px);
   border:1px solid var(--line);
   border-radius:18px;
   background:var(--white);
+  overflow:hidden;
   transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .5s;
+}
+.stat::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, transparent 60%, rgba(217,179,106,.08) 100%);
+  opacity:0;
+  transition:opacity .5s;
+  pointer-events:none;
 }
 .stat:hover{
   transform:translateY(-5px);
   border-color:var(--silver);
   box-shadow:0 26px 46px -32px rgba(43,70,100,.55);
 }
+.stat:hover::before{ opacity:1; }
 .stat-ico{
+  position:relative;
   display:grid; place-items:center;
   width:38px; height:38px;
   margin-bottom:14px;
@@ -617,10 +777,11 @@ button{ font-family:inherit; }
 .stat:hover .stat-ico{
   background:var(--navy);
   color:#F2F6F8;
-  transform:rotate(-6deg);
+  transform:rotate(-6deg) scale(1.08);
 }
 .stat-ico svg{ width:18px; height:18px; }
 .stat b{
+  position:relative;
   display:block;
   font-family:var(--serif);
   font-size:clamp(24px, 2.8vw, 34px);
@@ -629,6 +790,7 @@ button{ font-family:inherit; }
   font-variant-numeric:tabular-nums;
 }
 .stat-lab{
+  position:relative;
   display:block;
   margin-top:9px;
   font-size:8.5px; font-weight:500;
@@ -655,14 +817,8 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   5 · COLLECTIONS (animated dark-blue border)
+   5 · COLLECTIONS — BENTO LAYOUT
    ============================================================ */
-/* ============================================================
-   COLLECTIONS — BENTO / ASYMMETRIC LAYOUT
-   Row 1: Feature (2 cols)  |  Best Sellers (1 col, tall)
-   Row 2: Basics | Solids   |  Embroidered (3 equal)
-   ============================================================ */
-
 .collections{ background:var(--paper); }
 
 .collections-grid{
@@ -673,12 +829,10 @@ button{ font-family:inherit; }
   align-items:stretch;
 }
 
-/* feature spans 2 of 3 columns in row 1 */
 .collection-feature{
   grid-column:1 / 3;
 }
 
-/* ---------- shared animated border ---------- */
 .collection-feature,
 .collection-card{
   position:relative;
@@ -724,7 +878,6 @@ button{ font-family:inherit; }
   to  { transform:translate(-50%,-50%) rotate(360deg); }
 }
 
-/* ---------- FEATURE (New Arrival) ---------- */
 .collection-feature{
   border-radius:26px;
   transition:box-shadow .5s, transform .5s cubic-bezier(.22,1,.36,1);
@@ -750,7 +903,7 @@ button{ font-family:inherit; }
   object-fit:cover;
   transition:transform 1.4s cubic-bezier(.22,1,.36,1);
 }
-.collection-feature:hover .feature-media img{ transform:scale(1.05); }
+.collection-feature:hover .feature-media img{ transform:scale(1.06); }
 .feature-badge{
   position:absolute;
   top:20px; left:20px;
@@ -762,6 +915,11 @@ button{ font-family:inherit; }
   font-size:8.5px; font-weight:600;
   letter-spacing:.26em; text-transform:uppercase;
   color:var(--navy);
+  animation:badgeFloat 4s ease-in-out infinite;
+}
+@keyframes badgeFloat{
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(-4px); }
 }
 .feature-body{
   display:flex;
@@ -769,178 +927,6 @@ button{ font-family:inherit; }
   justify-content:center;
   gap:14px;
   padding:clamp(24px, 3.4vw, 48px);
-}
-
-/* ---------- CARDS (Basics · Solids · Embroidered · Best Sellers) ---------- */
-.collection-card{
-  border-radius:24px;
-  transition:transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s;
-}
-.collection-card:hover{
-  transform:translateY(-7px);
-  box-shadow:0 32px 62px -40px rgba(43,70,100,.6);
-}
-.card-inner{
-  position:relative;
-  z-index:1;
-  display:flex;
-  flex-direction:column;
-  height:100%;
-  border-radius:22px;
-  overflow:hidden;
-  background:var(--white);
-}
-.card-media{
-  position:relative;
-  aspect-ratio:4 / 5;
-  display:grid;
-  gap:3px;
-  overflow:hidden;
-  background:var(--silver-lt);
-}
-.card-media img{
-  width:100%; height:100%;
-  object-fit:cover;
-  transition:transform 1s cubic-bezier(.22,1,.36,1);
-}
-.collection-card:hover .card-media img{ transform:scale(1.07); }
-
-/* ---------- BEST SELLERS — spotlight refinements ---------- */
-.best-sellers .card-media{
-  aspect-ratio:auto;          /* let it fill the tall row-1 cell */
-  flex:1;
-  min-height:280px;
-}
-/* ---------- BEST SELLERS — tall spotlight ---------- */
-.best-sellers .card-inner{
-  height:100%;
-  min-height:0;
-}
-.best-sellers .card-media{
-  flex:1 1 auto;        /* media absorbs the extra height */
-  aspect-ratio:auto;    /* remove the 4/5 lock so it can stretch */
-  min-height:260px;
-}
-.best-sellers .card-media img{
-  object-position:center 15%;  /* show more of the suit, less head/floor */
-}
-.best-sellers .card-body{
-  flex:0 0 auto;        /* body keeps its natural height */
-  padding-bottom:20px;
-}
-.best-sellers .card-title{
-  font-size:clamp(22px, 2vw, 28px);
-}
-@keyframes badgeFloat{
-  0%,100%{ transform:translateY(0); }
-  50%    { transform:translateY(-3px); }
-}
-
-/* card media mosaic variants */
-.media-3{
-  grid-template-columns:1.34fr 1fr;
-  grid-template-rows:1fr 1fr;
-}
-.media-3 img:first-child{ grid-row:span 2; }
-.media-2{
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr;
-}
-
-/* ---------- body ---------- */
-.card-body{
-  display:flex;
-  flex-direction:column;
-  gap:9px;
-  flex:1;
-  padding:22px 22px 24px;
-}
-.card-tag{
-  font-size:8px; font-weight:500;
-  letter-spacing:.26em; text-transform:uppercase;
-  color:var(--steel);
-}
-.card-title{
-  margin:0;
-  font-family:var(--serif);
-  font-weight:500;
-  font-size:clamp(19px, 1.7vw, 23px);
-  line-height:1.15;
-  color:var(--navy);
-}
-.card-text{
-  margin:0;
-  font-size:12.5px; font-weight:300;
-  line-height:1.7;
-  color:var(--ink-soft);
-}
-.card-link{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-top:auto;
-  padding-top:12px;
-  font-size:9.5px; font-weight:500;
-  letter-spacing:.22em; text-transform:uppercase;
-  text-decoration:none;
-  color:var(--navy);
-}
-.card-link .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
-.collection-card:hover .card-link .ar{ transform:translateX(6px); }
-
-/* ---------- responsive ---------- */
-@media (max-width: 980px){
-  .collections-grid{
-    grid-template-columns:repeat(2, minmax(0,1fr));
-  }
-  .collection-feature{
-    grid-column:1 / -1;         /* full width on tablet */
-  }
-  .feature-inner{
-    grid-template-columns:1fr;
-    min-height:0;
-  }
-  .feature-media{ min-height:280px; }
-  .best-sellers .card-media{ aspect-ratio:4 / 5; }  /* reset to natural */
-  .best-sellers .card-inner{ height:auto; }
-}
-
-@media (max-width: 720px){
-  .collections-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.feature-badge{
-  position:absolute;
-  top:20px; left:20px;
-  padding:8px 16px;
-  border-radius:999px;
-  background:rgba(255,255,255,.93);
-  -webkit-backdrop-filter:blur(8px);
-          backdrop-filter:blur(8px);
-  font-size:8.5px; font-weight:600;
-  letter-spacing:.26em; text-transform:uppercase;
-  color:var(--navy);
-}
-.feature-body{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:14px;
-  padding:clamp(24px, 4vw, 56px);
 }
 .feature-title{
   margin:0;
@@ -980,7 +966,6 @@ button{ font-family:inherit; }
 }
 
 .collection-card{
-  display:block;
   border-radius:24px;
   transition:transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s;
 }
@@ -1013,12 +998,31 @@ button{ font-family:inherit; }
 }
 .collection-card:hover .card-media img{ transform:scale(1.07); }
 
+.best-sellers .card-inner{
+  height:100%;
+  min-height:0;
+}
+.best-sellers .card-media{
+  flex:1 1 auto;
+  aspect-ratio:auto;
+  min-height:260px;
+}
+.best-sellers .card-media img{
+  object-position:center 15%;
+}
+.best-sellers .card-body{
+  flex:0 0 auto;
+  padding-bottom:20px;
+}
+.best-sellers .card-title{
+  font-size:clamp(22px, 2vw, 28px);
+}
+
 .media-3{
   grid-template-columns:1.34fr 1fr;
   grid-template-rows:1fr 1fr;
 }
 .media-3 img:first-child{ grid-row:span 2; }
-
 .media-2{
   grid-template-columns:1fr 1fr;
   grid-template-rows:1fr;
@@ -1063,6 +1067,18 @@ button{ font-family:inherit; }
 }
 .card-link .ar{ transition:transform .4s cubic-bezier(.22,1,.36,1); }
 .collection-card:hover .card-link .ar{ transform:translateX(6px); }
+
+@media (max-width: 980px){
+  .collections-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .collection-feature{ grid-column:1 / -1; }
+  .feature-inner{ grid-template-columns:1fr; min-height:0; }
+  .feature-media{ min-height:280px; }
+  .best-sellers .card-media{ aspect-ratio:4 / 5; }
+  .best-sellers .card-inner{ height:auto; }
+}
+@media (max-width: 720px){
+  .collections-grid{ grid-template-columns:1fr; }
+}
 
 /* ============================================================
    6 · WATER WAVE DIVIDER
@@ -1110,14 +1126,28 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   7 · SERVICES
+   7 · SERVICES (enhanced)
    ============================================================ */
 .services{
   position:relative;
   background:var(--paper-2);
   padding-top:clamp(30px, 4vw, 56px);
+  overflow:hidden;
+}
+.services::before{
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0;
+  height:100%;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(188,193,197,.18) 0, transparent 22%),
+    radial-gradient(circle at 88% 82%, rgba(217,179,106,.10) 0, transparent 22%);
+  pointer-events:none;
+  opacity:.6;
 }
 .services-grid{
+  position:relative;
+  z-index:1;
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:clamp(14px, 1.6vw, 22px);
@@ -1137,10 +1167,10 @@ button{ font-family:inherit; }
   position:absolute;
   top:0; left:0;
   width:100%; height:2px;
-  background:linear-gradient(90deg, var(--navy), var(--steel), transparent);
+  background:linear-gradient(90deg, var(--navy), var(--gold), var(--steel), transparent);
   transform:scaleX(0);
   transform-origin:left;
-  transition:transform .6s cubic-bezier(.76,0,.24,1);
+  transition:transform .7s cubic-bezier(.76,0,.24,1);
 }
 .service:hover{
   transform:translateY(-6px);
@@ -1178,7 +1208,7 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   8 · CRAFTSMANSHIP (new)
+   8 · CRAFTSMANSHIP
    ============================================================ */
 .craft{ background:var(--paper); position:relative; overflow:hidden; }
 
@@ -1255,56 +1285,7 @@ button{ font-family:inherit; }
 .craft-feat small{ display:block; font-size:10.5px; font-weight:300; color:var(--ink-soft); }
 
 /* ============================================================
-   9 · LOOKBOOK (new)
-   ============================================================ */
-.lookbook{ background:var(--paper-2); }
-
-.lookbook-grid{
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0, 1fr));
-  grid-auto-rows: clamp(140px, 16vw, 210px);
-  gap:clamp(8px, 1vw, 14px);
-}
-.look-tile{
-  position:relative;
-  overflow:hidden;
-  border-radius:14px;
-  background:var(--silver-lt);
-  min-width:0;
-}
-.look-tile img{
-  width:100%; height:100%;
-  object-fit:cover;
-  transition:transform 1.4s cubic-bezier(.22,1,.36,1);
-}
-.look-tile:hover img{ transform:scale(1.09); }
-.look-tile::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, transparent 40%, rgba(30,52,80,.72) 100%);
-  opacity:0;
-  transition:opacity .5s;
-  pointer-events:none;
-}
-.look-tile:hover::after{ opacity:1; }
-.look-tile span{
-  position:absolute;
-  left:14px; bottom:12px;
-  z-index:2;
-  font-family:var(--serif);
-  font-size:13px;
-  color:#F2F6F8;
-  opacity:0;
-  transform:translateY(8px);
-  transition:opacity .4s, transform .4s;
-}
-.look-tile:hover span{ opacity:1; transform:translateY(0); }
-.look-tile.big{ grid-column:span 2; grid-row:span 2; }
-.look-tile.tall{ grid-row:span 2; }
-
-/* ============================================================
-   10 · REVIEWS
+   9 · REVIEWS (enhanced)
    ============================================================ */
 .reviews{
   background:var(--paper-2);
@@ -1316,6 +1297,7 @@ button{ font-family:inherit; }
   gap:clamp(14px, 1.6vw, 22px);
 }
 .review{
+  position:relative;
   display:flex;
   flex-direction:column;
   gap:14px;
@@ -1324,8 +1306,26 @@ button{ font-family:inherit; }
   border:1px solid var(--line);
   border-radius:20px;
   background:var(--white);
+  overflow:hidden;
   transition:transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s, border-color .5s;
   min-width:0;
+}
+.review::before{
+  content:"❝";
+  position:absolute;
+  top:8px; right:20px;
+  font-family:var(--serif);
+  font-size:64px;
+  line-height:1;
+  color:var(--silver-lt);
+  opacity:.55;
+  font-style:italic;
+  pointer-events:none;
+  transition:color .5s, transform .5s;
+}
+.review:hover::before{
+  color:var(--silver);
+  transform:scale(1.08) rotate(-3deg);
 }
 .review:hover{
   transform:translateY(-5px);
@@ -1333,6 +1333,7 @@ button{ font-family:inherit; }
   box-shadow:0 28px 52px -38px rgba(43,70,100,.5);
 }
 .stars{
+  position:relative;
   font-size:12px;
   letter-spacing:.2em;
   color:var(--gold);
@@ -1343,6 +1344,7 @@ button{ font-family:inherit; }
   50%    { opacity:1; text-shadow:0 0 14px rgba(217,179,106,.55); }
 }
 .review blockquote{
+  position:relative;
   margin:0;
   font-family:var(--serif);
   font-style:italic;
@@ -1368,12 +1370,14 @@ button{ font-family:inherit; }
   color:#F2F6F8;
   font-family:var(--serif);
   font-size:15px;
+  transition:transform .4s;
 }
+.review:hover .avatar{ transform:rotate(-8deg) scale(1.08); }
 .review figcaption b{ display:block; font-size:12px; font-weight:500; color:var(--ink); }
 .review figcaption small{ display:block; font-size:10px; font-weight:300; color:var(--ink-soft); letter-spacing:.05em; }
 
 /* ============================================================
-   11 · HOW TO ORDER (new)
+   10 · HOW TO ORDER (enhanced with animated connector)
    ============================================================ */
 .howto{ background:var(--paper); }
 
@@ -1388,9 +1392,24 @@ button{ font-family:inherit; }
   position:absolute;
   top:48px;
   left:16%; right:16%;
-  height:1px;
+  height:1.5px;
   background:repeating-linear-gradient(90deg, var(--silver) 0 8px, transparent 8px 16px);
   z-index:0;
+}
+.steps::after{
+  content:"";
+  position:absolute;
+  top:48px;
+  left:16%; right:16%;
+  height:1.5px;
+  background:linear-gradient(90deg, transparent, var(--navy), var(--gold), var(--navy), transparent);
+  z-index:0;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 2s ease .3s;
+}
+.howto.in .steps::after{
+  transform:scaleX(1);
 }
 .step{
   position:relative;
@@ -1448,69 +1467,7 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   12 · FAQ (new)
-   ============================================================ */
-.faq{ background:var(--paper-2); }
-.faq-list{
-  max-width:820px;
-  margin:0 auto;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.faq-item{
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:var(--white);
-  overflow:hidden;
-  transition:border-color .4s, box-shadow .4s;
-}
-.faq-item[open]{
-  border-color:var(--silver);
-  box-shadow:0 20px 44px -38px rgba(43,70,100,.55);
-}
-.faq-item summary{
-  list-style:none;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:18px 22px;
-  font-size:13.5px;
-  font-weight:500;
-  color:var(--navy);
-  cursor:pointer;
-  transition:background .3s;
-}
-.faq-item summary::-webkit-details-marker{ display:none; }
-.faq-item summary:hover{ background:var(--paper); }
-.faq-item summary::after{
-  content:"+";
-  flex:none;
-  width:26px; height:26px;
-  display:grid; place-items:center;
-  border-radius:50%;
-  background:var(--silver-lt);
-  font-size:16px; font-weight:400;
-  color:var(--navy);
-  transition:transform .4s, background .4s, color .4s;
-}
-.faq-item[open] summary::after{
-  content:"−";
-  transform:rotate(180deg);
-  background:var(--navy);
-  color:#F2F6F8;
-}
-.faq-item p{
-  margin:0;
-  padding:0 22px 20px;
-  font-size:12.5px; font-weight:300;
-  line-height:1.75;
-  color:var(--ink-soft);
-}
-
-/* ============================================================
-   13 · CTA BAND
+   11 · CTA BAND
    ============================================================ */
 .cta-band{
   position:relative;
@@ -1550,7 +1507,16 @@ button{ font-family:inherit; }
   line-height:1.1;
   letter-spacing:-.022em;
 }
-.cta-band h2 em{ font-style:italic; color:var(--silver); }
+.cta-band h2 em{
+  font-style:italic;
+  color:var(--silver);
+  background:linear-gradient(100deg, #BCC1C5 0%, #F2F6F8 40%, #BCC1C5 70%, #F2F6F8 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+          background-clip:text;
+  color:transparent;
+  animation:shimmer 6s linear infinite;
+}
 .cta-band p{
   max-width:500px;
   margin:0 auto 30px;
@@ -1560,7 +1526,7 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   14 · NEWSLETTER (new)
+   12 · NEWSLETTER
    ============================================================ */
 .newsletter{
   background:var(--paper);
@@ -1631,7 +1597,7 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   15 · FOOTER
+   13 · FOOTER
    ============================================================ */
 .footer{
   background:var(--navy-deep);
@@ -1719,7 +1685,7 @@ button{ font-family:inherit; }
 }
 
 /* ============================================================
-   16 · MOBILE MENU + BACK TO TOP
+   14 · MOBILE MENU + BACK TO TOP
    ============================================================ */
 .mobile-menu{
   position:fixed;
@@ -1786,15 +1752,14 @@ button{ font-family:inherit; }
 @media (max-width: 1120px){
   .nav{ gap:22px; margin-left:22px; }
   .footer-grid{ grid-template-columns:1.5fr 1fr 1fr; row-gap:36px; }
-  .lookbook-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); }
 }
 
 @media (max-width: 980px){
   .nav{ display:none; }
   .menu-btn{ display:grid; }
   .hero-deco{ display:none; }
+  .hero-orb{ display:none; }
 
-  /* HERO → full-bleed slider */
   .hero{ height:clamp(500px, 82vh, 660px); }
   .slide-grid{
     display:block;
@@ -1835,14 +1800,10 @@ button{ font-family:inherit; }
   .slide-text{ display:none; }
   .slide-title{ font-size:clamp(26px, 7vw, 42px); }
   .slide-body .btn{ width:100%; max-width:340px; }
+  .scroll-indicator{ display:none; }
 
   .intro-grid{ grid-template-columns:1fr; gap:34px; }
   .intro-orb{ display:none; }
-
-  .collections-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-  .collection-feature{ grid-template-columns:1fr; }
-  .feature-inner{ grid-template-columns:1fr; }
-  .feature-media{ min-height:280px; }
 
   .services-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
   .reviews-grid{ grid-template-columns:1fr; }
@@ -1850,15 +1811,9 @@ button{ font-family:inherit; }
   .craft-grid{ grid-template-columns:1fr; gap:28px; }
   .craft-media{ aspect-ratio:16/10; }
 
-  .lookbook-grid{
-    grid-template-columns:repeat(3, minmax(0, 1fr));
-    grid-auto-rows: clamp(120px, 26vw, 180px);
-  }
-  .look-tile.big{ grid-column:span 2; grid-row:span 2; }
-  .look-tile.tall{ grid-row:span 2; }
-
   .steps{ grid-template-columns:1fr; gap:24px; }
   .steps::before{ display:none; }
+  .steps::after{ display:none; }
 
   .news-inner{ grid-template-columns:1fr; gap:20px; }
   .news-copy p{ max-width:none; }
@@ -1874,13 +1829,7 @@ button{ font-family:inherit; }
   .slider-btn{ width:40px; height:40px; }
   .slider-dots{ bottom:20px; }
 
-  .collections-grid{ grid-template-columns:1fr; }
   .services-grid{ grid-template-columns:1fr; }
-
-  .lookbook-grid{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
-    grid-auto-rows: clamp(120px, 36vw, 180px);
-  }
 
   .footer-grid{ grid-template-columns:1fr; gap:28px; }
   .footer-brand{ grid-column:auto; }
@@ -1914,7 +1863,6 @@ button{ font-family:inherit; }
   .slide-title{ font-size:clamp(24px, 8vw, 34px); }
 }
 
-/* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{
     animation-duration:.001ms !important;
@@ -1944,21 +1892,22 @@ button{ font-family:inherit; }
 
 <!-- ================= ANNOUNCEMENT MARQUEE ================= -->
 <div class="announce" aria-label="Store announcements">
+  <div class="announce-shine" aria-hidden="true"></div>
   <div class="announce-track">
     <div class="announce-group">
-      <span><span class="ico">✨</span> Elegance in Every Wear</span>
-      <span><span class="ico">🌸</span> New Arrivals Every Week</span>
-      <span><span class="ico">💖</span> Where Grace Meets Style</span>
-      <span><span class="ico">👗</span> Discover Your Signature Style</span>
-      <span><span class="ico">💎</span> Premium Pret Collection</span>
+      <span><span class="ico gold">🏦</span> 10% Off on Advance Payment</span>
+      <span><span class="ico">💵</span> Cash on Delivery Available</span>
+      <span><span class="ico gold">🚚</span> Free Delivery on Orders Above Rs. 10,000</span>
+      <span><span class="ico">✨</span> New Arrivals Every Week</span>
+      <span><span class="ico gold">💎</span> Premium Quality Fabrics</span>
     </div>
 
     <div class="announce-group" aria-hidden="true">
-      <span><span class="ico">✨</span> Elegance in Every Wear</span>
-      <span><span class="ico">🌸</span> New Arrivals Every Week</span>
-      <span><span class="ico">💖</span> Where Grace Meets Style</span>
-      <span><span class="ico">👗</span> Discover Your Signature Style</span>
-      <span><span class="ico">💎</span> Premium Pret Collection</span>
+      <span><span class="ico gold">🏦</span> 10% Off on Advance Payment</span>
+      <span><span class="ico">💵</span> Cash on Delivery Available</span>
+      <span><span class="ico gold">🚚</span> Free Delivery on Orders Above Rs. 10,000</span>
+      <span><span class="ico">✨</span> New Arrivals Every Week</span>
+      <span><span class="ico gold">💎</span> Premium Quality Fabrics</span>
     </div>
   </div>
 </div>
@@ -1967,16 +1916,13 @@ button{ font-family:inherit; }
 <header class="header" id="top">
   <div class="wrap header-inner">
 
-   <a class="brand" href="index.html" aria-label="Misk Official home">
-  <img src="log.png" alt="Misk Official logo"
-       class="mark"
-       style="width:50px;height:50px;object-fit:cover;border-radius:50%;border:2px solid #BCC1C5;display:block;flex-shrink:0;">
-
-  <span>
-    <span class="brand-name">Misk</span>
-    <span class="brand-sub">Official</span>
-  </span>
-</a>
+    <a class="brand" href="index.html" aria-label="Misk Official home">
+      <img src="log.png" alt="Misk Official logo" class="mark">
+      <span>
+        <span class="brand-name">Misk</span>
+        <span class="brand-sub">Official</span>
+      </span>
+    </a>
 
     <nav class="nav" aria-label="Main navigation">
       <a href="#top" data-spy="top">Home</a>
@@ -2013,6 +1959,8 @@ button{ font-family:inherit; }
 <section class="hero" id="hero" aria-label="Misk Official featured collections">
 
   <div class="hero-deco" aria-hidden="true"><span>Misk</span></div>
+  <div class="hero-orb a" aria-hidden="true"></div>
+  <div class="hero-orb b" aria-hidden="true"></div>
 
   <article class="slide is-active">
     <div class="slide-grid">
@@ -2125,6 +2073,11 @@ button{ font-family:inherit; }
 
   <div class="slider-dots" id="sliderDots" aria-label="Choose slide"></div>
 
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+
   <div class="hero-wave" aria-hidden="true">
     <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
       <path d="M0,50 C240,90 480,0 720,30 C960,60 1200,90 1440,40 L1440,90 L0,90 Z" fill="#F6F8F9"/>
@@ -2232,7 +2185,6 @@ button{ font-family:inherit; }
 
     <div class="collections-grid">
 
-      <!-- ── 01 · NEW ARRIVAL (large, 2 columns wide) ── -->
       <article class="collection-feature reveal-fade">
         <div class="feature-inner">
           <div class="feature-media">
@@ -2256,16 +2208,12 @@ button{ font-family:inherit; }
         </div>
       </article>
 
-      <!-- ── 02 · BEST SELLERS (tall spotlight card, right of feature) ── -->
       <article class="collection-card best-sellers reveal-fade" style="--d:.08s">
-
         <div class="card-inner">
-
           <div class="card-media media-3">
             <img src="scroll/b1.jpg" alt="Misk best seller 1" loading="lazy" />
             <img src="scroll/b2.jpg" alt="Misk best seller 2" loading="lazy" />
-                        <img src="scroll/b3.jpg" alt="Misk best seller 2" loading="lazy" />
-
+            <img src="scroll/b3.jpg" alt="Misk best seller 3" loading="lazy" />
           </div>
           <div class="card-body">
             <span class="card-tag">02 · Most Loved</span>
@@ -2276,7 +2224,6 @@ button{ font-family:inherit; }
         </div>
       </article>
 
-      <!-- ── 03 · BASICS ── -->
       <article class="collection-card reveal-fade" style="--d:.16s">
         <div class="card-inner">
           <div class="card-media media-3">
@@ -2293,7 +2240,6 @@ button{ font-family:inherit; }
         </div>
       </article>
 
-      <!-- ── 04 · SOLIDS ── -->
       <article class="collection-card reveal-fade" style="--d:.24s">
         <div class="card-inner">
           <div class="card-media media-2">
@@ -2309,7 +2255,6 @@ button{ font-family:inherit; }
         </div>
       </article>
 
-      <!-- ── 05 · EMBROIDERED & FORMALS ── -->
       <article class="collection-card reveal-fade" style="--d:.32s">
         <div class="card-inner">
           <div class="card-media media-2">
@@ -2367,7 +2312,7 @@ button{ font-family:inherit; }
           </svg>
         </div>
         <h3>Free Delivery</h3>
-        <p>Complimentary delivery on every order, all over Pakistan — no minimum spend required.</p>
+        <p>Free on orders above Rs. 10,000. Flat Rs. 350 below — all over Pakistan.</p>
       </div>
 
       <div class="service reveal-fade" style="--d:.09s">
@@ -2427,7 +2372,7 @@ button{ font-family:inherit; }
   </div>
 </section>
 
-<!-- ================= CRAFTSMANSHIP (new) ================= -->
+<!-- ================= CRAFTSMANSHIP ================= -->
 <section class="craft section">
   <div class="wrap">
     <div class="craft-grid">
@@ -2489,31 +2434,6 @@ button{ font-family:inherit; }
   </div>
 </section>
 
-<!-- ================= LOOKBOOK (new) ================= -->
-<!-- <section class="lookbook section">
-  <div class="wrap">
-
-    <header class="section-head reveal">
-      <span class="eyebrow">The Lookbook</span>
-      <h2 class="section-title">Styled by <em>Misk</em></h2>
-      <p class="section-lede">Real pieces, real moments. A peek into how our community wears Misk.</p>
-    </header>
-
-    <div class="lookbook-grid reveal-fade">
-      <a href="products.html" class="look-tile big"><img src="scroll/1.jpg" alt="Misk lookbook 1" loading="lazy" /><span>Eid Edit</span></a>
-      <a href="products.html" class="look-tile tall"><img src="scroll/2.jpg" alt="Misk lookbook 2" loading="lazy" /><span>Everyday</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/c1.jpg" alt="Misk lookbook 3" loading="lazy" /><span>Casual</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/c2.jpg" alt="Misk lookbook 4" loading="lazy" /><span>Casual</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/f1.jpg" alt="Misk lookbook 5" loading="lazy" /><span>Formal</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/f2.jpg" alt="Misk lookbook 6" loading="lazy" /><span>Formal</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/w1.jpg" alt="Misk lookbook 7" loading="lazy" /><span>Fancy</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/w2.jpg" alt="Misk lookbook 8" loading="lazy" /><span>Fancy</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/3.jpg" alt="Misk lookbook 9" loading="lazy" /><span>Signature</span></a>
-      <a href="products.html" class="look-tile"><img src="scroll/4.jpg" alt="Misk lookbook 10" loading="lazy" /><span>Couture</span></a>
-    </div>
-  </div>
-</section> -->
-
 <!-- ================= REVIEWS ================= -->
 <section class="reviews section" id="reviews">
   <div class="wrap">
@@ -2557,7 +2477,7 @@ button{ font-family:inherit; }
   </div>
 </section>
 
-<!-- ================= HOW TO ORDER (new) ================= -->
+<!-- ================= HOW TO ORDER ================= -->
 <section class="howto section">
   <div class="wrap">
 
@@ -2576,57 +2496,16 @@ button{ font-family:inherit; }
       <div class="step reveal-fade" style="--d:.15s">
         <span class="step-num">2</span>
         <h3>Place Your Order</h3>
-        <p>Checkout in seconds with COD or online payment. Custom sizing available at checkout.</p>
+        <p>Checkout in seconds with COD or Advance Payment. Custom sizing available at checkout.</p>
       </div>
       <div class="step reveal-fade" style="--d:.25s">
         <span class="step-num">3</span>
         <h3>Unbox &amp; Enjoy</h3>
-        <p>Delivered free to your door in 2–5 days. Not the right fit? Easy 7-day returns.</p>
+        <p>Free delivery in 2–5 days. Not the right fit? Easy 7-day returns.</p>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ================= FAQ (new) ================= -->
-<!-- <section class="faq section">
-  <div class="wrap">
-
-    <header class="section-head reveal">
-      <span class="eyebrow">Need Help?</span>
-      <h2 class="section-title">Frequently <em>Asked</em></h2>
-      <p class="section-lede">Quick answers to the questions we hear most.</p>
-    </header>
-
-    <div class="faq-list">
-
-      <details class="faq-item reveal-fade">
-        <summary>How long does delivery take?</summary>
-        <p>Orders are delivered in 2–5 working days anywhere in Pakistan. Major cities usually receive in 2–3 days. Delivery is completely free on all orders.</p>
-      </details>
-
-      <details class="faq-item reveal-fade">
-        <summary>Can I order a custom size?</summary>
-        <p>Yes! Custom sizing is available on select designs. Choose "Custom Made" at checkout and share your measurements — our team will confirm within 24 hours.</p>
-      </details>
-
-      <details class="faq-item reveal-fade">
-        <summary>What is your return policy?</summary>
-        <p>Unworn pieces with tags intact can be returned or exchanged within 7 days of delivery. Custom-made orders are final sale. See our Returns page for full details.</p>
-      </details>
-
-      <details class="faq-item reveal-fade">
-        <summary>Do you offer cash on delivery?</summary>
-        <p>Yes — COD is available across Pakistan. Pay when your order arrives, no advance payment needed.</p>
-      </details>
-
-      <details class="faq-item reveal-fade">
-        <summary>Are the fabrics really premium?</summary>
-        <p>Absolutely. We source lawn, chiffon, organza and silk directly from trusted mills, and every roll is checked by hand before cutting.</p>
-      </details>
-
-    </div>
-  </div>
-</section> -->
 
 <!-- ================= CTA BAND ================= -->
 <section class="cta-band">
@@ -2642,11 +2521,11 @@ button{ font-family:inherit; }
   <div class="wrap reveal">
     <h2>Find your perfect <em>Misk</em></h2>
     <p>From daily casuals to celebration couture — your next favourite suit is waiting.</p>
-    <a href="products.html" class="btn btn-light">Shop All Collections <span class="ar">→</span></a>
+    <a href="#collections" class="btn btn-light">Shop All Collections <span class="ar">→</span></a>
   </div>
 </section>
 
-<!-- ================= NEWSLETTER (new) ================= -->
+<!-- ================= NEWSLETTER ================= -->
 <section class="newsletter section">
   <div class="wrap">
     <div class="news-inner">
@@ -2674,16 +2553,13 @@ button{ font-family:inherit; }
     <div class="footer-grid">
 
       <div class="footer-brand">
-       <a class="brand" href="index.html" aria-label="Misk Official home">
-  <img src="log.png" alt="Misk Official logo"
-       class="mark"
-       style="width:50px;height:50px;object-fit:cover;border-radius:50%;border:2px solid #BCC1C5;display:block;flex-shrink:0;">
-
-  <span>
-    <span class="brand-name">Misk</span>
-    <span class="brand-sub">Official</span>
-  </span>
-</a>
+        <a class="brand" href="index.html" aria-label="Misk Official home">
+          <img src="log.png" alt="Misk Official logo" class="mark">
+          <span>
+            <span class="brand-name">Misk</span>
+            <span class="brand-sub">Official</span>
+          </span>
+        </a>
         <p class="footer-blurb">
           Premium women's clothing designed and crafted in Pakistan — casual, formal
           and fancy suits for every moment worth remembering.
@@ -2716,8 +2592,7 @@ button{ font-family:inherit; }
           <li><a href="Basics/basic.html">Basics Wear</a></li>
           <li><a href="Solids/solids.html">Solids Wear</a></li>
           <li><a href="Best Sellers/best.html">Best Sellers</a></li>
-                    <li><a href="E & F/ef.html">Embroidered & Formals</a></li>
-
+          <li><a href="E & F/ef.html">Embroidered &amp; Formals</a></li>
         </ul>
       </div>
 
@@ -2725,7 +2600,7 @@ button{ font-family:inherit; }
         <h4>Policies</h4>
         <ul>
           <li><a href="shipping-policy.html">Shipping Policy</a></li>
-          <li><a href="returns-exchanges.html">Returns &amp; Exchanges</a></li>
+          <li><a href="returns-policy.html">Returns &amp; Exchanges</a></li>
           <li><a href="privacy-policy.html">Privacy Policy</a></li>
           <li><a href="terms-of-service.html">Terms of Service</a></li>
         </ul>
@@ -2750,7 +2625,6 @@ button{ font-family:inherit; }
             </svg>
             <span>Misk.official20@gmail.com</span>
           </li>
-        
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z"/>
@@ -2809,7 +2683,7 @@ button{ font-family:inherit; }
   }
 
   /* ---------------------------------------------------------
-     2 · HERO SLIDER  (interval 3s · transition 0.5s)
+     2 · HERO SLIDER
      --------------------------------------------------------- */
   var slides = Array.prototype.slice.call(document.querySelectorAll('.hero .slide'));
   var dotsWrap = document.getElementById('sliderDots');
@@ -2817,7 +2691,7 @@ button{ font-family:inherit; }
   var nextBtn = document.getElementById('nextBtn');
   var current = 0;
   var timer = null;
-  var INTERVAL = 3000;
+  var INTERVAL = 3400;
 
   slides.forEach(function (_, i) {
     var b = document.createElement('button');
@@ -2886,7 +2760,7 @@ button{ font-family:inherit; }
   }
 
   /* ---------------------------------------------------------
-     4 · COUNT-UP STATS  (1.5s, then stop)
+     4 · COUNT-UP STATS
      --------------------------------------------------------- */
   var counted = false;
   function startCounts() {
@@ -2926,13 +2800,13 @@ button{ font-family:inherit; }
   }
 
   /* ---------------------------------------------------------
-     5 · SCROLL SPY (nav link highlights current section)
+     5 · SCROLL SPY
      --------------------------------------------------------- */
   var spyIds = ['top', 'collections', 'services', 'reviews', 'contact'];
   var navLinks = document.querySelectorAll('.nav a[data-spy], .mobile-menu a[data-spy]');
 
   function updateSpy() {
-    var scrollPos = window.scrollY + 120;   /* offset for sticky header */
+    var scrollPos = window.scrollY + 120;
     var active = spyIds[0];
 
     spyIds.forEach(function (id) {
@@ -2940,7 +2814,6 @@ button{ font-family:inherit; }
       if (el && el.offsetTop <= scrollPos) active = id;
     });
 
-    /* bottom of page → contact */
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 4) {
       active = 'contact';
     }
@@ -2974,33 +2847,54 @@ button{ font-family:inherit; }
     if (e.key === 'Escape') closeMenu();
   });
 
-
-
-
-
-document.querySelectorAll('.brand .mark').forEach(function(logo) {
-  logo.style.animation = 'miskLogoMove 4s ease-in-out infinite';
-
-  if (!document.getElementById('miskLogoAnimation')) {
-    const style = document.createElement('style');
-    style.id = 'miskLogoAnimation';
-    style.textContent = `
-      @keyframes miskLogoMove {
-        0%, 100% { transform: rotate(0deg) scale(1); }
-        50% { transform: rotate(5deg) scale(1.05); }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .brand .mark { animation: none !important; }
-      }
-    `;
-    document.head.appendChild(style);
+  /* ---------------------------------------------------------
+     7 · HOW-TO-ORDER CONNECTOR ANIMATION
+     --------------------------------------------------------- */
+  var howtoSection = document.querySelector('.howto');
+  if (howtoSection) {
+    if ('IntersectionObserver' in window) {
+      var hio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            hio.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+      hio.observe(howtoSection);
+    } else {
+      howtoSection.classList.add('in');
+    }
   }
 
-  logo.onerror = function() {
-    console.warn('Check that log.png is in the same folder as your HTML file.');
-  };
-});
-
+  /* ---------------------------------------------------------
+     8 · LOGO ANIMATION
+     --------------------------------------------------------- */
+  document.querySelectorAll('.brand .mark').forEach(function (logo) {
+    if (!document.getElementById('miskLogoAnimation')) {
+      var style = document.createElement('style');
+      style.id = 'miskLogoAnimation';
+      style.textContent = `
+        @keyframes miskLogoMove {
+          0%, 100% { transform: rotate(0deg) scale(1); }
+          50% { transform: rotate(5deg) scale(1.05); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .brand .mark { animation: none !important; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    logo.addEventListener('mouseenter', function () {
+      logo.style.animation = 'miskLogoMove 1.4s ease-in-out';
+    });
+    logo.addEventListener('animationend', function () {
+      logo.style.animation = '';
+    });
+    logo.onerror = function () {
+      console.warn('Check that log.png is in the same folder as your HTML file.');
+    };
+  });
 
 })();
 </script>
