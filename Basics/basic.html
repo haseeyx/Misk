@@ -682,6 +682,83 @@ button{ font-family:inherit; cursor:pointer; }
   color:var(--navy);
   text-transform:uppercase;
 }
+
+/* ---------- SIZE SELECTOR (NEW) ---------- */
+.size-section{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:20px;
+}
+.size-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.size-label{
+  font-size:9.5px;
+  font-weight:600;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--steel);
+}
+.size-selected{
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--navy);
+}
+.size-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.size-btn{
+  min-width:48px;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--navy);
+  font-family:inherit;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:border-color .3s, background .3s, color .3s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.size-btn:hover:not(:disabled){
+  border-color:var(--navy);
+  transform:translateY(-2px);
+}
+.size-btn.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#F2F6F8;
+  box-shadow:0 12px 24px -16px rgba(43,70,100,.9);
+}
+.size-btn:disabled{
+  cursor:not-allowed;
+  color:#B3BEC9;
+  background:var(--paper-2);
+  border-color:var(--line);
+  text-decoration:line-through;
+  opacity:.8;
+}
+.size-btn:disabled:hover{ transform:none; }
+.size-error{
+  display:none;
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:.04em;
+  color:var(--red);
+}
+.size-error.show{ display:block; animation:revealUp .3s ease; }
+
 .sold-banner{
   display:flex;
   align-items:center;
@@ -935,6 +1012,20 @@ button{ font-family:inherit; cursor:pointer; }
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
   overflow:hidden;
+}
+.cart-item-size{
+  align-self:flex-start;
+  display:inline-block;
+  margin-top:1px;
+  padding:2px 8px;
+  border-radius:99px;
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  font-size:8.5px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--navy);
 }
 .cart-item-price{
   font-size:11px;
@@ -1192,11 +1283,29 @@ button{ font-family:inherit; cursor:pointer; }
 }
 .advance-details.open{ display:flex; }
 
+/* ---- bank / wallet selector (NEW) ---- */
+.bank-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.bank-card .payment-icon{
+  font-size:16px;
+}
+.bank-note{
+  font-size:10.5px;
+  color:var(--ink-soft);
+  line-height:1.55;
+  margin:-2px 0 0;
+  letter-spacing:.02em;
+}
+
 .bank-info{
   padding:14px;
   border-radius:12px;
   background:var(--white);
   border:1px solid var(--line);
+  animation:revealUp .35s ease;
 }
 .bank-info h5{
   margin:0 0 10px;
@@ -1496,6 +1605,7 @@ button{ font-family:inherit; cursor:pointer; }
 
   .cart-panel{ width:100%; }
   .payment-methods{ grid-template-columns:1fr; }
+  .bank-options{ grid-template-columns:1fr; }
 }
 
 /* ---------- reduced motion ---------- */
@@ -1630,6 +1740,16 @@ button{ font-family:inherit; cursor:pointer; }
           </div>
         </div>
 
+        <!-- ===== SIZE SELECTOR (NEW) ===== -->
+        <div class="size-section" id="sizeSection">
+          <div class="size-head">
+            <span class="size-label">Select Size</span>
+            <span class="size-selected" id="sizeSelected">—</span>
+          </div>
+          <div class="size-options" id="sizeOptions"></div>
+          <div class="size-error" id="sizeError">Please select a size to continue.</div>
+        </div>
+
         <div class="tabs">
           <button class="tab active" data-tab="desc">Description</button>
           <button class="tab" data-tab="size">Size Chart</button>
@@ -1739,15 +1859,41 @@ button{ font-family:inherit; cursor:pointer; }
 
       <!-- ADVANCE PAYMENT DETAILS -->
       <div class="advance-details" id="advanceDetails">
-        <div class="bank-info">
-          <h5>🏦 Bank Transfer Details</h5>
-          <div class="bank-row"><span>Bank</span><b>HBL (Habib Bank Limited)</b></div>
-          <div class="bank-row"><span>Account No</span><b>08797901891099</b></div>
-          <div class="bank-row"><span>Account Name</span><b>Iqra Maqbool</b></div>
-        </div>
 
-        <input type="text" name="transactionId" placeholder="Transaction ID / Reference No" id="transactionIdInput" />
-        <small class="field-hint">Enter the TID from your bank receipt</small>
+        <!-- ===== SELECT ACCOUNT: HBL / EASYPAISA (NEW) ===== -->
+        <div class="form-section-title">Select Account</div>
+        <div class="bank-options" id="bankOptions">
+          <label class="payment-card bank-card active" data-bank="hbl">
+            <input type="radio" name="advanceBank" value="hbl" checked />
+            <div class="payment-icon">🏦</div>
+            <div class="payment-info">
+              <b>HBL</b>
+              <span>Habib Bank Ltd</span>
+            </div>
+            <div class="payment-check">
+              <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            </div>
+          </label>
+
+          <label class="payment-card bank-card" data-bank="easypaisa">
+            <input type="radio" name="advanceBank" value="easypaisa" />
+            <div class="payment-icon">📱</div>
+            <div class="payment-info">
+              <b>EasyPaisa</b>
+              <span>Mobile wallet</span>
+            </div>
+            <div class="payment-check">
+              <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            </div>
+          </label>
+        </div>
+        <p class="bank-note">Send the advance amount to the account shown below, then enter your Transaction ID and upload the screenshot.</p>
+
+        <!-- account details are injected by JS -->
+        <div class="bank-info" id="bankInfo"></div>
+
+        <input type="text" name="transactionId" placeholder="Transaction ID / Reference No (TID)" id="transactionIdInput" />
+        <small class="field-hint">Enter the TID from your bank / EasyPaisa receipt</small>
 
         <label class="file-upload" id="fileUploadLabel">
           <input type="file" name="screenshot" accept="image/*" id="screenshotInput" />
@@ -1795,6 +1941,35 @@ button{ font-family:inherit; cursor:pointer; }
   var ADVANCE_DISCOUNT = 0.10;
 
   /* ============================================================
+     SIZE OPTIONS
+     All sizes are always rendered — but only sizes listed inside a
+     product's `availableSizes` array are clickable (the rest are
+     shown struck-through / disabled).
+     ============================================================ */
+  var ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
+  /* ============================================================
+     BANK / WALLET ACCOUNTS FOR ADVANCE PAYMENT
+     ============================================================ */
+  var BANK_ACCOUNTS = {
+    hbl: {
+      title: '🏦 HBL — Habib Bank Limited',
+      rows: [
+        ['Bank',         'HBL (Habib Bank Limited)'],
+        ['Account No',   '08797901891099'],
+        ['Account Name', 'Iqra Maqbool']
+      ]
+    },
+    easypaisa: {
+      title: '📱 EasyPaisa',
+      rows: [
+        ['Account No',   '03171349932'],
+        ['Account Name', 'Iqra Maqbool']
+      ]
+    }
+  };
+
+  /* ============================================================
      PRODUCT DATA
      ============================================================ */
   var products = [
@@ -1807,6 +1982,8 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: '2 Medium available',
       soldOut: false,
+      /* 👇 only these sizes will be selectable */
+      availableSizes: ['M'],
       shortDesc: 'Tea pink short shirt with delicate white & black hem embroidery, paired with a slim-fit shalwar.',
       fullDesc: 'Introducing RIAA — a refined expression of timeless elegance. This tea pink short shirt, featuring delicate white and black embroidery on its hem, with beautiful sleeves, is paired with a slim fit shalwar. It ensures you look effortlessly chic and fresh, no matter where the day takes you.',
       mainImage: 'Riaa/RI1.jpeg',
@@ -1825,6 +2002,8 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: 'Restock coming soon',
       soldOut: true,
+      /* 👇 sold out — no sizes available right now */
+      availableSizes: [],
       shortDesc: 'Timeless black 2-piece with front & back embroidery, embroidered sleeves and neckline buttons.',
       fullDesc: 'Timeless elegance in black! This 2-piece ensemble features intricate embroidery on the front & back. The embroidered sleeves add sophistication, while embroidered buttons on neckline brings sheer grace. Paired with a chic cambric straight trouser for a flawless look!',
       mainImage: 'naya/N1.PNG',
@@ -1843,6 +2022,8 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: 'Restock coming soon',
       soldOut: true,
+      /* 👇 sold out — no sizes available right now */
+      availableSizes: [],
       shortDesc: 'Khaki printed lawn shirt with hand embroidery on neckline, sleeves and hem, with matching trouser.',
       fullDesc: 'The khaki printed lawn shirt is designed with intricate hand embroidery on neckline, sleeves and shirt hem, adding a touch of elegance. Made from high-quality lawn fabric, this 2 piece set includes a matching printed embroidered trouser for a complete and stylish look.',
       mainImage: 'khaki/K1.PNG',
@@ -1859,8 +2040,10 @@ button{ font-family:inherit; cursor:pointer; }
      ============================================================ */
   var activeFilter = 'all';
   var activeProduct = null;
+  var selectedSize = null;          /* NEW — size chosen in the modal */
   var selectedPayment = 'cod';
-  var uploadedScreenshot = null;   /* { dataUrl, name } */
+  var selectedBank = 'hbl';         /* NEW — 'hbl' | 'easypaisa' */
+  var uploadedScreenshot = null;    /* { dataUrl, name } */
 
   var grid = document.getElementById('productGrid');
   var filterBar = document.getElementById('filterBar');
@@ -1880,6 +2063,12 @@ button{ font-family:inherit; cursor:pointer; }
   var shopNowBtn = document.getElementById('shopNowBtn');
   var toast = document.getElementById('toast');
 
+  /* size selector */
+  var sizeSection = document.getElementById('sizeSection');
+  var sizeOptions = document.getElementById('sizeOptions');
+  var sizeSelected = document.getElementById('sizeSelected');
+  var sizeError = document.getElementById('sizeError');
+
   /* cart */
   var cartBtn = document.getElementById('cartBtn');
   var cartBadge = document.getElementById('cartBadge');
@@ -1895,9 +2084,11 @@ button{ font-family:inherit; cursor:pointer; }
   var successMessage = document.getElementById('successMessage');
   var placeOrderBtn = document.getElementById('placeOrderBtn');
 
-  /* new payment elements */
+  /* payment elements */
   var paymentMethodsEl = document.getElementById('paymentMethods');
   var advanceDetails = document.getElementById('advanceDetails');
+  var bankOptionsEl = document.getElementById('bankOptions');
+  var bankInfoEl = document.getElementById('bankInfo');
   var transactionIdInput = document.getElementById('transactionIdInput');
   var screenshotInput = document.getElementById('screenshotInput');
   var fileUploadLabel = document.getElementById('fileUploadLabel');
@@ -1953,6 +2144,12 @@ button{ font-family:inherit; cursor:pointer; }
     updateCartBadge();
   }
 
+  /* unique cart line key: product id + size */
+  function itemKey(item) {
+    if (item.key) return item.key;
+    return item.id + (item.size ? '__' + item.size : '');
+  }
+
   function cartQty(cart) {
     return cart.reduce(function (s, i) { return s + (i.qty || 1); }, 0);
   }
@@ -1977,28 +2174,37 @@ button{ font-family:inherit; cursor:pointer; }
     cartBadge.classList.add('bump');
   }
 
-  function addToCart(product) {
-    var cart = getCart();
-    var existing = null;
-    for (var i = 0; i < cart.length; i++) {
-      if (cart[i].id === product.id) { existing = cart[i]; break; }
+  function addToCart(product, size) {
+    if (!size) {
+      showToast('Please select a size first');
+      return;
     }
-   var fullImageUrl = '';
+    var cart = getCart();
+    var key = product.id + '__' + size;
+    var existing = null;
 
-try {
-  fullImageUrl = new URL(product.mainImage, document.baseURI).href;
-} catch (e) {
-  console.error('Product image URL error:', e);
-}
+    for (var i = 0; i < cart.length; i++) {
+      if (itemKey(cart[i]) === key) { existing = cart[i]; break; }
+    }
+
+    var fullImageUrl = '';
+    try {
+      fullImageUrl = new URL(product.mainImage, document.baseURI).href;
+    } catch (e) {
+      console.error('Product image URL error:', e);
+    }
+
     if (existing) {
       existing.qty = (existing.qty || 1) + 1;
       existing.imageUrl = fullImageUrl;
     } else {
       cart.push({
+        key:      key,
         id:       product.id,
         brand:    product.brand,
         name:     product.name,
         price:    product.price,
+        size:     size,
         image:    product.mainImage,
         imageUrl: fullImageUrl,
         qty:      1
@@ -2007,19 +2213,19 @@ try {
     saveCart(cart);
     renderCart();
     bumpBadge();
-    showToast(product.brand + ' added to cart ✓');
+    showToast(product.brand + ' · Size ' + size + ' added ✓');
   }
 
-  function removeFromCart(id) {
-    var cart = getCart().filter(function (i) { return i.id !== id; });
+  function removeFromCart(key) {
+    var cart = getCart().filter(function (i) { return itemKey(i) !== key; });
     saveCart(cart);
     renderCart();
   }
 
-  function changeQty(id, delta) {
+  function changeQty(key, delta) {
     var cart = getCart();
     for (var i = 0; i < cart.length; i++) {
-      if (cart[i].id === id) {
+      if (itemKey(cart[i]) === key) {
         cart[i].qty = (cart[i].qty || 1) + delta;
         if (cart[i].qty <= 0) cart.splice(i, 1);
         break;
@@ -2049,6 +2255,7 @@ try {
     }
 
     cart.forEach(function (item) {
+      var key = itemKey(item);
       var el = document.createElement('div');
       el.className = 'cart-item';
       el.innerHTML =
@@ -2056,14 +2263,15 @@ try {
         '<div class="cart-item-info">' +
           '<span class="cart-item-brand">' + item.brand + '</span>' +
           '<p class="cart-item-name">' + item.name + '</p>' +
+          '<span class="cart-item-size">Size · ' + (item.size || '—') + '</span>' +
           '<span class="cart-item-price"><b>' + fmtPrice(item.price) + '</b> · ' + (item.qty || 1) + 'x</span>' +
           '<div class="cart-qty">' +
-            '<button type="button" data-act="dec" data-id="' + item.id + '" aria-label="Decrease">−</button>' +
+            '<button type="button" data-act="dec" data-key="' + key + '" aria-label="Decrease">−</button>' +
             '<span>' + (item.qty || 1) + '</span>' +
-            '<button type="button" data-act="inc" data-id="' + item.id + '" aria-label="Increase">+</button>' +
+            '<button type="button" data-act="inc" data-key="' + key + '" aria-label="Increase">+</button>' +
           '</div>' +
         '</div>' +
-        '<button type="button" class="cart-item-remove" data-act="remove" data-id="' + item.id + '" aria-label="Remove">' +
+        '<button type="button" class="cart-item-remove" data-act="remove" data-key="' + key + '" aria-label="Remove">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">' +
             '<path d="M6 6l12 12M18 6L6 18"/>' +
           '</svg>' +
@@ -2081,11 +2289,11 @@ try {
   cartItemsEl.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-act]');
     if (!btn) return;
-    var id = btn.getAttribute('data-id');
+    var key = btn.getAttribute('data-key');
     var act = btn.getAttribute('data-act');
-    if (act === 'remove') removeFromCart(id);
-    else if (act === 'inc') changeQty(id, 1);
-    else if (act === 'dec') changeQty(id, -1);
+    if (act === 'remove') removeFromCart(key);
+    else if (act === 'inc') changeQty(key, 1);
+    else if (act === 'dec') changeQty(key, -1);
   });
 
   /* ============================================================
@@ -2146,6 +2354,44 @@ try {
     advanceDetails.classList.toggle('open', selectedPayment === 'advance');
     updateSummary();
   });
+
+  /* ============================================================
+     ADVANCE ACCOUNT SELECTOR — HBL / EASYPAISA  (NEW)
+     ============================================================ */
+  function renderBankInfo() {
+    var acc = BANK_ACCOUNTS[selectedBank] || BANK_ACCOUNTS.hbl;
+    var html = '<h5>' + acc.title + '</h5>';
+    acc.rows.forEach(function (r) {
+      html += '<div class="bank-row"><span>' + r[0] + '</span><b>' + r[1] + '</b></div>';
+    });
+    bankInfoEl.innerHTML = html;
+  }
+
+  bankOptionsEl.addEventListener('click', function (e) {
+    var card = e.target.closest('.bank-card');
+    if (!card) return;
+
+    selectedBank = card.getAttribute('data-bank');
+
+    bankOptionsEl.querySelectorAll('.bank-card').forEach(function (c) {
+      c.classList.toggle('active', c === card);
+    });
+
+    var radio = card.querySelector('input[type="radio"]');
+    if (radio) radio.checked = true;
+
+    renderBankInfo();
+  });
+
+  function resetBankSelection() {
+    selectedBank = 'hbl';
+    bankOptionsEl.querySelectorAll('.bank-card').forEach(function (c) {
+      c.classList.toggle('active', c.getAttribute('data-bank') === 'hbl');
+    });
+    var hblRadio = bankOptionsEl.querySelector('input[value="hbl"]');
+    if (hblRadio) hblRadio.checked = true;
+    renderBankInfo();
+  }
 
   /* ============================================================
      SCREENSHOT UPLOAD
@@ -2298,8 +2544,10 @@ try {
     /* advance payment extras */
     var txnId = '';
     var screenshotDataUrl = '';
+    var bankLabel = '';
+    var isAdvance = (selectedPayment === 'advance');
 
-    if (selectedPayment === 'advance') {
+    if (isAdvance) {
       txnId = transactionIdInput.value.trim();
       if (!txnId) {
         showToast('Enter your transaction ID');
@@ -2312,12 +2560,13 @@ try {
         return;
       }
       screenshotDataUrl = uploadedScreenshot.dataUrl;
+      bankLabel = (selectedBank === 'easypaisa') ? 'EasyPaisa' : 'HBL';
     }
 
     var t = calcTotals();
     var orderId = 'MISK-' + Date.now();
-    var methodLabel = selectedPayment === 'advance' ? 'Advance Payment' : 'Cash on Delivery';
-    var deliveryTime = selectedPayment === 'advance' ? '2-3 days' : '4-5 days';
+    var methodLabel = isAdvance ? 'Advance Payment' : 'Cash on Delivery';
+    var deliveryTime = isAdvance ? '2-3 days' : '4-5 days';
 
     /* send one row per item */
     cart.forEach(function (item, idx) {
@@ -2329,6 +2578,7 @@ try {
         orderId:          orderId,
         productId:        item.id,
         productName:      item.brand + ' — ' + item.name,
+        size:             item.size || '',                 /* NEW */
         price:            item.price,
         quantity:         item.qty || 1,
         name:             data.name,
@@ -2338,6 +2588,7 @@ try {
         notes:            data.notes,
         imageUrl:         imgUrl,
         paymentMethod:    methodLabel,
+        advanceBank:      bankLabel,                        /* NEW: HBL / EasyPaisa */
         deliveryTime:     deliveryTime,
         transactionId:    txnId,
         screenshotData:   (idx === 0 ? screenshotDataUrl : ''),   /* send base64 once */
@@ -2362,6 +2613,8 @@ try {
     filePreview.innerHTML = '';
     fileUploadLabel.classList.remove('has-file');
     fileUploadLabel.querySelector('.f-text').textContent = 'Upload Payment Screenshot';
+    resetBankSelection();
+
     selectedPayment = 'cod';
     paymentMethodsEl.querySelectorAll('.payment-card').forEach(function (c) {
       c.classList.toggle('active', c.getAttribute('data-method') === 'cod');
@@ -2369,7 +2622,7 @@ try {
     var codRadio = paymentMethodsEl.querySelector('input[value="cod"]');
     if (codRadio) codRadio.checked = true;
 
-    successMessage.textContent = selectedPayment === 'advance'
+    successMessage.textContent = isAdvance
       ? 'Your order has been placed. Delivery in 2–3 working days after payment verification.'
       : 'Thank you — our team will call you shortly to confirm your delivery (4–5 working days).';
 
@@ -2488,6 +2741,55 @@ try {
   });
 
   /* ============================================================
+     SIZE SELECTOR RENDER  (NEW)
+     ============================================================ */
+  function renderSizes(p) {
+    selectedSize = null;
+    sizeSelected.textContent = '—';
+    sizeError.classList.remove('show');
+    sizeOptions.innerHTML = '';
+
+    var available = (p.availableSizes || []).slice();
+
+    ALL_SIZES.forEach(function (sz) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'size-btn';
+      btn.textContent = sz;
+
+      var isAvailable = !p.soldOut && available.indexOf(sz) !== -1;
+      btn.disabled = !isAvailable;
+      if (!isAvailable) {
+        btn.title = p.soldOut ? 'Sold out' : 'Not available';
+      }
+
+      btn.addEventListener('click', function () {
+        if (btn.disabled) return;
+        selectedSize = sz;
+        sizeSelected.textContent = 'Size · ' + sz;
+        sizeError.classList.remove('show');
+        sizeOptions.querySelectorAll('.size-btn').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+      });
+
+      sizeOptions.appendChild(btn);
+    });
+  }
+
+  function requireSize() {
+    if (!selectedSize) {
+      sizeError.classList.add('show');
+      if (sizeSection && sizeSection.scrollIntoView) {
+        sizeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      showToast('Please select a size');
+      return false;
+    }
+    return true;
+  }
+
+  /* ============================================================
      MODAL
      ============================================================ */
   function openModal(p) {
@@ -2527,6 +2829,9 @@ try {
       thumbsWrap.appendChild(btn);
     });
 
+    /* render available sizes */
+    renderSizes(p);
+
     document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
     document.querySelectorAll('.tab-pane').forEach(function (pane) { pane.classList.remove('active'); });
     document.querySelector('.tab[data-tab="desc"]').classList.add('active');
@@ -2553,6 +2858,7 @@ try {
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     activeProduct = null;
+    selectedSize = null;
   }
 
   modalClose.addEventListener('click', closeModal);
@@ -2578,16 +2884,18 @@ try {
   });
 
   /* ============================================================
-     ADD TO CART / BUY NOW
+     ADD TO CART / BUY NOW  (size required)
      ============================================================ */
   addCartBtn.addEventListener('click', function () {
     if (!activeProduct || activeProduct.soldOut) return;
-    addToCart(activeProduct);
+    if (!requireSize()) return;
+    addToCart(activeProduct, selectedSize);
   });
 
   shopNowBtn.addEventListener('click', function () {
     if (!activeProduct || activeProduct.soldOut) return;
-    addToCart(activeProduct);
+    if (!requireSize()) return;
+    addToCart(activeProduct, selectedSize);
     closeModal();
     window.setTimeout(openCart, 260);
   });
@@ -2598,6 +2906,8 @@ try {
   updateCounts();
   updateCartBadge();
   renderProducts();
+  renderBankInfo();
+  resetBankSelection();
 
   window.addEventListener('storage', function (e) {
     if (e.key === CART_KEY) {
