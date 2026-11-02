@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="../log.png">
 
 <title>Solids Collection — Misk Official</title>
-<meta name="description" content="Shop the Solids collection at Misk Official — Ruby, Amethyst, Sage, Solenne and Pashmina solids in premium fabrics." />
+<meta name="description" content="Shop the Solids collection at Misk Official — Ruby, Amethyst, Sage, Solenne, Aura and Pashmina solids in premium fabrics." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -377,6 +377,51 @@ button{ font-family:inherit; cursor:pointer; }
   background:rgba(13,26,43,.14);
   color:var(--navy-ink);
 }
+
+/* ---------- SORT BAR ---------- */
+.sort-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:16px;
+}
+.sort-label{
+  font-size:8.5px;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--steel);
+  margin-right:4px;
+}
+.sort-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--ink-soft);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.sort-btn:hover{
+  background:var(--paper-2);
+  color:var(--navy);
+  border-color:var(--silver);
+}
+.sort-btn.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#F2F6F8;
+  transform:translateY(-1px);
+}
+.sort-btn .sort-arrow{ font-size:11px; line-height:1; }
 
 /* ============================================================
    PRODUCTS GRID
@@ -1707,6 +1752,10 @@ button{ font-family:inherit; cursor:pointer; }
   .filter-btn{ flex:none; padding:10px 16px; font-size:9px; }
   .filter-btn .count{ font-size:8px; padding:2px 6px; }
 
+  .sort-bar{ gap:6px; }
+  .sort-btn{ padding:7px 12px; font-size:8.5px; letter-spacing:.16em; }
+  .sort-label{ width:100%; text-align:center; margin:0 0 2px; }
+
   .products-grid{ grid-template-columns:1fr; }
 
   .modal{ padding:10px; }
@@ -1797,7 +1846,7 @@ button{ font-family:inherit; cursor:pointer; }
   <div class="wrap">
     <div class="filter-bar" id="filterBar">
       <button class="filter-btn active" data-filter="all">
-        All <span class="count" id="countAll">4</span>
+        All <span class="count" id="countAll">5</span>
       </button>
       <button class="filter-btn" data-filter="RUBY">
         Ruby <span class="count" data-count="RUBY">1</span>
@@ -1811,8 +1860,23 @@ button{ font-family:inherit; cursor:pointer; }
       <button class="filter-btn" data-filter="SOLENNE">
         Solenne <span class="count" data-count="SOLENNE">1</span>
       </button>
+      <button class="filter-btn" data-filter="AURA">
+        Aura <span class="count" data-count="AURA">1</span>
+      </button>
       <button class="filter-btn" data-filter="PASHMINA">
         Pashmina <span class="count">Soon</span>
+      </button>
+    </div>
+
+    <!-- ===== SORT BAR ===== -->
+    <div class="sort-bar" id="sortBar">
+      <span class="sort-label">Sort by</span>
+      <button class="sort-btn active" data-sort="default" type="button">Featured</button>
+      <button class="sort-btn" data-sort="price-asc" type="button">
+        <span class="sort-arrow">↑</span> Price · Low to High
+      </button>
+      <button class="sort-btn" data-sort="price-desc" type="button">
+        <span class="sort-arrow">↓</span> Price · High to Low
       </button>
     </div>
   </div>
@@ -1925,6 +1989,25 @@ button{ font-family:inherit; cursor:pointer; }
     <form class="cart-form" id="cartForm" novalidate>
 
       <div class="form-section-title">Order Summary</div>
+      <button
+    type="button"
+    onclick="this.closest('.cart-form').style.display='none'; document.getElementById('cartItems').style.display=''; document.getElementById('cartFooter').style.display='';"
+    style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: none;
+        color: #2B4664;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 8px 0;
+        margin-bottom: 15px;
+    "
+>
+    ← Back to Cart
+</button>
       <div class="order-summary">
         <div class="summary-row">
           <span>Subtotal</span>
@@ -2184,6 +2267,28 @@ button{ font-family:inherit; cursor:pointer; }
         'sole/S14.PNG','sole/S15.PNG','sole/S16.PNG','sole/S17.PNG'
       ],
       sizeChart: 'sole/size.PNG'
+    },
+
+    /* ---------- AURA 💚✨️ ---------- */
+    {
+      id: 'aura-1',
+      brand: 'Aura ✨️',
+      name: 'Emerald Mandarin Collar 2pc',
+      price: 4500,
+      colour: 'Emerald Green',
+      pieces: 'Stitched · 2pc Ready to Wear',
+      sizes: 'Medium available',
+      soldOut: false,
+      isNew: true,
+      availableSizes: ['M'],
+      shortDesc: 'Beautifully tailored emerald green outfit with a graceful mandarin collar and delicate front pintuck detailing.',
+      fullDesc: 'A beautifully tailored Emerald Green outfit featuring a graceful mandarin collar, delicate front pintuck detailing and a clean, minimal silhouette. Designed for women who appreciate understated elegance, this timeless ensemble is perfect for casual outings, office wear and everyday sophistication. Can be customised in any colour. 💚',
+      mainImage: 'aura/1.png',
+      gallery: [
+        'aura/1.png','aura/2.png','aura/3.png','aura/4.png'
+      ],
+      video: 'aura/wv.mp4',
+      sizeChart: 'aura/size.png'
     }
   ];
 
@@ -2191,6 +2296,7 @@ button{ font-family:inherit; cursor:pointer; }
      STATE + ELEMENTS
      ============================================================ */
   var activeFilter = 'all';
+  var activeSort   = 'default';
   var activeProduct = null;
   var selectedSize = null;
   var selectedPayment = 'cod';
@@ -2199,6 +2305,7 @@ button{ font-family:inherit; cursor:pointer; }
 
   var grid = document.getElementById('productGrid');
   var filterBar = document.getElementById('filterBar');
+  var sortBar = document.getElementById('sortBar');
   var modal = document.getElementById('modal');
   var modalClose = document.getElementById('modalClose');
   var mainImg = document.getElementById('mainImg');
@@ -2271,7 +2378,7 @@ button{ font-family:inherit; cursor:pointer; }
 
   function updateCounts() {
     document.getElementById('countAll').textContent = products.length;
-    ['RUBY','AMETHYST','SAGE','SOLENNE'].forEach(function (b) {
+    ['RUBY','AMETHYST','SAGE','SOLENNE','AURA'].forEach(function (b) {
       var el = filterBar.querySelector('[data-count="' + b + '"]');
       if (el) el.textContent = products.filter(function (p) { return p.brand.toUpperCase().indexOf(b) === 0; }).length;
     });
@@ -2811,6 +2918,13 @@ button{ font-family:inherit; cursor:pointer; }
           return p.brand.toUpperCase().indexOf(activeFilter) === 0;
         });
 
+    /* ---------- PRICE SORT ---------- */
+    if (activeSort === 'price-asc') {
+      list = list.slice().sort(function (a, b) { return a.price - b.price; });
+    } else if (activeSort === 'price-desc') {
+      list = list.slice().sort(function (a, b) { return b.price - a.price; });
+    }
+
     grid.innerHTML = '';
 
     if (!list.length) {
@@ -2870,6 +2984,20 @@ button{ font-family:inherit; cursor:pointer; }
     });
     btn.classList.add('active');
     activeFilter = btn.getAttribute('data-filter');
+    renderProducts();
+  });
+
+  /* ============================================================
+     SORT
+     ============================================================ */
+  sortBar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sort-btn');
+    if (!btn) return;
+    sortBar.querySelectorAll('.sort-btn').forEach(function (b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    activeSort = btn.getAttribute('data-sort');
     renderProducts();
   });
 
@@ -2947,8 +3075,9 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   function buildMetaChips(p) {
-    var chips =
-      '<span>Fabric · ' + p.fabric + '</span>' +
+    var chips = '';
+    if (p.fabric) chips += '<span>Fabric · ' + p.fabric + '</span>';
+    chips +=
       '<span>' + p.pieces + '</span>' +
       '<span>' + p.sizes + '</span>';
     if (p.colour) chips += '<span>Colour · ' + p.colour + '</span>';

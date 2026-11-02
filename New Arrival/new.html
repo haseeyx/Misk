@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="../log.png">
 
 <title>New Arrival — Misk Official</title>
-<meta name="description" content="Shop the New Arrival collection at Misk Official — Zar-e-Siyaah, Naaz and more. Fresh drops every week." />
+<meta name="description" content="Shop the New Arrival collection at Misk Official — Zar-e-Siyaah, Naaz, Aura, Mirana and more. Fresh drops every week." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -395,6 +395,51 @@ button{ font-family:inherit; cursor:pointer; }
   background:rgba(13,26,43,.14);
   color:var(--navy-ink);
 }
+
+/* ---------- SORT BAR ---------- */
+.sort-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:16px;
+}
+.sort-label{
+  font-size:8.5px;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--steel);
+  margin-right:4px;
+}
+.sort-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--ink-soft);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.sort-btn:hover{
+  background:var(--paper-2);
+  color:var(--navy);
+  border-color:var(--silver);
+}
+.sort-btn.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#F2F6F8;
+  transform:translateY(-1px);
+}
+.sort-btn .sort-arrow{ font-size:11px; line-height:1; }
 
 /* ============================================================
    PRODUCTS GRID
@@ -1720,6 +1765,10 @@ button{ font-family:inherit; cursor:pointer; }
   .filter-btn{ flex:none; padding:10px 16px; font-size:9px; }
   .filter-btn .count{ font-size:8px; padding:2px 6px; }
 
+  .sort-bar{ gap:6px; }
+  .sort-btn{ padding:7px 12px; font-size:8.5px; letter-spacing:.16em; }
+  .sort-label{ width:100%; text-align:center; margin:0 0 2px; }
+
   .products-grid{ grid-template-columns:1fr; }
 
   .modal{ padding:10px; }
@@ -1801,7 +1850,7 @@ button{ font-family:inherit; cursor:pointer; }
 
     <span class="hero-eyebrow">Fresh Drops</span>
     <h1>New <em>Arrival</em></h1>
-    <p>Fresh silhouettes and seasonal fabrics — from Zar-e-Siyaah's midnight black to Naaz's handcrafted farshi shalwar.</p>
+    <p>Fresh silhouettes and seasonal fabrics — from Zar-e-Siyaah's midnight black to Naaz's handcrafted farshi shalwar, Aura's emerald minimalism and Mirana's heritage embroidery.</p>
   </div>
   <div class="hero-wave" aria-hidden="true">
     <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
@@ -1815,16 +1864,34 @@ button{ font-family:inherit; cursor:pointer; }
   <div class="wrap">
     <div class="filter-bar" id="filterBar">
       <button class="filter-btn active" data-filter="all">
-        All <span class="count" id="countAll">2</span>
+        All <span class="count" id="countAll">4</span>
       </button>
       <button class="filter-btn" data-filter="ZAR">
         Zar-e-Siyaah <span class="count" data-count="ZAR">1</span>
       </button>
+      <button class="filter-btn" data-filter="NAAZ">
+        Naaz <span class="count" data-count="NAAZ">1</span>
+      </button>
+      <button class="filter-btn" data-filter="AURA">
+        Aura <span class="count" data-count="AURA">1</span>
+      </button>
+      <button class="filter-btn" data-filter="MIRANA">
+        Mirana <span class="count" data-count="MIRANA">1</span>
+      </button>
       <button class="filter-btn" data-filter="SCARLET">
         Scarlet Ruby <span class="count">Soon</span>
       </button>
-      <button class="filter-btn" data-filter="NAAZ">
-        Naaz <span class="count" data-count="NAAZ">1</span>
+    </div>
+
+    <!-- ===== SORT BAR ===== -->
+    <div class="sort-bar" id="sortBar">
+      <span class="sort-label">Sort by</span>
+      <button class="sort-btn active" data-sort="default" type="button">Featured</button>
+      <button class="sort-btn" data-sort="price-asc" type="button">
+        <span class="sort-arrow">↑</span> Price · Low to High
+      </button>
+      <button class="sort-btn" data-sort="price-desc" type="button">
+        <span class="sort-arrow">↓</span> Price · High to Low
       </button>
     </div>
   </div>
@@ -1935,6 +2002,25 @@ button{ font-family:inherit; cursor:pointer; }
     </div>
 
     <form class="cart-form" id="cartForm" novalidate>
+      <button
+    type="button"
+    onclick="this.closest('.cart-form').style.display='none'; document.getElementById('cartItems').style.display=''; document.getElementById('cartFooter').style.display='';"
+    style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: none;
+        color: #2B4664;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 8px 0;
+        margin-bottom: 15px;
+    "
+>
+    ← Back to Cart
+</button>
       <div class="form-section-title">Order Summary</div>
       <div class="order-summary">
         <div class="summary-row">
@@ -2160,6 +2246,56 @@ button{ font-family:inherit; cursor:pointer; }
       ],
       video: 'naaz/wv.mp4',
       sizeChart: ''
+    },
+
+    /* ---------- AURA ✨️ ---------- */
+    {
+      id: 'aura-1',
+      brand: 'Aura ✨️',
+      name: 'Emerald Mandarin Collar 2pc',
+      price: 4500,
+      colour: 'Emerald Green',
+      pieces: 'Stitched · 2pc Ready to Wear',
+      sizes: 'Medium available',
+      soldOut: false,
+      isNew: true,
+      availableSizes: ['M'],
+      shortDesc: 'Beautifully tailored emerald green outfit with a graceful mandarin collar and delicate front pintuck detailing.',
+      fullDesc: 'A beautifully tailored Emerald Green outfit featuring a graceful mandarin collar, delicate front pintuck detailing and a clean, minimal silhouette. Designed for women who appreciate understated elegance, this timeless ensemble is perfect for casual outings, office wear and everyday sophistication. Can be customised in any colour. 💚',
+      mainImage: 'aura/1.png',
+      gallery: [
+        'aura/1.png',
+        'aura/2.png',
+        'aura/3.png',
+        'aura/4.png'
+      ],
+      video: 'aura/wv.mp4',
+      sizeChart: 'aura/size.png'
+    },
+
+    /* ---------- MIRANA ✨️ ---------- */
+    {
+      id: 'mirana-1',
+      brand: 'Mirana ✨️',
+      name: 'Emerald Floral Embroidered 2pc',
+      price: 7200,
+      colour: 'Emerald Green',
+      pieces: 'Stitched · 2pc Ready to Wear',
+      sizes: 'Medium available',
+      soldOut: false,
+      isNew: true,
+      availableSizes: ['M'],
+      shortDesc: 'Graceful emerald outfit with intricate black floral and paisley embroidery across neckline, panels, sleeves and hemline.',
+      fullDesc: 'This graceful outfit features intricate black floral and paisley embroidery, beautifully detailed along the neckline, front panels, sleeves and hemline. The elegant V-neckline and statement motifs give it a sophisticated yet contemporary look. A perfect blend of elegance and charm for your everyday and semi-formal wardrobe. Can be customised in any colour. 💚',
+      mainImage: 'mirana/1.png',
+      gallery: [
+        'mirana/1.png',
+        'mirana/2.png',
+        'mirana/3.png',
+        'mirana/4.png',
+        'mirana/5.png'
+      ],
+      sizeChart: 'mirana/size.jpeg'
     }
   ];
 
@@ -2167,6 +2303,7 @@ button{ font-family:inherit; cursor:pointer; }
      STATE + ELEMENTS
      ============================================================ */
   var activeFilter = 'all';
+  var activeSort   = 'default';
   var activeProduct = null;
   var selectedSize = null;
   var selectedPayment = 'cod';
@@ -2175,6 +2312,7 @@ button{ font-family:inherit; cursor:pointer; }
 
   var grid = document.getElementById('productGrid');
   var filterBar = document.getElementById('filterBar');
+  var sortBar = document.getElementById('sortBar');
   var modal = document.getElementById('modal');
   var modalClose = document.getElementById('modalClose');
   var mainImg = document.getElementById('mainImg');
@@ -2245,7 +2383,7 @@ button{ font-family:inherit; cursor:pointer; }
   }
   function updateCounts() {
     document.getElementById('countAll').textContent = products.length;
-    ['ZAR','NAAZ'].forEach(function (b) {
+    ['ZAR','NAAZ','AURA','MIRANA'].forEach(function (b) {
       var el = filterBar.querySelector('[data-count="' + b + '"]');
       if (el) {
         el.textContent = products.filter(function (p) {
@@ -2745,8 +2883,24 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   /* ============================================================
-     PRODUCTS RENDER
+     PRODUCTS RENDER — with in-stock first + price sorting
      ============================================================ */
+  function sortProducts(list) {
+    return list.slice().sort(function (a, b) {
+      /* 1) In-stock always first */
+      var aSold = a.soldOut ? 1 : 0;
+      var bSold = b.soldOut ? 1 : 0;
+      if (aSold !== bSold) return aSold - bSold;
+
+      /* 2) Price sort within each group */
+      if (activeSort === 'price-asc')  return a.price - b.price;
+      if (activeSort === 'price-desc') return b.price - a.price;
+
+      /* default — stable original order */
+      return 0;
+    });
+  }
+
   function renderProducts() {
     if (activeFilter === 'SCARLET') {
       grid.innerHTML =
@@ -2761,10 +2915,12 @@ button{ font-family:inherit; cursor:pointer; }
     }
 
     var list = activeFilter === 'all'
-      ? products
+      ? products.slice()
       : products.filter(function (p) {
           return p.brand.toUpperCase().indexOf(activeFilter) === 0;
         });
+
+    list = sortProducts(list);
 
     grid.innerHTML = '';
 
@@ -2822,6 +2978,20 @@ button{ font-family:inherit; cursor:pointer; }
     });
     btn.classList.add('active');
     activeFilter = btn.getAttribute('data-filter');
+    renderProducts();
+  });
+
+  /* ============================================================
+     SORT
+     ============================================================ */
+  sortBar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sort-btn');
+    if (!btn) return;
+    sortBar.querySelectorAll('.sort-btn').forEach(function (b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    activeSort = btn.getAttribute('data-sort');
     renderProducts();
   });
 
@@ -2899,10 +3069,9 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   function buildMetaChips(p) {
-    var chips =
-      '<span>Fabric · ' + p.fabric + '</span>' +
-      '<span>' + p.pieces + '</span>' +
-      '<span>' + p.sizes + '</span>';
+    var chips = '';
+    if (p.fabric) chips += '<span>Fabric · ' + p.fabric + '</span>';
+    chips += '<span>' + p.pieces + '</span>' + '<span>' + p.sizes + '</span>';
     if (p.colour) chips += '<span>Colour · ' + p.colour + '</span>';
     if (p.shirtLength) chips += '<span>Length · ' + p.shirtLength + '</span>';
     return chips;

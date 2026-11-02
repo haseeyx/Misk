@@ -396,6 +396,51 @@ button{ font-family:inherit; cursor:pointer; }
   color:var(--navy-ink);
 }
 
+/* ---------- SORT BAR ---------- */
+.sort-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:16px;
+}
+.sort-label{
+  font-size:8.5px;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--steel);
+  margin-right:4px;
+}
+.sort-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--ink-soft);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.sort-btn:hover{
+  background:var(--paper-2);
+  color:var(--navy);
+  border-color:var(--silver);
+}
+.sort-btn.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#F2F6F8;
+  transform:translateY(-1px);
+}
+.sort-btn .sort-arrow{ font-size:11px; line-height:1; }
+
 /* ============================================================
    PRODUCTS GRID
    ============================================================ */
@@ -841,7 +886,7 @@ button{ font-family:inherit; cursor:pointer; }
   text-transform:uppercase;
 }
 
-/* ---------- SIZE SELECTOR (NEW) ---------- */
+/* ---------- SIZE SELECTOR ---------- */
 .size-section{
   display:flex;
   flex-direction:column;
@@ -1439,7 +1484,7 @@ button{ font-family:inherit; cursor:pointer; }
 }
 .advance-details.open{ display:flex; }
 
-/* ---- bank / wallet selector (NEW) ---- */
+/* ---- bank / wallet selector ---- */
 .bank-options{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -1737,6 +1782,10 @@ button{ font-family:inherit; cursor:pointer; }
   .filter-btn{ flex:none; padding:10px 16px; font-size:9px; }
   .filter-btn .count{ font-size:8px; padding:2px 6px; }
 
+  .sort-bar{ gap:6px; }
+  .sort-btn{ padding:7px 12px; font-size:8.5px; letter-spacing:.16em; }
+  .sort-label{ width:100%; text-align:center; margin:0 0 2px; }
+
   .products-grid{ grid-template-columns:1fr; }
 
   .modal{ padding:10px; }
@@ -1853,6 +1902,18 @@ button{ font-family:inherit; cursor:pointer; }
         Noor <span class="count" data-count="NOOR">1</span>
       </button>
     </div>
+
+    <!-- ===== SORT BAR ===== -->
+    <div class="sort-bar" id="sortBar">
+      <span class="sort-label">Sort by</span>
+      <button class="sort-btn active" data-sort="default" type="button">Featured</button>
+      <button class="sort-btn" data-sort="price-asc" type="button">
+        <span class="sort-arrow">↑</span> Price · Low to High
+      </button>
+      <button class="sort-btn" data-sort="price-desc" type="button">
+        <span class="sort-arrow">↓</span> Price · High to Low
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1896,7 +1957,7 @@ button{ font-family:inherit; cursor:pointer; }
         <div class="modal-price" id="mPrice"></div>
         <div class="modal-meta" id="mMeta"></div>
 
-        <!-- ===== SIZE SELECTOR (NEW) ===== -->
+        <!-- ===== SIZE SELECTOR ===== -->
         <div class="size-section" id="sizeSection">
           <div class="size-head">
             <span class="size-label">Select Size</span>
@@ -1961,6 +2022,25 @@ button{ font-family:inherit; cursor:pointer; }
     </div>
 
     <form class="cart-form" id="cartForm" novalidate>
+      <button
+    type="button"
+    onclick="this.closest('.cart-form').style.display='none'; document.getElementById('cartItems').style.display=''; document.getElementById('cartFooter').style.display='';"
+    style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: none;
+        color: #2B4664;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 8px 0;
+        margin-bottom: 15px;
+    "
+>
+    ← Back to Cart
+</button>
       <div class="form-section-title">Order Summary</div>
       <div class="order-summary">
         <div class="summary-row">
@@ -2022,7 +2102,7 @@ button{ font-family:inherit; cursor:pointer; }
       <!-- ADVANCE PAYMENT DETAILS -->
       <div class="advance-details" id="advanceDetails">
 
-        <!-- ===== SELECT ACCOUNT: HBL / EASYPAISA (NEW) ===== -->
+        <!-- ===== SELECT ACCOUNT: HBL / EASYPAISA ===== -->
         <div class="form-section-title">Select Account</div>
         <div class="bank-options" id="bankOptions">
           <label class="payment-card bank-card active" data-bank="hbl">
@@ -2159,7 +2239,7 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 3pc',
       sizes: '2 Small · 1 Medium · 3 Large',
       soldOut: false,
-      availableSizes: ['S', 'M', 'L'],   /* NEW */
+      availableSizes: ['S', 'M', 'L'],
       shortDesc: 'Timeless black ensemble with rose gold gota work, straight pants and bindhi-sprayed chiffon dupatta.',
       fullDesc: 'Midnight elegance with a touch of gold ✨ A timeless black ensemble with rose gold gota work embroidery, paired with a straight pants and bindhi sprayed premium chiffon dupatta for a youthful festive look.',
       mainImage: PATHS.zar + 'Z11.JPEG',
@@ -2187,7 +2267,7 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · Farshi Shalwar',
       sizes: 'S · M · L available',
       soldOut: false,
-      availableSizes: ['S', 'M', 'L'],   /* NEW */
+      availableSizes: ['S', 'M', 'L'],
       shortDesc: 'Understated luxury — handcrafted farshi shalwar with intricate gota and cutdana work.',
       fullDesc: 'Naaz is a Farshi Shalwar that embodies understated luxury. It is adorned with intricate Gota and cutdana work that add depth and handcrafted beauty. The delicate embroidery enhance its elegance while maintaining a clean and sophisticated finish. Naaz is designed to compliment both statement and minimal kurtas with equal ease.',
       mainImage: PATHS.naaz + 'n2.PNG',
@@ -2210,7 +2290,7 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: 'Restock coming soon',
       soldOut: true,
-      availableSizes: [],                /* NEW: sold out */
+      availableSizes: [],
       shortDesc: 'Khaki printed lawn shirt with hand embroidery on neckline, sleeves and hem, with matching trouser.',
       fullDesc: 'The khaki printed lawn shirt is designed with intricate hand embroidery on neckline, sleeves and shirt hem, adding a touch of elegance. Made from high-quality lawn fabric, this 2 piece set includes a matching printed embroidered trouser for a complete and stylish look.',
       mainImage: PATHS.khaki + 'K1.PNG',
@@ -2241,7 +2321,7 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 3pc',
       sizes: 'Restock coming soon',
       soldOut: true,
-      availableSizes: [],                /* NEW: sold out */
+      availableSizes: [],
       shortDesc: 'Beautiful long embroidered shirt with cutwork pants and bordered lace dupatta — in crisp white.',
       fullDesc: 'Beautiful long embroidery shirt with embroidered cutwork straight pants paired with beautiful border laces dupatta. Absolutely pretty staple to must have ✨ Colour: White.',
       mainImage: PATHS.boxy + 'w4.jpeg',
@@ -2265,7 +2345,7 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 3pc',
       sizes: 'Restock coming soon',
       soldOut: true,
-      availableSizes: [],                /* NEW: sold out */
+      availableSizes: [],
       shortDesc: 'Beautiful long embroidered shirt with cutwork pants and bordered lace dupatta — in soft green.',
       fullDesc: 'Beautiful long embroidery shirt with embroidered cutwork straight pants paired with beautiful border laces dupatta. Absolutely pretty staple to must have ✨ Colour: Green.',
       mainImage: PATHS.boxy + 'g1.jpeg',
@@ -2289,7 +2369,7 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: 'Restock coming soon',
       soldOut: true,
-      availableSizes: [],                /* NEW: sold out */
+      availableSizes: [],
       shortDesc: 'Refined maroon shirt with delicate self-coloured embroidery and intricate cutwork, paired with straight pants.',
       fullDesc: 'A refined expression of timeless elegance. This shirt features delicate self coloured embroidery and intricate cutwork, paired with straight pants. Perfect outfit to make your Eid special 🤎💫',
       mainImage: PATHS.noor + 'N11.jpeg',
@@ -2316,14 +2396,16 @@ button{ font-family:inherit; cursor:pointer; }
      STATE + ELEMENTS
      ============================================================ */
   var activeFilter = 'all';
+  var activeSort   = 'default';   /* NEW: 'default' | 'price-asc' | 'price-desc' */
   var activeProduct = null;
-  var selectedSize = null;          /* NEW — size chosen in the modal */
+  var selectedSize = null;
   var selectedPayment = 'cod';
-  var selectedBank = 'hbl';         /* NEW — 'hbl' | 'easypaisa' */
+  var selectedBank = 'hbl';
   var uploadedScreenshot = null;
 
   var grid = document.getElementById('productGrid');
   var filterBar = document.getElementById('filterBar');
+  var sortBar = document.getElementById('sortBar');
   var modal = document.getElementById('modal');
   var modalClose = document.getElementById('modalClose');
   var mainImg = document.getElementById('mainImg');
@@ -2417,7 +2499,6 @@ button{ font-family:inherit; cursor:pointer; }
     updateCartBadge();
   }
 
-  /* unique cart line key: product id + size */
   function itemKey(item) {
     if (item.key) return item.key;
     return item.id + (item.size ? '__' + item.size : '');
@@ -2610,7 +2691,7 @@ button{ font-family:inherit; cursor:pointer; }
   });
 
   /* ============================================================
-     ADVANCE ACCOUNT SELECTOR — HBL / EASYPAISA  (NEW)
+     ADVANCE ACCOUNT SELECTOR — HBL / EASYPAISA
      ============================================================ */
   function renderBankInfo() {
     var acc = BANK_ACCOUNTS[selectedBank] || BANK_ACCOUNTS.hbl;
@@ -2806,7 +2887,7 @@ button{ font-family:inherit; cursor:pointer; }
         orderId:         orderId,
         productId:       item.id,
         productName:     item.brand.split(' ')[0] + ' — ' + item.name,
-        size:            item.size || '',                 /* NEW */
+        size:            item.size || '',
         price:           item.price,
         quantity:        item.qty || 1,
         name:            data.name,
@@ -2816,7 +2897,7 @@ button{ font-family:inherit; cursor:pointer; }
         notes:           data.notes,
         imageUrl:        imgUrl,
         paymentMethod:   methodLabel,
-        advanceBank:     bankLabel,                       /* NEW: HBL / EasyPaisa */
+        advanceBank:     bankLabel,
         deliveryTime:    deliveryTime,
         transactionId:   txnId,
         screenshotData:  (idx === 0 ? screenshotDataUrl : ''),
@@ -2895,8 +2976,24 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   /* ============================================================
-     PRODUCTS RENDER
+     PRODUCTS RENDER — with in-stock first + price sorting
      ============================================================ */
+  function sortProducts(list) {
+    return list.slice().sort(function (a, b) {
+      /* 1) In-stock always first */
+      var aSold = a.soldOut ? 1 : 0;
+      var bSold = b.soldOut ? 1 : 0;
+      if (aSold !== bSold) return aSold - bSold;
+
+      /* 2) Price sort within each group */
+      if (activeSort === 'price-asc')  return a.price - b.price;
+      if (activeSort === 'price-desc') return b.price - a.price;
+
+      /* default — stable original order */
+      return 0;
+    });
+  }
+
   function renderProducts() {
     if (activeFilter === 'SCARLET') {
       grid.innerHTML =
@@ -2911,10 +3008,12 @@ button{ font-family:inherit; cursor:pointer; }
     }
 
     var list = activeFilter === 'all'
-      ? products
+      ? products.slice()
       : products.filter(function (p) {
           return p.brand.toUpperCase().indexOf(activeFilter) === 0;
         });
+
+    list = sortProducts(list);
 
     grid.innerHTML = '';
 
@@ -2977,7 +3076,21 @@ button{ font-family:inherit; cursor:pointer; }
   });
 
   /* ============================================================
-     SIZE SELECTOR RENDER  (NEW)
+     SORT
+     ============================================================ */
+  sortBar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sort-btn');
+    if (!btn) return;
+    sortBar.querySelectorAll('.sort-btn').forEach(function (b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    activeSort = btn.getAttribute('data-sort');
+    renderProducts();
+  });
+
+  /* ============================================================
+     SIZE SELECTOR RENDER
      ============================================================ */
   function renderSizes(p) {
     selectedSize = null;
@@ -3050,10 +3163,9 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   function buildMetaChips(p) {
-    var chips =
-      '<span>Fabric · ' + p.fabric + '</span>' +
-      '<span>' + p.pieces + '</span>' +
-      '<span>' + p.sizes + '</span>';
+    var chips = '';
+    if (p.fabric) chips += '<span>Fabric · ' + p.fabric + '</span>';
+    chips += '<span>' + p.pieces + '</span>' + '<span>' + p.sizes + '</span>';
     if (p.colour) chips += '<span>Colour · ' + p.colour + '</span>';
     return chips;
   }

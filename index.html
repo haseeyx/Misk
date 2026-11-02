@@ -30,6 +30,7 @@ html,body{ margin:0; padding:0; height:100%; }
   --ink:         #24384D;
   --ink-soft:    #62758A;
   --line:        #D8DEE3;
+  --gold:        #C8A96A;
 
   --serif:'Fraunces', Georgia, serif;
   --sans:'Jost', system-ui, -apple-system, sans-serif;
@@ -704,10 +705,164 @@ body{
   .cta-hint .hint-arrow{ animation:none; }
   .pk-flag{ animation:none; }
 }
+
+/* ============================================================
+   PAGE TRANSITION — "Fashion Curtain Reveal"
+   ============================================================ */
+.page-transition{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+}
+.page-transition.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:all;
+}
+
+/* two sliding panels */
+.pt-panel{
+  position:absolute;
+  top:0;
+  width:50%;
+  height:100%;
+  background:linear-gradient(135deg, #1E3450 0%, #2B4664 50%, #1E3450 100%);
+  transform:scaleX(0);
+  transition:transform .9s cubic-bezier(.76,0,.24,1);
+}
+.pt-panel.left{ left:0;  transform-origin:right center; }
+.pt-panel.right{ right:0; transform-origin:left center; }
+
+.page-transition.active .pt-panel{ transform:scaleX(1); }
+.page-transition.active .pt-panel.left{ transition-delay:0s; }
+.page-transition.active .pt-panel.right{ transition-delay:.05s; }
+
+/* gold accent lines */
+.pt-line{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, #C8A96A, transparent);
+  transform:translate(-50%,-50%);
+  transition:width .5s cubic-bezier(.76,0,.24,1) .7s;
+}
+.page-transition.active .pt-line{ width:60%; }
+
+/* brand reveal */
+.pt-brand{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  color:#F2F6F8;
+  opacity:0;
+  transform:translateY(16px) scale(.96);
+  transition:opacity .6s ease .55s, transform .8s cubic-bezier(.22,1,.36,1) .55s;
+}
+.page-transition.active .pt-brand{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+.pt-brand .pt-mark{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #C8A96A;
+  margin:0 auto 16px;
+  display:block;
+  animation:ptMarkSpin 2.4s cubic-bezier(.76,0,.24,1) .6s both;
+}
+@keyframes ptMarkSpin{
+  0%  { transform:rotate(-180deg) scale(.4); opacity:0; }
+  100%{ transform:rotate(0deg) scale(1);      opacity:1; }
+}
+
+.pt-title{
+  font-family:'Fraunces', Georgia, serif;
+  font-size:clamp(30px, 5vw, 56px);
+  font-weight:500;
+  letter-spacing:-.02em;
+  line-height:1;
+  margin:0;
+}
+.pt-sub{
+  display:block;
+  margin-top:10px;
+  font-size:9px;
+  letter-spacing:.6em;
+  text-transform:uppercase;
+  color:#C8A96A;
+  animation:ptFadeIn .6s ease 1s both;
+}
+.pt-loading{
+  margin-top:32px;
+  width:120px;
+  height:2px;
+  background:rgba(200,169,106,.25);
+  border-radius:2px;
+  overflow:hidden;
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  animation:ptFadeIn .4s ease 1.1s both;
+}
+.pt-loading::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#C8A96A;
+  transform:translateX(-100%);
+  animation:ptLoad 1.1s cubic-bezier(.76,0,.24,1) 1.2s forwards;
+}
+@keyframes ptLoad{
+  to{ transform:translateX(0); }
+}
+@keyframes ptFadeIn{
+  from{ opacity:0; transform:translateY(6px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* exit fade of main page */
+body.leaving .page{
+  animation:pageExit .7s cubic-bezier(.76,0,.24,1) forwards;
+}
+@keyframes pageExit{
+  to{ opacity:0; transform:scale(.97) translateY(-10px); filter:blur(6px); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .pt-panel, .pt-line, .pt-brand, .pt-brand .pt-mark,
+  .pt-loading::after, .pt-sub, .pt-loading{
+    animation:none !important;
+    transition-duration:.001ms !important;
+  }
+}
 </style>
 </head>
 
 <body>
+
+<!-- ================= PAGE TRANSITION OVERLAY ================= -->
+<div class="page-transition" id="pageTransition" aria-hidden="true">
+  <div class="pt-panel left"></div>
+  <div class="pt-panel right"></div>
+  <div class="pt-line"></div>
+  <div class="pt-brand">
+    <img src="log.png" alt="" class="pt-mark">
+    <h2 class="pt-title">Misk Official</h2>
+    <span class="pt-sub">Entering Boutique</span>
+    <div class="pt-loading"></div>
+  </div>
+</div>
 
 <!-- ================= COLOUR STRIP ================= -->
 <div class="strip" aria-hidden="true">
@@ -773,15 +928,15 @@ body{
         </span>
 
         <!-- 2 · pulsing rings + button -->
-        <div class="cta-stage">
-          <span class="cta-ring r1" aria-hidden="true"></span>
-          <span class="cta-ring r2" aria-hidden="true"></span>
+      <div class="cta-stage">
+  <span class="cta-ring r1" aria-hidden="true"></span>
+  <span class="cta-ring r2" aria-hidden="true"></span>
 
-          <a href="index1.html" class="btn">
-            Continue to Shopping
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
+  <button type="button" class="btn" id="shoppingBtn">
+    Continue to Shopping
+    <span aria-hidden="true">→</span>
+  </button>
+</div>
 
         <!-- 3 · waving Pakistan flag badge -->
         <span class="pk-badge">
@@ -961,6 +1116,37 @@ body{
 <script>
 (function () {
   "use strict";
+
+  /* ---------------------------------------------------------
+     0 · AUTO REDIRECT after 2s (cancelled if button clicked)
+         with professional fashion page-transition
+     --------------------------------------------------------- */
+  var pageTransition = document.getElementById('pageTransition');
+  var hasNavigated   = false;
+
+  function goToShop(){
+    if (hasNavigated) return;
+    hasNavigated = true;
+
+    /* 1 · fade the main page out */
+    document.body.classList.add('leaving');
+
+    /* 2 · trigger the curtain + brand reveal */
+    pageTransition.classList.add('active');
+    pageTransition.setAttribute('aria-hidden', 'false');
+
+    /* 3 · navigate after the animation finishes (~2s) */
+    setTimeout(function(){
+      window.location.href = 'index1.html';
+    }, 1500);
+  }
+
+  var autoRedirect = setTimeout(goToShop, 5000);
+
+  document.getElementById('shoppingBtn').addEventListener('click', function () {
+    clearTimeout(autoRedirect);
+    goToShop();
+  });
 
   /* ---------------------------------------------------------
      1 · TYPING — "Welcome to Misk Official" in exactly 2s

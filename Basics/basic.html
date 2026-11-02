@@ -366,6 +366,51 @@ button{ font-family:inherit; cursor:pointer; }
   color:var(--ink-soft);
 }
 
+/* ---------- SORT BAR ---------- */
+.sort-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:16px;
+}
+.sort-label{
+  font-size:8.5px;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--steel);
+  margin-right:4px;
+}
+.sort-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--ink-soft);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.sort-btn:hover{
+  background:var(--paper-2);
+  color:var(--navy);
+  border-color:var(--silver);
+}
+.sort-btn.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#F2F6F8;
+  transform:translateY(-1px);
+}
+.sort-btn .sort-arrow{ font-size:11px; line-height:1; }
+
 /* ============================================================
    PRODUCTS GRID
    ============================================================ */
@@ -683,7 +728,7 @@ button{ font-family:inherit; cursor:pointer; }
   text-transform:uppercase;
 }
 
-/* ---------- SIZE SELECTOR (NEW) ---------- */
+/* ---------- SIZE SELECTOR ---------- */
 .size-section{
   display:flex;
   flex-direction:column;
@@ -1108,7 +1153,7 @@ button{ font-family:inherit; cursor:pointer; }
 .cart-footer .btn{ width:100%; }
 
 /* ============================================================
-   CHECKOUT FORM (expanded with payment methods)
+   CHECKOUT FORM
    ============================================================ */
 .cart-form{
   display:none;
@@ -1174,7 +1219,6 @@ button{ font-family:inherit; cursor:pointer; }
 .field-hint.error{ color:var(--red); }
 .field-hint.ok{ color:var(--green); }
 
-/* ---- payment method cards ---- */
 .payment-methods{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -1270,7 +1314,6 @@ button{ font-family:inherit; cursor:pointer; }
 }
 .payment-card.active .payment-check svg{ opacity:1; }
 
-/* ---- advance payment details ---- */
 .advance-details{
   display:none;
   flex-direction:column;
@@ -1283,7 +1326,6 @@ button{ font-family:inherit; cursor:pointer; }
 }
 .advance-details.open{ display:flex; }
 
-/* ---- bank / wallet selector (NEW) ---- */
 .bank-options{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -1408,7 +1450,6 @@ button{ font-family:inherit; cursor:pointer; }
   text-transform:uppercase;
 }
 
-/* ---- live order summary ---- */
 .order-summary{
   padding:14px 16px;
   border-radius:14px;
@@ -1478,7 +1519,6 @@ button{ font-family:inherit; cursor:pointer; }
 
 .cart-form .btn{ margin-top:2px; }
 
-/* ---- success ---- */
 .cart-success{
   display:none;
   flex-direction:column;
@@ -1585,6 +1625,10 @@ button{ font-family:inherit; cursor:pointer; }
   .filter-btn{ flex:none; padding:10px 16px; font-size:9px; }
   .filter-btn .count{ font-size:8px; padding:2px 6px; }
 
+  .sort-bar{ gap:6px; }
+  .sort-btn{ padding:7px 12px; font-size:8.5px; letter-spacing:.16em; }
+  .sort-label{ width:100%; text-align:center; margin:0 0 2px; }
+
   .products-grid{ grid-template-columns:1fr; }
 
   .modal{ padding:10px; }
@@ -1608,7 +1652,6 @@ button{ font-family:inherit; cursor:pointer; }
   .bank-options{ grid-template-columns:1fr; }
 }
 
-/* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{
     animation-duration:.001ms !important;
@@ -1688,6 +1731,18 @@ button{ font-family:inherit; cursor:pointer; }
         KHAKI <span class="count" data-count="KHAKI">1</span>
       </button>
     </div>
+
+    <!-- ===== SORT BAR ===== -->
+    <div class="sort-bar" id="sortBar">
+      <span class="sort-label">Sort by</span>
+      <button class="sort-btn active" data-sort="default" type="button">Featured</button>
+      <button class="sort-btn" data-sort="price-asc" type="button">
+        <span class="sort-arrow">↑</span> Price · Low to High
+      </button>
+      <button class="sort-btn" data-sort="price-desc" type="button">
+        <span class="sort-arrow">↓</span> Price · High to Low
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1740,7 +1795,7 @@ button{ font-family:inherit; cursor:pointer; }
           </div>
         </div>
 
-        <!-- ===== SIZE SELECTOR (NEW) ===== -->
+        <!-- ===== SIZE SELECTOR ===== -->
         <div class="size-section" id="sizeSection">
           <div class="size-head">
             <span class="size-label">Select Size</span>
@@ -1795,8 +1850,25 @@ button{ font-family:inherit; cursor:pointer; }
     </div>
 
     <form class="cart-form" id="cartForm" novalidate>
-
-      <!-- ORDER SUMMARY -->
+<button
+    type="button"
+    onclick="this.closest('.cart-form').style.display='none'; document.getElementById('cartItems').style.display=''; document.getElementById('cartFooter').style.display='';"
+    style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: none;
+        color: #2B4664;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 8px 0;
+        margin-bottom: 15px;
+    "
+>
+    ← Back to Cart
+</button>
       <div class="form-section-title">Order Summary</div>
       <div class="order-summary">
         <div class="summary-row">
@@ -1820,7 +1892,6 @@ button{ font-family:inherit; cursor:pointer; }
         </div>
       </div>
 
-      <!-- DELIVERY DETAILS -->
       <div class="form-section-title">Delivery Details</div>
       <input type="text" name="name" placeholder="Full Name" required autocomplete="name" />
       <input type="tel" name="phone" placeholder="Phone Number (11 digits)" required maxlength="13" inputmode="numeric" autocomplete="tel" />
@@ -1829,7 +1900,6 @@ button{ font-family:inherit; cursor:pointer; }
       <input type="text" name="city" placeholder="City" required autocomplete="address-level2" />
       <textarea name="notes" placeholder="Notes (optional)"></textarea>
 
-      <!-- PAYMENT METHOD -->
       <div class="form-section-title">Payment Method</div>
       <div class="payment-methods" id="paymentMethods">
         <label class="payment-card active" data-method="cod">
@@ -1857,10 +1927,8 @@ button{ font-family:inherit; cursor:pointer; }
         </label>
       </div>
 
-      <!-- ADVANCE PAYMENT DETAILS -->
       <div class="advance-details" id="advanceDetails">
 
-        <!-- ===== SELECT ACCOUNT: HBL / EASYPAISA (NEW) ===== -->
         <div class="form-section-title">Select Account</div>
         <div class="bank-options" id="bankOptions">
           <label class="payment-card bank-card active" data-bank="hbl">
@@ -1889,7 +1957,6 @@ button{ font-family:inherit; cursor:pointer; }
         </div>
         <p class="bank-note">Send the advance amount to the account shown below, then enter your Transaction ID and upload the screenshot.</p>
 
-        <!-- account details are injected by JS -->
         <div class="bank-info" id="bankInfo"></div>
 
         <input type="text" name="transactionId" placeholder="Transaction ID / Reference No (TID)" id="transactionIdInput" />
@@ -1928,29 +1995,14 @@ button{ font-family:inherit; cursor:pointer; }
 (function () {
   "use strict";
 
-  /* ============================================================
-     ⚠️  GOOGLE SHEETS WEB APP URL
-     ============================================================ */
   var GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzMDh7HSq-lN5n4xW4oLX1MTO1W8gW6Mz5csFjNpQphgWPP7Asu_ZDjf8M8_X1cnKG0hA/exec';
 
-  /* ============================================================
-     SHIPPING / DISCOUNT RULES
-     ============================================================ */
   var DELIVERY_CHARGE = 350;
   var FREE_DELIVERY_MIN = 10000;
   var ADVANCE_DISCOUNT = 0.10;
 
-  /* ============================================================
-     SIZE OPTIONS
-     All sizes are always rendered — but only sizes listed inside a
-     product's `availableSizes` array are clickable (the rest are
-     shown struck-through / disabled).
-     ============================================================ */
   var ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
-  /* ============================================================
-     BANK / WALLET ACCOUNTS FOR ADVANCE PAYMENT
-     ============================================================ */
   var BANK_ACCOUNTS = {
     hbl: {
       title: '🏦 HBL — Habib Bank Limited',
@@ -1982,7 +2034,6 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: '2 Medium available',
       soldOut: false,
-      /* 👇 only these sizes will be selectable */
       availableSizes: ['M'],
       shortDesc: 'Tea pink short shirt with delicate white & black hem embroidery, paired with a slim-fit shalwar.',
       fullDesc: 'Introducing RIAA — a refined expression of timeless elegance. This tea pink short shirt, featuring delicate white and black embroidery on its hem, with beautiful sleeves, is paired with a slim fit shalwar. It ensures you look effortlessly chic and fresh, no matter where the day takes you.',
@@ -2002,7 +2053,6 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: 'Restock coming soon',
       soldOut: true,
-      /* 👇 sold out — no sizes available right now */
       availableSizes: [],
       shortDesc: 'Timeless black 2-piece with front & back embroidery, embroidered sleeves and neckline buttons.',
       fullDesc: 'Timeless elegance in black! This 2-piece ensemble features intricate embroidery on the front & back. The embroidered sleeves add sophistication, while embroidered buttons on neckline brings sheer grace. Paired with a chic cambric straight trouser for a flawless look!',
@@ -2022,7 +2072,6 @@ button{ font-family:inherit; cursor:pointer; }
       pieces: 'Stitched · 2pc',
       sizes: 'Restock coming soon',
       soldOut: true,
-      /* 👇 sold out — no sizes available right now */
       availableSizes: [],
       shortDesc: 'Khaki printed lawn shirt with hand embroidery on neckline, sleeves and hem, with matching trouser.',
       fullDesc: 'The khaki printed lawn shirt is designed with intricate hand embroidery on neckline, sleeves and shirt hem, adding a touch of elegance. Made from high-quality lawn fabric, this 2 piece set includes a matching printed embroidered trouser for a complete and stylish look.',
@@ -2039,14 +2088,16 @@ button{ font-family:inherit; cursor:pointer; }
      STATE + ELEMENTS
      ============================================================ */
   var activeFilter = 'all';
+  var activeSort   = 'default';   /* NEW */
   var activeProduct = null;
-  var selectedSize = null;          /* NEW — size chosen in the modal */
+  var selectedSize = null;
   var selectedPayment = 'cod';
-  var selectedBank = 'hbl';         /* NEW — 'hbl' | 'easypaisa' */
-  var uploadedScreenshot = null;    /* { dataUrl, name } */
+  var selectedBank = 'hbl';
+  var uploadedScreenshot = null;
 
   var grid = document.getElementById('productGrid');
   var filterBar = document.getElementById('filterBar');
+  var sortBar = document.getElementById('sortBar');
   var modal = document.getElementById('modal');
   var modalClose = document.getElementById('modalClose');
   var mainImg = document.getElementById('mainImg');
@@ -2063,13 +2114,11 @@ button{ font-family:inherit; cursor:pointer; }
   var shopNowBtn = document.getElementById('shopNowBtn');
   var toast = document.getElementById('toast');
 
-  /* size selector */
   var sizeSection = document.getElementById('sizeSection');
   var sizeOptions = document.getElementById('sizeOptions');
   var sizeSelected = document.getElementById('sizeSelected');
   var sizeError = document.getElementById('sizeError');
 
-  /* cart */
   var cartBtn = document.getElementById('cartBtn');
   var cartBadge = document.getElementById('cartBadge');
   var cartDrawer = document.getElementById('cartDrawer');
@@ -2084,7 +2133,6 @@ button{ font-family:inherit; cursor:pointer; }
   var successMessage = document.getElementById('successMessage');
   var placeOrderBtn = document.getElementById('placeOrderBtn');
 
-  /* payment elements */
   var paymentMethodsEl = document.getElementById('paymentMethods');
   var advanceDetails = document.getElementById('advanceDetails');
   var bankOptionsEl = document.getElementById('bankOptions');
@@ -2094,7 +2142,6 @@ button{ font-family:inherit; cursor:pointer; }
   var fileUploadLabel = document.getElementById('fileUploadLabel');
   var filePreview = document.getElementById('filePreview');
 
-  /* summary elements */
   var sumSubtotal = document.getElementById('sumSubtotal');
   var sumDelivery = document.getElementById('sumDelivery');
   var sumDiscountRow = document.getElementById('sumDiscountRow');
@@ -2144,7 +2191,6 @@ button{ font-family:inherit; cursor:pointer; }
     updateCartBadge();
   }
 
-  /* unique cart line key: product id + size */
   function itemKey(item) {
     if (item.key) return item.key;
     return item.id + (item.size ? '__' + item.size : '');
@@ -2282,7 +2328,6 @@ button{ font-family:inherit; cursor:pointer; }
     cartFooter.style.display = 'flex';
     cartTotalEl.textContent = fmtPrice(cartTotal(cart));
 
-    /* keep summary in sync if checkout form is open */
     if (cartForm.classList.contains('open')) updateSummary();
   }
 
@@ -2356,7 +2401,7 @@ button{ font-family:inherit; cursor:pointer; }
   });
 
   /* ============================================================
-     ADVANCE ACCOUNT SELECTOR — HBL / EASYPAISA  (NEW)
+     ADVANCE ACCOUNT SELECTOR
      ============================================================ */
   function renderBankInfo() {
     var acc = BANK_ACCOUNTS[selectedBank] || BANK_ACCOUNTS.hbl;
@@ -2541,7 +2586,6 @@ button{ font-family:inherit; cursor:pointer; }
       return;
     }
 
-    /* advance payment extras */
     var txnId = '';
     var screenshotDataUrl = '';
     var bankLabel = '';
@@ -2568,7 +2612,6 @@ button{ font-family:inherit; cursor:pointer; }
     var methodLabel = isAdvance ? 'Advance Payment' : 'Cash on Delivery';
     var deliveryTime = isAdvance ? '2-3 days' : '4-5 days';
 
-    /* send one row per item */
     cart.forEach(function (item, idx) {
       var imgUrl = item.imageUrl || '';
       if (!imgUrl && item.image) {
@@ -2578,7 +2621,7 @@ button{ font-family:inherit; cursor:pointer; }
         orderId:          orderId,
         productId:        item.id,
         productName:      item.brand + ' — ' + item.name,
-        size:             item.size || '',                 /* NEW */
+        size:             item.size || '',
         price:            item.price,
         quantity:         item.qty || 1,
         name:             data.name,
@@ -2588,10 +2631,10 @@ button{ font-family:inherit; cursor:pointer; }
         notes:            data.notes,
         imageUrl:         imgUrl,
         paymentMethod:    methodLabel,
-        advanceBank:      bankLabel,                        /* NEW: HBL / EasyPaisa */
+        advanceBank:      bankLabel,
         deliveryTime:     deliveryTime,
         transactionId:    txnId,
-        screenshotData:   (idx === 0 ? screenshotDataUrl : ''),   /* send base64 once */
+        screenshotData:   (idx === 0 ? screenshotDataUrl : ''),
         screenshotName:   (idx === 0 && uploadedScreenshot ? uploadedScreenshot.name : ''),
         deliveryCharges:  t.delivery,
         discount:         t.discount,
@@ -2600,7 +2643,6 @@ button{ font-family:inherit; cursor:pointer; }
       });
     });
 
-    /* success */
     saveCart([]);
     cartForm.reset();
     cartForm.classList.remove('open');
@@ -2673,12 +2715,27 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   /* ============================================================
-     PRODUCTS RENDER
+     PRODUCTS RENDER — in-stock first + price sorting
      ============================================================ */
+  function sortProducts(list) {
+    return list.slice().sort(function (a, b) {
+      var aSold = a.soldOut ? 1 : 0;
+      var bSold = b.soldOut ? 1 : 0;
+      if (aSold !== bSold) return aSold - bSold;
+
+      if (activeSort === 'price-asc')  return a.price - b.price;
+      if (activeSort === 'price-desc') return b.price - a.price;
+
+      return 0;
+    });
+  }
+
   function renderProducts() {
     var list = activeFilter === 'all'
-      ? products
+      ? products.slice()
       : products.filter(function (p) { return p.brand === activeFilter; });
+
+    list = sortProducts(list);
 
     grid.innerHTML = '';
 
@@ -2741,7 +2798,21 @@ button{ font-family:inherit; cursor:pointer; }
   });
 
   /* ============================================================
-     SIZE SELECTOR RENDER  (NEW)
+     SORT
+     ============================================================ */
+  sortBar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sort-btn');
+    if (!btn) return;
+    sortBar.querySelectorAll('.sort-btn').forEach(function (b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    activeSort = btn.getAttribute('data-sort');
+    renderProducts();
+  });
+
+  /* ============================================================
+     SIZE SELECTOR RENDER
      ============================================================ */
   function renderSizes(p) {
     selectedSize = null;
@@ -2829,7 +2900,6 @@ button{ font-family:inherit; cursor:pointer; }
       thumbsWrap.appendChild(btn);
     });
 
-    /* render available sizes */
     renderSizes(p);
 
     document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });

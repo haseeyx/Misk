@@ -383,6 +383,51 @@ button{ font-family:inherit; cursor:pointer; }
   color:var(--ink-soft);
 }
 
+/* ---------- SORT BAR ---------- */
+.sort-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:16px;
+}
+.sort-label{
+  font-size:8.5px;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--steel);
+  margin-right:4px;
+}
+.sort-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--ink-soft);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:background .3s, color .3s, border-color .3s, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.sort-btn:hover{
+  background:var(--paper-2);
+  color:var(--navy);
+  border-color:var(--silver);
+}
+.sort-btn.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#F2F6F8;
+  transform:translateY(-1px);
+}
+.sort-btn .sort-arrow{ font-size:11px; line-height:1; }
+
 /* ============================================================
    PRODUCTS GRID
    ============================================================ */
@@ -1665,6 +1710,10 @@ button{ font-family:inherit; cursor:pointer; }
   .filter-btn{ flex:none; padding:10px 16px; font-size:9px; }
   .filter-btn .count{ font-size:8px; padding:2px 6px; }
 
+  .sort-bar{ gap:6px; }
+  .sort-btn{ padding:7px 12px; font-size:8.5px; letter-spacing:.16em; }
+  .sort-label{ width:100%; text-align:center; margin:0 0 2px; }
+
   .products-grid{ grid-template-columns:1fr; }
 
   .modal{ padding:10px; }
@@ -1769,6 +1818,18 @@ button{ font-family:inherit; cursor:pointer; }
       </button>
       <button class="filter-btn" data-filter="TWILIGHT">
         Twilight Bloom <span class="count" data-count="TWILIGHT">1</span>
+      </button>
+    </div>
+
+    <!-- ===== SORT BAR ===== -->
+    <div class="sort-bar" id="sortBar">
+      <span class="sort-label">Sort by</span>
+      <button class="sort-btn active" data-sort="default" type="button">Featured</button>
+      <button class="sort-btn" data-sort="price-asc" type="button">
+        <span class="sort-arrow">↑</span> Price · Low to High
+      </button>
+      <button class="sort-btn" data-sort="price-desc" type="button">
+        <span class="sort-arrow">↓</span> Price · High to Low
       </button>
     </div>
   </div>
@@ -1889,6 +1950,25 @@ button{ font-family:inherit; cursor:pointer; }
     </div>
 
     <form class="cart-form" id="cartForm" novalidate>
+      <button
+    type="button"
+    onclick="this.closest('.cart-form').style.display='none'; document.getElementById('cartItems').style.display=''; document.getElementById('cartFooter').style.display='';"
+    style="
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: none;
+        color: #2B4664;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 8px 0;
+        margin-bottom: 15px;
+    "
+>
+    ← Back to Cart
+</button>
       <div class="form-section-title">Order Summary</div>
       <div class="order-summary">
         <div class="summary-row">
@@ -2028,13 +2108,11 @@ button{ font-family:inherit; cursor:pointer; }
 
   /* ============================================================
      SIZE OPTIONS
-     All sizes are always rendered — but only sizes listed inside
-     a product's `availableSizes` array are clickable.
      ============================================================ */
   var ALL_SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
   /* ============================================================
-     BANK / WALLET ACCOUNTS FOR ADVANCE PAYMENT
+     BANK / WALLET ACCOUNTS
      ============================================================ */
   var BANK_ACCOUNTS = {
     hbl: {
@@ -2113,6 +2191,7 @@ button{ font-family:inherit; cursor:pointer; }
      STATE + ELEMENTS
      ============================================================ */
   var activeFilter = 'all';
+  var activeSort   = 'default';   /* 'default' | 'price-asc' | 'price-desc' */
   var activeProduct = null;
   var selectedSize = null;
   var selectedPayment = 'cod';
@@ -2121,6 +2200,7 @@ button{ font-family:inherit; cursor:pointer; }
 
   var grid = document.getElementById('productGrid');
   var filterBar = document.getElementById('filterBar');
+  var sortBar = document.getElementById('sortBar');
   var modal = document.getElementById('modal');
   var modalClose = document.getElementById('modalClose');
   var mainImg = document.getElementById('mainImg');
@@ -2140,7 +2220,6 @@ button{ font-family:inherit; cursor:pointer; }
   var shopNowBtn = document.getElementById('shopNowBtn');
   var toast = document.getElementById('toast');
 
-  /* size selector */
   var sizeSection = document.getElementById('sizeSection');
   var sizeOptions = document.getElementById('sizeOptions');
   var sizeSelected = document.getElementById('sizeSelected');
@@ -2407,7 +2486,7 @@ button{ font-family:inherit; cursor:pointer; }
   });
 
   /* ============================================================
-     ADVANCE ACCOUNT SELECTOR — HBL / EASYPAISA
+     ADVANCE ACCOUNT SELECTOR
      ============================================================ */
   function renderBankInfo() {
     var acc = BANK_ACCOUNTS[selectedBank] || BANK_ACCOUNTS.hbl;
@@ -2692,14 +2771,32 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   /* ============================================================
-     PRODUCTS RENDER
+     PRODUCTS RENDER — in-stock first + price sorting
      ============================================================ */
+  function sortProducts(list) {
+    return list.slice().sort(function (a, b) {
+      /* 1) In-stock always first */
+      var aSold = a.soldOut ? 1 : 0;
+      var bSold = b.soldOut ? 1 : 0;
+      if (aSold !== bSold) return aSold - bSold;
+
+      /* 2) Price sort within each group */
+      if (activeSort === 'price-asc')  return a.price - b.price;
+      if (activeSort === 'price-desc') return b.price - a.price;
+
+      /* default — stable original order */
+      return 0;
+    });
+  }
+
   function renderProducts() {
     var list = activeFilter === 'all'
-      ? products
+      ? products.slice()
       : products.filter(function (p) {
           return p.brand.toUpperCase().indexOf(activeFilter) === 0;
         });
+
+    list = sortProducts(list);
 
     grid.innerHTML = '';
 
@@ -2757,6 +2854,20 @@ button{ font-family:inherit; cursor:pointer; }
     });
     btn.classList.add('active');
     activeFilter = btn.getAttribute('data-filter');
+    renderProducts();
+  });
+
+  /* ============================================================
+     SORT
+     ============================================================ */
+  sortBar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sort-btn');
+    if (!btn) return;
+    sortBar.querySelectorAll('.sort-btn').forEach(function (b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+    activeSort = btn.getAttribute('data-sort');
     renderProducts();
   });
 
@@ -2834,10 +2945,9 @@ button{ font-family:inherit; cursor:pointer; }
   }
 
   function buildMetaChips(p) {
-    var chips =
-      '<span>Fabric · ' + p.fabric + '</span>' +
-      '<span>' + p.pieces + '</span>' +
-      '<span>' + p.sizes + '</span>';
+    var chips = '';
+    if (p.fabric) chips += '<span>Fabric · ' + p.fabric + '</span>';
+    chips += '<span>' + p.pieces + '</span>' + '<span>' + p.sizes + '</span>';
     if (p.colour) chips += '<span>Colour · ' + p.colour + '</span>';
     if (p.shirtLength) chips += '<span>Length · ' + p.shirtLength + '</span>';
     return chips;
